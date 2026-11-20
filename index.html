@@ -1215,7 +1215,7 @@ main .sttl,main .wtag{position:relative;z-index:2}
   <div class="stick">
     <div class="hw a" id="hwa">יובל</div>
     <div class="hw b" id="hwb">בן שאול</div>
-    <div class="crt" id="crt"><div class="scr"><video id="vid" autoplay muted playsinline preload="auto"></video><script>(function(){var v=document.getElementById("vid"),m=matchMedia("(max-width:900px) and (orientation:portrait)").matches;v.poster=m?"a/hero_v.jpg":"a/hero.jpg";v.src=m?"a/hero_v.mp4":"a/hero.mp4";document.documentElement.classList.toggle("vhero",m)})()</script></div></div>
+    <div class="crt" id="crt"><div class="scr"><video id="vid" autoplay muted playsinline preload="auto"></video><script>(function(){var v=document.getElementById("vid"),m=matchMedia("(max-width:900px) and (orientation:portrait)").matches;v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute("webkit-playsinline","");v.poster=m?"a/hero_v.jpg":"a/hero.jpg";v.src=m?"a/hero_v.mp4":"a/hero.mp4";document.documentElement.classList.toggle("vhero",m)})()</script></div></div>
     <div class="shint" id="shint" aria-hidden="true"><span>גללו למסך מלא</span><i>↓</i></div>
     <div id="hctl"><button id="snd" type="button" aria-pressed="false" aria-label="הפעלת סאונד"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sl"><b>תדליקו סאונד</b><small>הקריינות בקול שלי</small></span></button><button id="rpl" type="button" aria-label="לנגן מההתחלה" title="לנגן מההתחלה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z" fill="currentColor"/></svg></button></div>
     <p class="hero-sub" id="hsub"><b>DESIGN · CODE · AI</b>מעצב, מפתח ובמאי AI בגוף אחד. אתם מביאים רעיון, אני מחזיר מותג, אתר וסרטון שעובדים<br><span class="hs-ctas"><a class="lnk pri" href="#work">בואו לראות ←</a><a class="lnk" href="#contact">יאללה, נדבר ↗</a></span></p>
@@ -1529,6 +1529,11 @@ const sndUI=()=>{const on=!vid.muted;snd.setAttribute('aria-pressed',String(on))
 snd.addEventListener('click',()=>{if(vid.muted){vid.muted=false;vid.play().catch(()=>{})}else vid.muted=true;sndUI()});
 /* the sound plays one round: when the video ends it goes quiet and keeps looping silently */
 $('#rpl').addEventListener('click',()=>{const b=$('#rpl');b.classList.remove('spin');void b.offsetWidth;b.classList.add('spin');try{vid.currentTime=0}catch(e){}vid.play().catch(()=>{})});
+/* autoplay on entry: retry until the hero video is actually playing (some phones/in-app browsers block the first attempt) */
+{const go=()=>{if(vid.paused&&!document.hidden&&!(document.documentElement.classList.contains('a-motion'))){const p=vid.play();p&&p.catch(()=>{})}};
+ go();['loadedmetadata','canplay','loadeddata'].forEach(ev=>vid.addEventListener(ev,go));addEventListener('load',go);addEventListener('pageshow',go);document.addEventListener('visibilitychange',go);
+ const once=()=>{go();if(!vid.paused)['touchstart','pointerdown','scroll','keydown'].forEach(ev=>removeEventListener(ev,once,true))};['touchstart','pointerdown','scroll','keydown'].forEach(ev=>addEventListener(ev,once,{capture:true,passive:true}));
+ let n=0;const iv=setInterval(()=>{go();if(!vid.paused||++n>20)clearInterval(iv)},500)}
 vid.addEventListener('ended',()=>{vid.muted=true;sndUI();try{vid.currentTime=0}catch(e){}vid.play().catch(()=>{})});
 /* the toggle floats while the hero (and its full screen video) is on screen */
 {const hero=$('#hero');const chk=()=>{const r=hero.getBoundingClientRect();const inHero=(document.body.dataset.view||'home')==='home'&&r.bottom>innerHeight*.35;document.getElementById('hctl').classList.toggle('away',!inHero);if(!inHero&&!vid.muted){vid.muted=true;sndUI()}};
