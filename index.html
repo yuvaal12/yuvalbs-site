@@ -1182,6 +1182,19 @@ main .sttl,main .wtag{position:relative;z-index:2}
   .cbtns{flex-direction:column;align-items:center}
   .cbtn{width:min(100%,340px);justify-content:space-between;font-size:18px;padding:16px 24px}
 }
+
+/* about: stacked photo deck */
+.ab-photo .deck{position:relative;aspect-ratio:4/5;cursor:pointer}
+.ab-photo .deck .shot{position:absolute;inset:0;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s,box-shadow .5s}
+.ab-photo .deck .shot[data-o="0"]{z-index:4;transform:rotate(-2deg)}
+.ab-photo .deck .shot[data-o="1"]{z-index:3;transform:rotate(4deg) translate(10px,6px);box-shadow:none}
+.ab-photo .deck .shot[data-o="2"]{z-index:2;transform:rotate(-6deg) translate(-8px,10px);box-shadow:none}
+.ab-photo .deck .shot[data-o="3"]{z-index:1;transform:rotate(7deg) translate(6px,14px);box-shadow:none;opacity:.9}
+.ab-photo .deck .shot.out{z-index:5;transform:translate(-120%,-6%) rotate(-18deg)!important;opacity:0}
+.ab-photo .deck .shot:hover{transform:rotate(-2deg)}
+.ab-photo .ab-hi{z-index:10}
+.ab-photo>.mono{margin-top:20px;position:relative;z-index:6}
+@media (max-width:759px){.ab-photo .deck{margin-inline:14px}}
 </style>
 
 <a class="skip" href="#intro">דלגו לתוכן</a>
@@ -1220,7 +1233,7 @@ main .sttl,main .wtag{position:relative;z-index:2}
 
 <section id="about" class="wrap" data-g="1">
   <div class="in ab">
-    <div class="ab-photo"><span class="ab-hi">היי, אני יובל 👋</span><div class="shot"><img loading="lazy" decoding="async" src="a/me.webp" alt="יובל בן שאול" decoding="async"></div><span class="mono">Yuval Ben Shaul · Design Team Lead</span></div>
+    <div class="ab-photo"><span class="ab-hi">היי, אני יובל 👋</span><div class="deck" role="button" tabindex="0" aria-label="תמונות שלי, לחצו לתמונה הבאה"><div class="shot"><img src="a/me2.webp" alt="יובל עם הכלב" decoding="async"></div><div class="shot"><img src="a/me1.webp" alt="יובל ברחוב" decoding="async" loading="lazy"></div><div class="shot"><img src="a/me3.webp" alt="יובל עם ההורים" decoding="async" loading="lazy"></div><div class="shot"><img src="a/me4.webp" alt="יובל עם הכלב באוטו" decoding="async" loading="lazy"></div></div><span class="mono">Yuval Ben Shaul · Design Team Lead</span></div>
     <div class="ab-txt">
       <span class="mono">About</span>
       <h2>שלושה כובעים על ראש אחד</h2>
@@ -2242,6 +2255,15 @@ bs.forEach(b=>{b.textContent='0';io.observe(b)})})();
 <script>
 /* mobile: each section carries its own colour, so text never sits on the previous section's background while scrolling */
 (()=>{if(innerWidth>=760)return;document.querySelectorAll('main [data-bg]').forEach(s=>{s.style.backgroundColor=s.dataset.bg})})();
+</script>
+
+<script>
+/* about photo deck: rotates on its own, tap for the next one */
+(()=>{const d=document.querySelector('.ab-photo .deck');if(!d)return;const c=[...d.children];let o=c.map((_,i)=>i);
+ const lay=()=>c.forEach((el,i)=>el.dataset.o=o[i]);lay();
+ const next=()=>{const top=c[o.indexOf(0)];top.classList.add('out');setTimeout(()=>{o=o.map(v=>(v+c.length-1)%c.length);top.classList.remove('out');lay()},420)};
+ let t=setInterval(next,3600);const reset=()=>{clearInterval(t);t=setInterval(next,3600)};
+ d.addEventListener('click',()=>{next();reset()});d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();next();reset()}})})();
 </script>
 
 </html>
