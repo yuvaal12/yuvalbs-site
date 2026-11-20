@@ -697,9 +697,10 @@ footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;paddin
   nav.top ul li:nth-child(2),nav.top ul li:nth-child(3),nav.top ul li:nth-child(4){display:none}
   nav.top ul{align-items:center}
   .crt{width:84vw;padding:9px 9px 22px;border-radius:14px}
-  .vhero .crt{width:min(82vw,calc((100svh - 350px) * 9 / 16 + 16px));aspect-ratio:auto;height:auto;padding:8px 8px 20px}
+  .vhero .crt{width:min(72vw,calc((100svh - 278px) * 9 / 16 + 16px));aspect-ratio:auto;height:auto;padding:8px 8px 20px}
   .vhero .crt .scr{aspect-ratio:9/16;height:auto}
-  .vhero .hero-sub{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+  .vhero .hero-sub{bottom:calc(86px + env(safe-area-inset-bottom,0px));font-size:14px;line-height:1.45}
+  .vhero .hero-sub b{margin-bottom:4px}
   .crt::after{display:none}
   #snd{padding:10px 20px 10px 10px}#snd .sl b{font-size:15px}
   #rpl{width:52px;height:52px}
@@ -1149,6 +1150,13 @@ html.mnu-open #hctl,html.mnu-open #waf,html.mnu-open .a11y,html.mnu-open #vnav{o
 
 /* keep text above the 3D swarm */
 main .sttl,main .wtag{position:relative;z-index:2}
+
+/* mobile: accessibility button is always the slim side tab */
+@media (max-width:900px){
+  .a11y .a11y-b{width:28px;height:46px;border-radius:0 12px 12px 0;margin-left:calc(-1 * max(14px,env(safe-area-inset-left,0px)))}
+  .a11y .a11y-b svg{width:17px;height:17px}
+  .a11y .a11y-x{display:none}
+}
 </style>
 
 <a class="skip" href="#intro">דלגו לתוכן</a>
@@ -1496,7 +1504,7 @@ if(window.gsap&&!RM){
   gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom bottom',scrub:.6,invalidateOnRefresh:true}})
     .to('#hwa',{xPercent:-30,opacity:0,ease:'none'},0).to('#hwb',{xPercent:30,opacity:0,ease:'none'},0)
     .to('#hsub',{opacity:0,y:40,ease:'none',duration:.3},0).to('#shint',{opacity:0,ease:'none',duration:.12},0)
-    .fromTo(crt,{y:()=>isV()?Math.min(0,122-(innerHeight-crt.offsetHeight)/2):0},{y:0,ease:'none',immediateRender:true},0)
+    .fromTo(crt,{y:()=>isV()?Math.min(0,98-(innerHeight-crt.offsetHeight)/2):0},{y:0,ease:'none',immediateRender:true},0)
     .to(crt,{scale:sc,borderRadius:0,ease:'power1.in'},0)
     .to(crt,{'--scan':0,ease:'none'},0)
 ;
