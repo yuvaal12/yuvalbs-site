@@ -1167,6 +1167,13 @@ main .sttl,main .wtag{position:relative;z-index:2}
 @media (max-aspect-ratio:1/2){.vhero .crt video{object-fit:contain}}
 .vhero .crt .scr::after{background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,0) 20%,rgba(0,0,0,0) 74%,rgba(0,0,0,.6));opacity:1!important}
 .vhero .hw,.vhero .hero-sub,.vhero .shint{display:none!important}
+
+/* mobile: no 3D swarm, no empty "stage" space reserved for it, tighter sections */
+@media (max-width:759px){
+  #gl{display:none!important}
+  .stage{min-height:0!important;margin-bottom:6vh!important;gap:22px}
+  .stage .sttl{padding-top:0}
+}
 </style>
 
 <a class="skip" href="#intro">דלגו לתוכן</a>
@@ -1519,8 +1526,8 @@ if(window.gsap&&!RM){
     .to(crt,{'--scan':0,ease:'none'},0)
 ;
   /* reveal on scroll */
-  $$('.rv').forEach(el=>gsap.from(el,{y:70,clipPath:'inset(12% 0 0 0)',duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%'}}));
-  $$('.ptitle').forEach(el=>gsap.from(el,{yPercent:30,duration:1.2,ease:'power4.out',scrollTrigger:{trigger:el,start:'top 90%'}}));
+  if(innerWidth>=760)$$('.rv').forEach(el=>gsap.from(el,{y:70,clipPath:'inset(12% 0 0 0)',duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%'}}));
+  if(innerWidth>=760)$$('.ptitle').forEach(el=>gsap.from(el,{yPercent:30,duration:1.2,ease:'power4.out',scrollTrigger:{trigger:el,start:'top 90%'}}));
 }
   addEventListener('load',()=>ScrollTrigger.refresh());$$('img').forEach(im=>{if(!im.complete)im.addEventListener('load',()=>{clearTimeout(window._rf);window._rf=setTimeout(()=>ScrollTrigger.refresh(),200)},{once:true})});
 /* manifesto words light up */
@@ -1686,8 +1693,8 @@ function frame(ms){const t=ms/1000;
   const r=mani.getBoundingClientRect();const pr=clamp((innerHeight*.85-r.top)/(r.height+innerHeight*.35));const on=Math.floor(pr*words.length*1.05);
   words.forEach((el,i)=>el.classList.toggle('on',i<on));
   let vis=0;for(const el of stages){const q=el.getBoundingClientRect();if(q.top<innerHeight*.5&&q.bottom>innerHeight*.62)vis=1}
-  glo=lerp(glo,vis?(MOB&&W>1.5?.32:.9):0,.12);gl.style.opacity=glo.toFixed(3);
-  if(three&&glo>.015)three(t,W);
+  glo=lerp(glo,vis&&!MOB?.9:0,.12);gl.style.opacity=glo.toFixed(3);
+  if(three&&!MOB&&glo>.015)three(t,W);
   requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
 document.body.style.transition='none';
