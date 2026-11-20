@@ -697,7 +697,9 @@ footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;paddin
   nav.top ul li:nth-child(2),nav.top ul li:nth-child(3),nav.top ul li:nth-child(4){display:none}
   nav.top ul{align-items:center}
   .crt{width:84vw;padding:9px 9px 22px;border-radius:14px}
-  .vhero .crt{width:min(58vw,calc(46svh * 9 / 16));aspect-ratio:9/16;padding:8px 8px 20px}
+  .vhero .crt{width:min(82vw,calc((100svh - 350px) * 9 / 16 + 16px));aspect-ratio:auto;height:auto;padding:8px 8px 20px}
+  .vhero .crt .scr{aspect-ratio:9/16;height:auto}
+  .vhero .hero-sub{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
   .crt::after{display:none}
   #snd{padding:10px 20px 10px 10px}#snd .sl b{font-size:15px}
   #rpl{width:52px;height:52px}
@@ -1196,7 +1198,7 @@ main .sttl,main .wtag{position:relative;z-index:2}
         <li><span>2021 · 2022</span><b>מעצב גרפי</b><i>SMIU, Social Media It's Us</i></li>
         <li><span>2020 · היום</span><b>מעצב גרפי ומפתח פרונט אנד</b><i>עצמאי</i></li>
         <li><span>2019</span><b>מנהל שיווק</b><i>Orkol Smart Systems</i></li>
-        <li><span>2015 · 2019</span><b>קצין בצה״ל, סגן</b><i>קצין מחשוב, ולפני כן קצין משאבי אנוש</i></li>
+        <li><span>2015 · 2019</span><b>קצין בצה״ל, סרן (מיל׳)</b><i>קצין מחשוב, ולפני כן קצין משאבי אנוש</i></li>
         <li><span>2014 · 2015</span><b>בודק תוכנה</b><i>Check Point</i></li>
       </ol>
       <div class="edu">
@@ -1489,11 +1491,12 @@ vid.addEventListener('ended',()=>{vid.muted=true;sndUI();try{vid.currentTime=0}c
 /* hero: CRT grows to full screen */
 if(window.gsap&&!RM){
   const crt=$('#crt');
-  const sc=()=>Math.max(innerWidth/crt.offsetWidth,innerHeight/crt.offsetHeight)*1.08;
+  const isV=()=>document.documentElement.classList.contains('vhero');
+  const sc=()=>isV()?innerWidth/crt.querySelector('.scr').offsetWidth:Math.max(innerWidth/crt.offsetWidth,innerHeight/crt.offsetHeight)*1.08;
   gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom bottom',scrub:.6,invalidateOnRefresh:true}})
     .to('#hwa',{xPercent:-30,opacity:0,ease:'none'},0).to('#hwb',{xPercent:30,opacity:0,ease:'none'},0)
     .to('#hsub',{opacity:0,y:40,ease:'none',duration:.3},0).to('#shint',{opacity:0,ease:'none',duration:.12},0)
-    .fromTo(crt,{y:()=>document.documentElement.classList.contains('vhero')?-innerHeight*.11:0},{y:0,ease:'none',immediateRender:true},0)
+    .fromTo(crt,{y:()=>isV()?Math.min(0,122-(innerHeight-crt.offsetHeight)/2):0},{y:0,ease:'none',immediateRender:true},0)
     .to(crt,{scale:sc,borderRadius:0,ease:'power1.in'},0)
     .to(crt,{'--scan':0,ease:'none'},0)
 ;
