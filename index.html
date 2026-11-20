@@ -1526,7 +1526,7 @@ const vid=$('#vid'),snd=$('#snd');
   if(!vid.getAttribute('src')||vid.getAttribute('src')!==want){const t=vid.currentTime||0,mu=vid.muted;vid.poster=m?'a/hero_v.jpg':'a/hero.jpg';vid.src=want;vid.muted=mu;vid.addEventListener('loadedmetadata',()=>{try{vid.currentTime=t}catch(e){}vid.play().catch(()=>{})},{once:true});if(window.ScrollTrigger)setTimeout(()=>ScrollTrigger.refresh(),100)}};
  (mq.addEventListener?mq.addEventListener('change',pick):mq.addListener(pick));pick()}
 const sndUI=()=>{const on=!vid.muted;snd.setAttribute('aria-pressed',String(on));snd.setAttribute('aria-label',on?'השתקה':'הפעלת סאונד');snd.querySelector('.sl b').textContent=on?'שקט בבקשה':'תדליקו סאונד';snd.querySelector('.sl small').textContent=on?'לחצו כדי להשתיק':'הקריינות בקול שלי'};
-snd.addEventListener('click',()=>{if(vid.muted){vid.muted=false;try{vid.currentTime=0}catch(e){}vid.play().catch(()=>{})}else vid.muted=true;sndUI()});
+snd.addEventListener('click',()=>{if(vid.muted){vid.muted=false;vid.play().catch(()=>{})}else vid.muted=true;sndUI()});
 /* the sound plays one round: when the video ends it goes quiet and keeps looping silently */
 $('#rpl').addEventListener('click',()=>{const b=$('#rpl');b.classList.remove('spin');void b.offsetWidth;b.classList.add('spin');try{vid.currentTime=0}catch(e){}vid.play().catch(()=>{})});
 vid.addEventListener('ended',()=>{vid.muted=true;sndUI();try{vid.currentTime=0}catch(e){}vid.play().catch(()=>{})});
