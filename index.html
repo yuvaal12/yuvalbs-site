@@ -1157,6 +1157,16 @@ main .sttl,main .wtag{position:relative;z-index:2}
   .a11y .a11y-b svg{width:17px;height:17px}
   .a11y .a11y-x{display:none}
 }
+
+/* mobile portrait: hero video fills the whole first screen, menu floats over it */
+.vhero #hero{height:100vh;height:100svh}
+.vhero #hero .stick{position:relative}
+.vhero .crt{position:absolute;inset:0;width:100%!important;height:100%!important;aspect-ratio:auto!important;padding:0!important;border-radius:0!important;box-shadow:none!important;background:#000;transform:none!important}
+.vhero .crt .scr{aspect-ratio:auto!important;height:100%!important;border-radius:0!important}
+.vhero .crt video{object-fit:cover}
+@media (max-aspect-ratio:1/2){.vhero .crt video{object-fit:contain}}
+.vhero .crt .scr::after{background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,0) 20%,rgba(0,0,0,0) 74%,rgba(0,0,0,.6));opacity:1!important}
+.vhero .hw,.vhero .hero-sub,.vhero .shint{display:none!important}
 </style>
 
 <a class="skip" href="#intro">דלגו לתוכן</a>
@@ -1500,7 +1510,7 @@ vid.addEventListener('ended',()=>{vid.muted=true;sndUI();try{vid.currentTime=0}c
 if(window.gsap&&!RM){
   const crt=$('#crt');
   const isV=()=>document.documentElement.classList.contains('vhero');
-  const sc=()=>isV()?innerWidth/crt.querySelector('.scr').offsetWidth:Math.max(innerWidth/crt.offsetWidth,innerHeight/crt.offsetHeight)*1.08;
+  const sc=()=>isV()?1:Math.max(innerWidth/crt.offsetWidth,innerHeight/crt.offsetHeight)*1.08;
   gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom bottom',scrub:.6,invalidateOnRefresh:true}})
     .to('#hwa',{xPercent:-30,opacity:0,ease:'none'},0).to('#hwb',{xPercent:30,opacity:0,ease:'none'},0)
     .to('#hsub',{opacity:0,y:40,ease:'none',duration:.3},0).to('#shint',{opacity:0,ease:'none',duration:.12},0)
