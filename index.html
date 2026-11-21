@@ -799,6 +799,14 @@ footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;paddin
 .hs-b:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
 .hs-b:disabled{opacity:.28;cursor:default}
 .reel+.hs-bar{margin-top:-30px}
+@media (max-width:759px){
+ .reel{gap:12px;padding:4px 0 6px!important;scroll-padding-inline:0}
+ .reel video{width:66vw;max-width:300px;transform:none!important;border-radius:24px}
+ .reel+.hs-bar{margin-top:16px}
+ .phones3{padding:14px 2px 6px}
+ .phones3 img{width:58vw;max-width:260px;transform:none!important;border-radius:24px}
+ .phones3+.hs-bar{margin-top:12px}
+}
 @media (max-width:900px){.hs-b{width:42px;height:42px}}
 body[data-view="work"] #hud,body[data-view="brand"] #hud{display:none}
 @media (hover:none){.rc-t{opacity:1;transform:none}}
