@@ -1195,6 +1195,97 @@ main .sttl,main .wtag{position:relative;z-index:2}
 .ab-photo .ab-hi{z-index:10}
 .ab-photo>.mono{margin-top:20px;position:relative;z-index:6}
 @media (max-width:759px){.ab-photo .deck{margin-inline:14px}}
+/* ===== Richard case study ===== */
+.rcs{--L:#C4F550;--K:#111;--P:#FBFCF6;color:var(--P);background:#0b0b0c}
+.rcs .in{max-width:1240px;margin:0 auto;padding-inline:max(16px,4vw)}
+.rcs .kick{display:flex;align-items:center;gap:12px;color:var(--L);margin-bottom:18px}
+.rcs .kick i{width:28px;height:2px;background:var(--L)}
+.rcs h2{font-family:var(--display);font-weight:900;font-size:clamp(34px,5.4vw,76px);line-height:1;margin:0 0 22px;letter-spacing:-.01em}
+.rcs h2 em{font-style:normal;color:var(--L)}
+.rcs .lead{font-size:clamp(18px,1.6vw,22px);line-height:1.6;max-width:62ch;color:rgba(251,252,246,.78);margin:0}
+.rcs section{padding-block:clamp(64px,11vh,130px);border-top:1px solid rgba(255,255,255,.08)}
+/* tl;dr */
+.rcs-tldr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:18px;overflow:hidden;margin-top:44px}
+.rcs-tldr div{background:#111;padding:24px 22px}
+.rcs-tldr small{display:block;color:var(--L);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;direction:ltr;text-align:right;margin-bottom:10px}
+.rcs-tldr b{display:block;font-family:var(--display);font-size:20px;line-height:1.3;font-weight:700}
+.rcs-tldr span{display:block;margin-top:6px;font-size:14px;color:rgba(251,252,246,.6)}
+/* problem */
+.rcs-pains{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:48px;counter-reset:p}
+.rcs-pains li{list-style:none;padding:26px 22px 28px;border-radius:18px;background:#151516;border:1px solid rgba(255,255,255,.07);position:relative}
+.rcs-pains li::before{counter-increment:p;content:"0" counter(p);font-family:var(--mono);font-size:12px;color:#ff6b5b;letter-spacing:.12em;display:block;margin-bottom:28px}
+.rcs-pains b{display:block;font-family:var(--display);font-size:21px;line-height:1.25;margin-bottom:8px}
+.rcs-pains p{margin:0;font-size:15px;color:rgba(251,252,246,.65)}
+.rcs-pains{padding:0}
+/* insight */
+.rcs-ins{background:var(--L);color:var(--K)}
+.rcs-ins .kick{color:var(--K)}.rcs-ins .kick i{background:var(--K)}
+.rcs-ins h2 em{color:var(--K);background:#fff;padding:0 .18em;border-radius:.12em}
+.rcs-ins .lead{color:rgba(17,17,17,.78)}
+.rcs-anat{margin-top:56px;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.3fr) auto minmax(0,1fr);gap:18px;align-items:center}
+.rcs-bub{background:#fff;border-radius:18px 18px 4px 18px;padding:18px 22px;font-family:var(--display);font-size:clamp(24px,2.6vw,34px);font-weight:700;box-shadow:0 18px 40px rgba(0,0,0,.12);justify-self:start}
+.rcs-bub small{display:block;font:500 12px var(--mono);letter-spacing:.12em;color:#6b6b6b;margin-bottom:6px;direction:ltr;text-align:right}
+.rcs-arr{font-size:30px;font-family:var(--mono);opacity:.6;transform:scaleX(-1)}
+.rcs-chips{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rcs-chips div{background:var(--K);color:var(--P);border-radius:14px;padding:14px 16px;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.rcs-chips div small{display:block;font:500 11px var(--mono);letter-spacing:.14em;color:var(--L);direction:ltr;text-align:right}
+.rcs-chips div b{font-family:var(--display);font-size:20px}
+.rcs-anat.on .rcs-chips div{opacity:1;transform:none}
+.rcs-anat.on .rcs-chips div:nth-child(2){transition-delay:.15s}.rcs-anat.on .rcs-chips div:nth-child(3){transition-delay:.3s}.rcs-anat.on .rcs-chips div:nth-child(4){transition-delay:.45s}
+.rcs-rep{background:#E9F8C9;border-radius:18px 18px 18px 4px;padding:18px 22px;font-size:17px;line-height:1.5;box-shadow:0 18px 40px rgba(0,0,0,.12);opacity:0;transition:opacity .6s .7s}
+.rcs-anat.on .rcs-rep{opacity:1}
+.rcs-rep b{font-family:var(--display);font-size:22px;display:block}
+/* decisions */
+.rcs-dec{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:48px}
+.rcs-d{border-radius:20px;background:#151516;border:1px solid rgba(255,255,255,.07);padding:24px 22px 26px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s,transform .3s}
+.rcs-d:hover{border-color:rgba(196,245,80,.5);transform:translateY(-4px)}
+.rcs-d .no,.rcs-d .yes{border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.45}
+.rcs-d .no{background:rgba(255,107,91,.08);color:rgba(251,252,246,.6)}.rcs-d .no span{text-decoration:line-through;text-decoration-color:rgba(255,107,91,.7)}
+.rcs-d .yes{background:rgba(196,245,80,.1);color:var(--P)}
+.rcs-d .no small,.rcs-d .yes small{display:block;text-decoration:none;font:500 11px var(--mono);letter-spacing:.14em;direction:ltr;text-align:right;margin-bottom:4px}
+.rcs-d .no small{color:#ff6b5b}.rcs-d .yes small{color:var(--L)}
+.rcs-d h3{font-family:var(--display);font-size:24px;line-height:1.2;margin:0}
+.rcs-d p.why{margin:0;font-size:15px;color:rgba(251,252,246,.7)}
+.rcs-d.open p.why,.rcs-d:hover p.why{max-height:240px}
+.rcs-d .tg{margin-top:auto;font:500 11px var(--mono);letter-spacing:.14em;color:rgba(251,252,246,.4);direction:ltr;text-align:right}
+@media (hover:none){.rcs-d p.why{max-height:none}.rcs-d .tg{display:none}}
+/* journey */
+.rcs-jr{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:52px}
+.rcs-st figure{margin:0;border-radius:22px;overflow:hidden;background:#C4F550;aspect-ratio:585/1266;box-shadow:0 30px 60px rgba(0,0,0,.45);cursor:zoom-in}
+.rcs-st img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.rcs-st figure:hover img{transform:scale(1.04)}
+.rcs-st .n{font:500 12px var(--mono);letter-spacing:.14em;color:var(--L);margin:18px 0 6px;direction:ltr;text-align:right}
+.rcs-st b{font-family:var(--display);font-size:19px;display:block;line-height:1.25}
+.rcs-st p{margin:6px 0 0;font-size:14px;color:rgba(251,252,246,.62)}
+/* scope */
+.rcs-scope{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:center}
+.rcs-scope .phones{display:flex;gap:16px;justify-content:center}
+.rcs-scope .phones img{width:42%;border-radius:20px;box-shadow:0 30px 60px rgba(0,0,0,.45);cursor:zoom-in}
+.rcs-scope .phones img:last-child{margin-top:56px}
+.rcs-ul{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px}
+.rcs-ul li{padding-right:30px;position:relative;font-size:16px;color:rgba(251,252,246,.8)}
+.rcs-ul li::before{content:"";position:absolute;right:0;top:.55em;width:14px;height:8px;border-radius:2px;background:var(--L);clip-path:polygon(0 0,50% 40%,100% 0,100% 100%,50% 60%,0 100%)}
+/* pricing */
+.rcs-price{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:44px}
+.rcs-price div{border-radius:20px;padding:26px 22px;background:#151516;border:1px solid rgba(255,255,255,.07)}
+.rcs-price div.hl{background:var(--L);color:var(--K);border-color:var(--L)}
+.rcs-price small{font:500 11px var(--mono);letter-spacing:.14em;opacity:.7;direction:ltr;display:block;text-align:right}
+.rcs-price b{display:block;font-family:var(--display);font-size:46px;font-weight:900;line-height:1.1;margin:10px 0 2px}
+.rcs-price b span{font-size:16px;font-weight:500}
+.rcs-price p{margin:8px 0 0;font-size:15px;opacity:.75}
+.rcs-note{margin-top:22px;font-size:15px;color:rgba(251,252,246,.6);max-width:70ch}
+/* end */
+.rcs-end{text-align:center}
+.rcs-end h2{font-size:clamp(40px,7vw,110px)}
+.rcs-end .cta{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.rcs-end .cta a{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:999px;font-family:var(--display);font-weight:700;font-size:18px;text-decoration:none}
+.rcs-end .cta a.p{background:var(--L);color:var(--K)}
+.rcs-end .cta a.s{border:1.5px solid rgba(255,255,255,.3);color:var(--P)}
+@media (max-width:1000px){.rcs-tldr,.rcs-pains{grid-template-columns:repeat(2,minmax(0,1fr))}.rcs-dec{grid-template-columns:repeat(2,minmax(0,1fr))}.rcs-jr{grid-template-columns:repeat(3,minmax(0,1fr))}.rcs-scope{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.rcs-tldr,.rcs-pains,.rcs-dec,.rcs-price{grid-template-columns:minmax(0,1fr)}
+ .rcs-anat{grid-template-columns:minmax(0,1fr)}.rcs-arr{transform:rotate(90deg);justify-self:center}.rcs-bub{justify-self:end}
+ .rcs-jr{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:62%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none}.rcs-jr::-webkit-scrollbar{display:none}.rcs-st{scroll-snap-align:start}
+ .rcs section{padding-block:64px}}
 </style>
 
 <a class="skip" href="#intro">דלגו לתוכן</a>
@@ -1262,7 +1353,7 @@ main .sttl,main .wtag{position:relative;z-index:2}
   <div class="in">
 <div class="stage"><div class="wtag"><span class="mono">World 01 · Butler</span><span>מוצר · בוט ואפליקציה</span></div>
 <div class="sttl"><h2 class="ptitle"><span class="bowwrap2"></span>ריצ׳רד</h2><p class="psub">RICH HARD. הבאטלר האישי של התקציב שלכם, בוואטסאפ</p></div></div>
-    <div class="lb-hero"><div class="wa" id="riWa"></div><div class="copy"><p>כותבים לו "80 פיצה", והוא כבר רושם, מסדר לקטגוריה ומרים דגל לפני שחורגים. ככה רואים מה יורד החודש, מתי מגיעים ליעד, ואם הפנסיה לוקחת לכם יותר מדי. לבד, או עם כל הבית</p><a class="lnk" href="#b-richard">לכל הסיפור של ריצ׳רד ←</a></div><div class="rf-shots" style="height:520px"><img src="n/ri_home.webp" alt="מסך הבית" loading="lazy"><img src="n/ri_future.webp" alt="תזרים" loading="lazy"><img src="n/ri_insights.webp" alt="ריצ׳רד מצא" loading="lazy"></div></div>
+    <div class="lb-hero"><div class="wa" id="riWa"></div><div class="copy"><p>כותבים לו "80 פיצה", והוא כבר רושם, מסדר לקטגוריה ומרים דגל לפני שחורגים. ככה רואים מה יורד החודש, מתי מגיעים ליעד, ואם הפנסיה לוקחת לכם יותר מדי. לבד, או עם כל הבית</p><a class="lnk" href="#b-richard">הקייס המלא: איך בניתי את ריצ׳רד ←</a></div><div class="rf-shots" style="height:520px"><img src="n/ri_home.webp" alt="מסך הבית" loading="lazy"><img src="n/ri_future.webp" alt="תזרים" loading="lazy"><img src="n/ri_insights.webp" alt="ריצ׳רד מצא" loading="lazy"></div></div>
     <div class="ri-new" aria-label="מה עוד יצרנו לריצ׳רד">
       <div class="shot rv ri-c"><img loading="lazy" decoding="async" src="n/x_ri_butler.webp" alt="הדמות של ריצ׳רד, באטלר עם פפיון" decoding="async"></div>
       <div class="shot rv"><img loading="lazy" decoding="async" src="n/ri_couch.webp" alt="ריצ׳רד עם כל הבית על הספה" decoding="async"></div>
@@ -1770,7 +1861,7 @@ function hscroll(r){if(r.dataset.hs)return;r.dataset.hs=1;let w=r.closest('.hs')
   requestAnimationFrame(tick);upd()}
 window.hscroll=hscroll;
 /* every horizontal row on the site gets the same buttons, including rows rendered later */
-const hsAll=()=>document.querySelectorAll('.flow:not([data-hs]),.pj-row:not([data-hs]),.reel:not([data-hs]),.phones3:not([data-hs])').forEach(hscroll);
+const hsAll=()=>document.querySelectorAll('.flow:not([data-hs]),.pj-row:not([data-hs]),.reel:not([data-hs]),.phones3:not([data-hs]),.rcs-jr:not([data-hs])').forEach(hscroll);
 let hsQ=0;new MutationObserver(()=>{if(!hsQ)hsQ=requestAnimationFrame(()=>{hsQ=0;hsAll()})}).observe(document.body,{childList:true,subtree:true});hsAll();
 /* work index, grouped by project */
 const GROUPS=[['Own products','מוצרים שבניתי מאפס','מיתוג, דמות, UX ופיתוח. מהרעיון ועד מוצר חי',['richard','bernie','toro','lega6']],
@@ -1816,6 +1907,109 @@ fil.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return
     return `<a class="cat" href="#work-${k}" style="--a:${CATC[k]}"><b>${l}</b><div class="fan">${pk.map(i=>`<img src="${i.src}" alt="" loading="lazy">`).join('')}</div><span class="n">${its.length} WORKS</span></a>`}).join('');
   $('#mcount').textContent=ITEMS.length;$('#mcount2').textContent=ITEMS.length;})();
 const PROC={"shkachti": "<div class=\"case bcase\"><div class=\"case-h\"><h3>איך זה נבנה</h3><span class=\"mono\">Process</span></div><ol class=\"steps4\"><li><span class=\"mono\">01</span><b>המשימה</b><p>בקורס \"עיצוב דעת קהל\" אצל קרין גרינברג, המשימה הייתה לבחור נושא שקרוב ללב. בחרתי נושא שכמעט נעלם מהכותרות</p></li><li><span class=\"mono\">02</span><b>המחקר</b><p>שירתתי חמש שנים כקצין והתגייסתי שנה אחרי צוק איתן, ובכל זאת לא ידעתי מספיק. קראתי, בדקתי ושאלתי מה הציבור באמת זוכר</p></li><li><span class=\"mono\">03</span><b>הקונספט</b><p>לא להפנות אצבע מאשימה. שאלות קטנות ואישיות שכל אחד עונה עליהן בראש, ומגיע לבד למילה אחת: שכחתי</p></li><li><span class=\"mono\">04</span><b>העיצוב</b><p>שחור, כחול ולבן. המילה \"שכחתי\" בניקוד מלא, כמו בספר לימוד, ולצידה שאלה אחת. בחלק מהחומרים טקסט ארוך שמעורר רגש ומחשבה</p></li></ol> <div class=\"shot rv shk-car\"><img loading=\"lazy\" decoding=\"async\" src=\"n/x_shk_car.webp\" alt=\"מדבקת שכחתי על חלון אחורי של רכב\" decoding=\"async\"></div><div class=\"shk-g\"><div class=\"shot rv\"><img loading=\"lazy\" decoding=\"async\" src=\"a/shk_q2.webp\" alt=\"שכחתי: מה בעצם שם המשפחה? הוא היה מצטיין?\" decoding=\"async\"></div><div class=\"shot rv\"><img loading=\"lazy\" decoding=\"async\" src=\"a/shk_q1.webp\" alt=\"יכול להיות שקצת שכחנו\" decoding=\"async\"></div></div> <blockquote class=\"shk-q\"><p>\"קמפיין מבורך שבא בזמן הנכון\"</p><cite>צור גולדין, אחיו התאום של הדר, ברדיו חיפה</cite></blockquote> <div class=\"press\"><div class=\"case-h\"><h3>בתקשורת</h3><span class=\"mono\">Press · 3</span></div><div class=\"press-logos\" aria-label=\"כתבו על הקמפיין\"><span class=\"pl-t\">כתבו על הקמפיין</span><span class=\"pl-b pl-emek\">עמק יזרעאל</span><img loading=\"lazy\" decoding=\"async\" class=\"pl-img\" src=\"n/press_1075.webp\" alt=\"רדיו חיפה 107.5FM\"><span class=\"pl-b pl-haipo\">חי פֹּה</span></div><div class=\"press-g\"> <figure class=\"pr\"><div class=\"pr-lg\"><span class=\"pl-b pl-emek\">עמק יזרעאל</span></div><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/shk_news.webp\" alt=\"הכתבה בעיתון עמק יזרעאל\" decoding=\"async\"></div><figcaption><span class=\"mono\">עמק יזרעאל · עיתון</span><b>סטודנט יזם קמפיין חדש להעלאת המודעות למען השבת החיילים החטופים</b><i>\"הקמפיין הזה מאוד מדויק כי הוא לא פוליטי\"</i></figcaption></figure> <figure class=\"pr\"><div class=\"pr-lg\"><img loading=\"lazy\" decoding=\"async\" class=\"pl-img\" src=\"n/press_1075.webp\" alt=\"רדיו חיפה 107.5FM\"></div><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/shk_b.webp\" alt=\"הכתבה ברדיו חיפה 107.5\" decoding=\"async\"></div><figcaption><span class=\"mono\">רדיו חיפה 107.5FM · 9.2.2023</span><b>הקמפיין שיצר סטודנט מהקריות: יכול להיות ששכחנו את החטופים?</b><a class=\"lnk\" href=\"https://1075.fm/item/91959/\" target=\"_blank\" rel=\"noopener\">לכתבה ↗</a></figcaption></figure> <figure class=\"pr\"><div class=\"pr-lg\"><span class=\"pl-b pl-haipo\">חי פֹּה</span></div><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/shk_a.webp\" alt=\"הכתבה בחי פה\" decoding=\"async\"></div><figcaption><span class=\"mono\">חי פה · חדשות חיפה והסביבה</span><b>\"בן כמה הוא היום?\"</b><i>\"המושג שכחתי לא נועד להפנות אצבע מאשימה לחברה, אלא להעלות את הנושא לסדר היום\"</i></figcaption></figure> </div></div></div>", "dukorsky": "<div class=\"case bcase\"> <div class=\"case-h\"><h3>איך זה נבנה</h3><span class=\"mono\">Process</span></div> <ol class=\"steps4\"><li><span class=\"mono\">01</span><b>האתגר</b><p>מסר אחד, קהל ענק, ושנייה וחצי של תשומת לב. גם בפיד וגם על הקיר</p></li><li><span class=\"mono\">02</span><b>חשיבה</b><p>מי הבוחר, איפה הוא פוגש אותנו, ומה יישאר לו בראש אחרי מבט אחד</p></li><li><span class=\"mono\">03</span><b>תכנון</b><p>סקיצות, סקיצות ועוד סקיצות. מי מנצח, השם, המסר או התאריך</p></li><li><span class=\"mono\">04</span><b>עיצוב ובנייה</b><p>שפה אחת שנמתחה על פליירים, פוסטים, מודעות וכרזות, בלי לאבד את עצמה</p></li></ol> <div class=\"shot rv\"><img loading=\"lazy\" decoding=\"async\" src=\"a/pr_camp.webp\" alt=\"לוח התהליך: מודבורד, סקיצות, תרשים זרימה והמסכים הסופיים\" decoding=\"async\"></div> </div>", "bernie": "<div class=\"case bcase\"> <div class=\"case-h\"><h3>איך זה נבנה</h3><span class=\"mono\">Process</span></div> <ol class=\"steps4\"><li><span class=\"mono\">01</span><b>הבעיה</b><p>לספור קלוריות זה מתיש. הקלדות, מסכים, ואחרי שבוע כולם בורחים</p></li><li><span class=\"mono\">02</span><b>התובנה</b><p>כולנו בוואטסאפ ממילא. והתזונאית? לא רואה כלום בין פגישה לפגישה</p></li><li><span class=\"mono\">03</span><b>הפתרון</b><p>וואטסאפ קודם, אפליקציה בגיבוי, ושלושה מסלולים: לבד, עם חברים או עם תזונאית</p></li><li><span class=\"mono\">04</span><b>העיצוב</b><p>כהה וצועק? לא. לבן ומשעמם? לא. צבעוני ומצועצע? ממש לא. כתום לבן עם ברני באמצע? בינגו</p></li></ol> <div class=\"shot rv\"><img loading=\"lazy\" decoding=\"async\" src=\"b/overview.webp\" alt=\"כל מסכי האפליקציה של ברני\" decoding=\"async\"></div> </div>", "toro": "<div class=\"case bcase\"> <div class=\"case-h\"><h3>איך זה נבנה</h3><span class=\"mono\">Process</span></div> <ol class=\"steps4\"><li><span class=\"mono\">01</span><b>האתגר</b><p>בעלי עסקים קטנים שורפים שעות על טלפונים, רק כדי לקבוע תור</p></li><li><span class=\"mono\">02</span><b>חשיבה</b><p>מותג שמדבר בגובה העיניים, ושור חזק שלוקח עליו את העבודה הקשה</p></li><li><span class=\"mono\">03</span><b>תכנון</b><p>אתר, הרשמה, ממשק לבעל העסק, הזמנה עצמית, תזכורות ודוחות. כל הדרך</p></li><li><span class=\"mono\">04</span><b>עיצוב ובנייה</b><p>טורקיז ולבן, שור בתלת מימד, אתר חי, וסדרת סרטוני AI לכל מקצוע</p></li></ol> <div class=\"shot rv\"><img loading=\"lazy\" decoding=\"async\" src=\"n/toro_site.webp\" alt=\"האתר החי של TORO\" decoding=\"async\"></div> </div>", "jakamiro": "<div class=\"case bcase\"> <div class=\"case-h\"><h3>איך זה נבנה</h3><span class=\"mono\">Process</span></div> <ol class=\"steps4\"><li><span class=\"mono\">01</span><b>האתגר</b><p>חנות אונליין שמרגישה כמו בוטיק יוקרתי, וגורמת לכם לסמוך עליה מהשנייה הראשונה</p></li><li><span class=\"mono\">02</span><b>חשיבה</b><p>מי שקונה טבעת יהלום רוצה לראות אותה מקרוב, ולהרגיש בידיים טובות</p></li><li><span class=\"mono\">03</span><b>תכנון</b><p>מיפוי מסע הלקוח מהכניסה ועד הרכישה, וניווט שבו כל מוצר במרחק כמה קליקים, לא יותר</p></li><li><span class=\"mono\">04</span><b>עיצוב ובנייה</b><p>לבן, שחור וזהב, טיפוגרפיה עדינה, גלריות דינמיות, תצוגת 360° וסליקה פשוטה</p></li></ol> <div class=\"shot rv\"><img loading=\"lazy\" decoding=\"async\" src=\"a/pr_jak.webp\" alt=\"לוח התהליך: מודבורד, סקיצות, תרשים זרימה והמסכים הסופיים\" decoding=\"async\"></div> </div>", "hero": "<div class=\"hcase bcase\"> <div class=\"case-h\"><h3>סטוריבורד ה HERO</h3><span class=\"mono\">Storyboard · 53s · 14 beats</span></div> <ol class=\"steps4 six\"> <li><span class=\"mono\">01</span><b>תסריט</b><p>כתבתי כמה גרסאות ושמעתי כל אחת בקול. בסוף ניצחה הראשונה, כי היא הכי שנונה</p></li> <li><span class=\"mono\">02</span><b>קונספט</b><p>דמות עם ראש של מחשב ישן שקופצת בין שבעה עולמות עיצוב. באמצע הראש מתפוצץ, והחליפה מתחלפת בכל עולם</p></li> <li><span class=\"mono\">03</span><b>זהות</b><p>מפת פנים מכל זווית מתוך שלוש תמונות, כדי שגם בפלסטלינה יזהו אותי</p></li> <li><span class=\"mono\">04</span><b>פריימים ומורף</b><p>פריים מפתח לכל עולם, ומעבר רציף מפריים לפריים, בלי חיתוך אחד לאורך כל הסרטון</p></li> <li><span class=\"mono\">05</span><b>טיפוגרפיה</b><p>טקסט בעברית שנכנס בדיוק עם הקריינות, בסגנון של כל עולם, בלי נקודות ובלי מקפים</p></li> <li><span class=\"mono\">06</span><b>סאונד ועריכה</b><p>הקול שלי, מוזיקה ואפקטים, ועריכה פריים אחר פריים שנבנתה כולה בקוד</p></li> </ol> <div class=\"sb\"><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_00.webp\" alt=\"פתיחה בחדר\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:01</span><b>פתיחה בחדר</b><i>היי, אני יובל</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_01.webp\" alt=\"המסך נדלק\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:04</span><b>המסך נדלק</b><i>הפנים שלי על מסך CRT</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_02.webp\" alt=\"עולם שוויצרי\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:08</span><b>עולם שוויצרי</b><i>מעצב גרפי, UI UX ו front-end</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_03.webp\" alt=\"עולם פיקסלים\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:12</span><b>עולם פיקסלים</b><i>אפליקציות, אתרים, פרסומות</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_04.webp\" alt=\"הראש מתפוצץ\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:13</span><b>הראש מתפוצץ</b><i>ראש המחשב נעלם, החליפה מתחלפת</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_05.webp\" alt=\"פופ ארט\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:15</span><b>פופ ארט</b><i>וידאו ב AI, נראה מעולה וגם עובד</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_06.webp\" alt=\"פלסטלינה\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:19</span><b>פלסטלינה</b><i>שבע שנים עצמאי</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_07.webp\" alt=\"ארט דקו\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:23</span><b>ארט דקו</b><i>מנהל מחלקת עיצוב</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_08.webp\" alt=\"עולים לעננים\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:26</span><b>עולים לעננים</b><i>וכן, AI זה חלק גדול מהעבודה שלי</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_09.webp\" alt=\"לחיצת יד\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:30</span><b>לחיצת יד</b><i>כולם אומרים שהוא מחליף אותנו</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_10.webp\" alt=\"כס מעננים\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:33</span><b>כס מעננים</b><i>תכלס, אני מעדיף שיעבוד בשבילי</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_11.webp\" alt=\"סינת׳ווייב\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:40</span><b>סינת׳ווייב</b><i>רעיונות למותגים, אתרים ומוצרים</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_12.webp\" alt=\"סקיצה לעיצוב\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:46</span><b>סקיצה לעיצוב</b><i>AI יודע ליצור, אבל צריך לדעת מה</i></figcaption></figure><figure><div class=\"shot\"><img loading=\"lazy\" decoding=\"async\" src=\"a/sb_13.webp\" alt=\"חזרה לשולחן\" decoding=\"async\"></div><figcaption><span class=\"mono\">0:52</span><b>חזרה לשולחן</b><i>בואו אני פשוט אראה לכם</i></figcaption></figure></div> </div>"};
+/* richard: full product case study */
+const CASE_RI=`<div class="rcs">
+<section style="border-top:0"><div class="in">
+ <div class="kick mono"><i></i>Product case study</div>
+ <h2>איך בניתי מנהל תקציב <em>שאנשים לא נוטשים</em></h2>
+ <p class="lead">ריצ׳רד הוא מוצר שלקחתי מאפס ועד מוצר חי עם מנויים: הגדרת הבעיה, אפיון, UX UI, מיתוג, צ׳אטבוט, פיתוח ואתר השקה. הנה ההחלטות שעיצבו אותו, ולמה.</p>
+ <div class="rcs-tldr">
+  <div><small>My role</small><b>הכל, מקצה לקצה</b><span>מוצר, UX UI, מיתוג, פיתוח</span></div>
+  <div><small>Platform</small><b>וואטסאפ + אפליקציית ווב</b><span>בלי התקנה, בטלפון ובמחשב</span></div>
+  <div><small>Audience</small><b>בית, זוג, משפחה ועסק</b><span>עד 5 בני בית במנוי אחד</span></div>
+  <div><small>Status</small><b>חי באוויר</b><span>3 מסלולים, חודש ראשון חינם</span></div>
+ </div>
+</div></section>
+
+<section><div class="in">
+ <div class="kick mono"><i></i>01 · The problem</div>
+ <h2>אפליקציות תקציב נכשלות <em>ביום השלישי</em></h2>
+ <p class="lead">כולם רוצים לדעת לאן הכסף הולך. כמעט אף אחד לא מחזיק מעמד עם אפליקציה שצריך לפתוח, לחפש בה קטגוריה ולמלא טופס על כל קפה. הבעיה היא לא חוסר במידע. הבעיה היא חיכוך.</p>
+ <ul class="rcs-pains">
+  <li><b>רישום ידני מעייף</b><p>כל הוצאה היא טופס. אחרי כמה ימים מפסיקים, והנתונים מאבדים ערך.</p></li>
+  <li><b>חיבור לבנק מפחיד</b><p>לתת סיסמה של חשבון הבנק לאפליקציה זה מחסום אמון שרוב האנשים לא עוברים.</p></li>
+  <li><b>בית זה לא אדם אחד</b><p>זוג ומשפחה צריכים תקציב משותף, אבל גם פרטיות. רוב הכלים בנויים לאדם אחד.</p></li>
+  <li><b>דוחות שמרגישים כמו נזיפה</b><p>גרפים אדומים ו"חרגת!" בסוף החודש. מאוחר מדי, ובטון שגורם לברוח.</p></li>
+ </ul>
+</div></section>
+
+<section class="rcs-ins"><div class="in">
+ <div class="kick mono"><i></i>02 · The insight</div>
+ <h2>לא עוד אפליקציה. <em>הודעה אחת</em> בוואטסאפ</h2>
+ <p class="lead">במקום לגרום לאנשים לפתוח עוד אפליקציה, הבאתי את התקציב למקום שהם כבר פותחים מאה פעם ביום. כותבים כמו שמדברים, וריצ׳רד מפרק את ההודעה ומסדר הכל לבד.</p>
+ <div class="rcs-anat" id="rcsAnat">
+  <div class="rcs-bub"><small>You</small>80 פיצה אתמול</div>
+  <div class="rcs-arr mono" aria-hidden="true">→</div>
+  <div class="rcs-chips">
+   <div><small>Amount</small><b>80 ₪</b></div>
+   <div><small>Category</small><b>🍕 אוכל בחוץ</b></div>
+   <div><small>Date</small><b>אתמול</b></div>
+   <div><small>Budget</small><b>הבית המשותף</b></div>
+  </div>
+  <div class="rcs-arr mono" aria-hidden="true">→</div>
+  <div class="rcs-rep"><b>רשמתי ✓</b>אם תרצו, אוכל להזכיר לפני שמגיעים לתקרה של אוכל בחוץ</div>
+ </div>
+</div></section>
+
+<section><div class="in">
+ <div class="kick mono"><i></i>03 · Key decisions</div>
+ <h2>שש החלטות <em>שעשו את ההבדל</em></h2>
+ <p class="lead">כל החלטה כאן היא ויתור על הדרך המקובלת, ולכל אחת יש סיבה.</p>
+ <div class="rcs-dec">
+  <div class="rcs-d"><h3>אמון לפני נוחות</h3><div class="no"><small>Instead of</small><span>חיבור לבנק עם סיסמה</span></div><div class="yes"><small>I chose</small>קליטה מ־Apple Pay, הודעות SMS של האשראי וחשבוניות במייל</div><p class="why">מקבלים כמעט את כל ההוצאות אוטומטית, בלי לבקש את המפתח של החשבון. ומה שכבר נקלט לא נרשם פעמיים.</p></div>
+  <div class="rcs-d"><h3>מספר אחד בכל הודעה</h3><div class="no"><small>Instead of</small><span>דשבורד מלא גרפים</span></div><div class="yes"><small>I chose</small>כמה נשאר, כמה הוצאתם, כמה ימים לסוף החודש</div><p class="why">בצ׳אט אין מקום לדוח. מספר אחד ברור שווה יותר מעשרה שצריך לפענח. כל השאר מחכה באפליקציה למי שרוצה.</p></div>
+  <div class="rcs-d"><h3>מנומס, לא מטיף</h3><div class="no"><small>Instead of</small><span>"חרגת מהתקציב!" בסוף החודש</span></div><div class="yes"><small>I chose</small>התראה לשני בני הזוג כבר ב־80%, עם הצעה</div><p class="why">ריצ׳רד אף פעם לא אומר "אסור". אפשר לשאול אותו "אני יכול להרשות לעצמי?" והוא בודק מול התקציב, החיובים הקבועים וקצב ההוצאות.</p></div>
+  <div class="rcs-d"><h3>משותף, אבל עם פרטיות</h3><div class="no"><small>Instead of</small><span>כולם רואים הכל, או אף אחד</span></div><div class="yes"><small>I chose</small>הוצאות בית משותפות, אישיות נשארות אישיות</div><p class="why">בן הזוג רואה רק את המשותף. ילדים מצטרפים בקישור, רואים כמה נשאר מדמי הכיס, ולא רואים את התקציב של הבית.</p></div>
+  <div class="rcs-d"><h3>לומד, לא שואל שוב</h3><div class="no"><small>Instead of</small><span>רשימת קטגוריות קבועה</span></div><div class="yes"><small>I chose</small>תיקון אחד עובר לכל ההוצאות הדומות</div><p class="why">כל תיקון מלמד את ריצ׳רד. משכורת שחוזרת כל חודש הופכת להכנסה קבועה בלחיצה, וקטגוריות מקבלות שם ואימוג׳י משלכם.</p></div>
+  <div class="rcs-d"><h3>בלי סיסמאות בכלל</h3><div class="no"><small>Instead of</small><span>שם משתמש וסיסמה</span></div><div class="yes"><small>I chose</small>Face ID או טביעת אצבע, ואישור מכשיר חדש בוואטסאפ</div><p class="why">פחות מחסומים בכניסה, יותר אבטחה בפועל. לכל בית מסד נתונים נפרד, ואפשר לייצא הכל לאקסל או למחוק בלחיצה.</p></div>
+ </div>
+</div></section>
+
+<section><div class="in">
+ <div class="kick mono"><i></i>04 · The journey</div>
+ <h2>מהודעה ראשונה <em>ועד תמונה מלאה</em></h2>
+ <p class="lead">המסע בנוי כך שבכל שלב מקבלים ערך לפני שמתבקשים לעשות עוד משהו.</p>
+ <div class="rcs-jr">
+  <div class="rcs-st"><figure class="shot"><img loading="lazy" decoding="async" src="n/ri_mob.webp" alt="דף הנחיתה של ריצ׳רד בטלפון"></figure><div class="n">01</div><b>נכנסים בלי להתקין</b><p>קישור, חודש ראשון חינם, ומתחילים לכתוב.</p></div>
+  <div class="rcs-st"><figure class="shot"><img loading="lazy" decoding="async" src="n/ri_capture.webp" alt="מסך חיבור אוטומטי"></figure><div class="n">02</div><b>מחברים פעם אחת</b><p>Apple Pay, SMS ומייל. מעכשיו רוב ההוצאות נקלטות לבד.</p></div>
+  <div class="rcs-st"><figure class="shot"><img loading="lazy" decoding="async" src="n/ri_home.webp" alt="מסך הבית: כמה נשאר לחודש"></figure><div class="n">03</div><b>מספר אחד גדול</b><p>כמה נשאר החודש, ובאיזה קצב הכסף יורד.</p></div>
+  <div class="rcs-st"><figure class="shot"><img loading="lazy" decoding="async" src="n/ri_future.webp" alt="יומן חיובים עתידיים"></figure><div class="n">04</div><b>רואים קדימה</b><p>הוראות קבע, תשלומים ומשכורות ביומן, עם אזהרה לפני מינוס.</p></div>
+  <div class="rcs-st"><figure class="shot"><img loading="lazy" decoding="async" src="n/ri_insights.webp" alt="ריצ׳רד מצא כסף"></figure><div class="n">05</div><b>ריצ׳רד מוצא כסף</b><p>מנויים שהתייקרו, חיובים כפולים ועמלות מיותרות.</p></div>
+ </div>
+</div></section>
+
+<section><div class="in rcs-scope">
+ <div>
+  <div class="kick mono"><i></i>05 · Scope</div>
+  <h2>מאפליקציית הוצאות <em>למערכת של כל הבית</em></h2>
+  <p class="lead">סביב הליבה הוספתי רק דברים שנשענים על אותה הודעה אחת בוואטסאפ:</p>
+  <ul class="rcs-ul">
+   <li>חסכונות, פנסיה וקרן השתלמות במקום אחד, כולל בדיקת דמי ניהול מול השוק</li>
+   <li>רשימת קניות משותפת שמסודרת לפי מחלקות בסופר, גם בקישור בלי הרשמה</li>
+   <li>שוברים וגיפט קארדים: מצלמים, והקוד, היתרה והתוקף נשמרים עם תזכורת</li>
+   <li>ריצ׳רד לעסקים: כמה מכל הכנסה באמת שלכם אחרי מע״מ ומקדמות, וקישור קבוע לרואה החשבון</li>
+  </ul>
+ </div>
+ <div class="phones"><span class="shot" style="display:contents"><img loading="lazy" decoding="async" src="n/ri_savings.webp" alt="מסך חסכונות והשקעות"></span><span class="shot" style="display:contents"><img loading="lazy" decoding="async" src="n/ri_biz.webp" alt="מסך ריצ׳רד לעסקים"></span></div>
+</div></section>
+
+<section><div class="in">
+ <div class="kick mono"><i></i>06 · Business model</div>
+ <h2>מודל פשוט, <em>בלי אותיות קטנות</em></h2>
+ <div class="rcs-price">
+  <div><small>Personal</small><b>20 ₪<span> / חודש</span></b><p>משתמש אחד, וואטסאפ ורישום אוטומטי, תזרים, יומן ויעדים</p></div>
+  <div class="hl"><small>Family</small><b>34 ₪<span> / חודש</span></b><p>עד 5 בני בית באותו מחיר, תקציב משותף ואישי, דמי כיס לילדים</p></div>
+  <div><small>Business</small><b>58 ₪<span> / חודש</span></b><p>לעוסק פטור, מורשה וחברה, מע״מ ומקדמות. הבית כלול</p></div>
+ </div>
+ <p class="rcs-note">המסלול המשפחתי הכי משתלם לכל אדם, והוא גם זה שמכניס עוד אנשים מהבית. מי שלא ממשיך אחרי החודש החינמי מקבל תזכורת מראש, והנתונים שלו נשמרים.</p>
+</div></section>
+
+<section class="rcs-end"><div class="in">
+ <h2>ריצ׳רד. <em>כמו באטלר</em>, רק לכסף</h2>
+ <p class="lead" style="margin:0 auto">בהמשך העמוד: המותג, הדמות, הצ׳אט החי וכל העבודות.</p>
+ <div class="cta"><a class="p" href="https://hirichard.app" target="_blank" rel="noopener">לנסות את ריצ׳רד ↗</a><a class="s" href="#contact">רוצים מוצר כזה? בואו נדבר</a></div>
+</div></section>
+</div>`;
 /* brand page */
 const BORD=ORDER.filter(b=>ITEMS.some(i=>i.b===b));
 const FLOW=['logo','print','social','ads','web','video','ai'];
@@ -1831,6 +2025,7 @@ function renderBrand(id){const b=BR[id],a=acc(id),its=ITEMS.filter(i=>i.b===id);
        ${b.home?`<p style="margin-top:44px"><a class="lnk" href="#${b.home}">לעולם של הפרויקט בדף הבית ←</a></p>`:''}${b.link?`<p style="margin-top:${b.home?14:44}px"><a class="lnk" href="${b.link}" target="_blank" rel="noopener">לאתר החי ↗</a></p>`:''}</div>
      <div class="hero-m">${b.mascot?`<img loading="lazy" decoding="async" class="mascot" src="${b.mascot}" alt="הדמות של ${esc(b.n)}">`:`<div class="cover shot"><img loading="lazy" decoding="async" src="${cover.src}" alt="${esc(b.n)}"></div>`}</div>
    </div></header>
+   ${id==='richard'?CASE_RI:''}
    ${b.live==='chat'?`<section class="live-r"><div class="lr-t"><span class="mono">Live demo</span><h2>ככה מדברים עם ריצ׳רד</h2><p>בלי להתקין כלום ובלי טפסים. כותבים, מקליטים או מצלמים קבלה, והוא מבין עברית של בני אדם</p></div><div class="wa"></div></section>`:''}
    ${b.live==='bernie'?`<section class="live-bn"><div class="lb-hero"><div class="bn" id="bnBrand"></div><div><span class="mono">BURN-IE</span><h2>ברני שורף קלוריות</h2><p>אותו טריק כמו Richard, שהוא RICH HARD: שם של בן אדם שמסתתרת בו המשמעות. ברני הוא להבה, אז כששופכים עליו מים הוא עושה "פשששש!"</p></div><div class="wa" data-kind="bernie"></div></div>
      <div class="bn-strip">${['splash','drink','eat','weigh','steps','measure'].map(a=>`<figure><video preload="none" data-lsrc="b/an_${a}.mp4" poster="b/an_${a}.webp" muted loop playsinline autoplay></video><figcaption>${{splash:'מים: פשששש',drink:'שותה',eat:'אוכל',weigh:'נשקל',steps:'רץ',measure:'נמדד'}[a]}</figcaption></figure>`).join('')}</div>
@@ -1841,7 +2036,9 @@ function renderBrand(id){const b=BR[id],a=acc(id),its=ITEMS.filter(i=>i.b===id);
    ${steps.length>1?`<section class="sys"><h2>המערכת: ככה הכל מתחבר</h2><div class="flow">${steps.map(c=>{const s=its.filter(i=>i.c.includes(c)).slice(0,2);return `<div class="st"><div class="lb"><i></i><b>${CATN[c]}</b></div><div class="th">${s.map(i=>`<a href="#b-${id}" class="fl-i" data-img="${i.src}"${i.v?` data-v="${i.v}"`:''} aria-label="${esc(i.t||b.n)}"><img src="${i.src}" alt="${esc(i.t||b.n)}" loading="lazy">${i.v?'<span class="vb">▶ VIDEO</span>':''}</a>`).join('')}</div></div>`}).join('')}</div></section>`:''}
    <section class="bgal"><h2>כל העבודות למותג <sup class="mono">${its.length}</sup></h2><div class="mas">${its.map(cardHTML).join('')}</div></section>
    <nav class="bnav" aria-label="פרויקטים"><a href="#b-${next}"><small>NEXT</small>${esc(BR[next].n)} ←</a><a href="#b-${prev}"><small>PREV</small>→ ${esc(BR[prev].n)}</a></nav></div>`;
-  const W=$('#bwrap');wireCards(W);mountChat(W.querySelector('.wa'));mountBernie(W.querySelector('#bnBrand'));
+  const W=$('#bwrap');wireCards(W);
+  {const an=W.querySelector('#rcsAnat');if(an){if(RM||!('IntersectionObserver' in window))an.classList.add('on');else{const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){an.classList.add('on');io.disconnect()}},{threshold:.35});io.observe(an)}}
+   W.querySelectorAll('.rcs-d').forEach(d=>{const t=()=>d.classList.toggle('open');d.addEventListener('click',t);d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}})})}mountChat(W.querySelector('.wa'));mountBernie(W.querySelector('#bnBrand'));
   W.querySelectorAll('.card').forEach(c=>c.setAttribute('href',c.querySelector('video')?'#b-'+id:'#b-'+id));
   W.querySelectorAll('.pal button').forEach(bt=>bt.addEventListener('click',()=>{try{navigator.clipboard.writeText(bt.dataset.hex).then(()=>{bt.querySelector('span').textContent='הועתק';setTimeout(()=>bt.querySelector('span').textContent=bt.dataset.hex,1200)},()=>{})}catch(e){}}));
   const m=W.querySelector('.mascot');if(m){m.addEventListener('click',()=>{m.classList.remove('jump');void m.offsetWidth;m.classList.add('jump')});m.addEventListener('animationend',e=>{if(e.animationName==='jp')m.classList.remove('jump')})}
