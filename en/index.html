@@ -1317,6 +1317,31 @@ main .sttl,main .wtag{position:relative;z-index:2}
 .rcs-iter li.ok .mono,.rcs-iter li.ok p{color:rgba(255,255,255,.9)}
 @media (max-width:1000px){.rcs-iter{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:760px){.rcs-iter{grid-template-columns:minmax(0,1fr)}}
+
+/* TORO story player (mobile) */
+.tst{display:none}
+@media (max-width:759px){
+ .hs-reel:has(+.tst),.hs-reel.st-on,.hs-reel.st-on+.hs-bar{display:none!important}
+ .tst{display:block;margin:6px auto 0;max-width:340px;position:relative}
+ .tst-ph{position:relative;aspect-ratio:9/16;border-radius:38px;overflow:hidden;background:#0B3C49;border:7px solid #111;box-shadow:0 40px 70px rgba(120,60,90,.35),0 0 0 1px rgba(255,255,255,.1) inset}
+ .tst-ph video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .35s}
+ .tst-ph video.fade{opacity:0}
+ .tst-bars{position:absolute;top:12px;right:12px;left:12px;display:flex;gap:4px;z-index:3;direction:ltr}
+ .tst-bars i{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.35);overflow:hidden;position:relative}
+ .tst-bars i b{position:absolute;inset:0;background:#fff;transform-origin:right;transform:scaleX(var(--p,0))}
+ .tst-top{position:absolute;top:24px;right:14px;left:14px;z-index:3;display:flex;align-items:center;justify-content:space-between;color:#fff;font:700 14px var(--body);text-shadow:0 1px 6px rgba(0,0,0,.5)}
+ .tst-top span{display:flex;align-items:center;gap:8px}
+ .tst-top img{width:30px;height:30px;border-radius:50%;object-fit:cover;object-position:50% 20%;background:#2FD9C9;border:2px solid #fff}
+ .tst-mute{width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.4);color:#fff;font-size:16px;display:grid;place-items:center;backdrop-filter:blur(6px)}
+ .tst-tap{position:absolute;inset:60px 0 0;z-index:2;display:flex}
+ .tst-tap button{flex:1;background:none;border:0;cursor:pointer}
+ .tst-cap{text-align:center;margin-top:18px;color:#111}
+ .tst-cap small{display:block;font:600 11px var(--mono);letter-spacing:.14em;opacity:.6;direction:ltr}
+ .tst-cap b{display:block;font:900 26px/1.1 var(--display);margin-top:4px}
+ .tst-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+ .tst-chips button{border:1.5px solid rgba(17,17,17,.18);background:#fff;color:#111;border-radius:99px;padding:8px 14px;font:600 14px var(--body);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+ .tst-chips button[aria-pressed="true"]{background:#0B3C49;border-color:#0B3C49;color:#fff}
+}
 .hw{font-size:clamp(64px,12vw,220px)}
 </style>
 
@@ -2455,6 +2480,30 @@ const BOOKS=[
 })();
 
 document.querySelectorAll('.hs-reel .reel').forEach(r=>{if(window.hscroll)window.hscroll(r)});
+/* TORO: on phones, the reel becomes a story player */
+(function(){const host=document.querySelector('.hs-reel');if(!host||!matchMedia('(max-width:759px)').matches)return;
+ const items=[['/w/tv_lawyer.mp4','/w/tv_lawyer.webp','at the lawyer’s','Lawyer'],['/w/tv_barber.mp4','/w/tv_barber.webp','at the barber','Barber'],['/w/tv_driving.mp4','/w/tv_driving.webp','at driving school','Driving'],['/w/tv_chef.mp4','/w/tv_chef.webp','in the chef’s kitchen','Chef'],['/w/tv_pilates.mp4','/w/tv_pilates.webp','at the pilates studio','Pilates'],['/w/tv_accountant.mp4','/w/tv_accountant.webp','at the accountant’s','Accountant'],['/w/tv_beauty.mp4','/w/tv_beauty.webp','at the beauty salon','Beauty'],['/w/tv_doctor.mp4','/w/tv_doctor.webp','at the clinic','Doctor'],['/w/tv_masseur.mp4','/w/tv_masseur.webp','at the massage room','Massage'],['/w/tv_therapist.mp4','/w/tv_therapist.webp','at the therapist’s','Therapy'],['/w/tv_trainer.mp4','/w/tv_trainer.webp','at the gym','Trainer'],['/w/tv_tutor.mp4','/w/tv_tutor.webp','at a private lesson','Tutor']];
+ const w=document.createElement('div');w.className='tst';w.setAttribute('aria-label','TORO at work');
+ w.innerHTML=`<div class="tst-ph"><div class="tst-bars">${items.map(()=>'<i><b></b></i>').join('')}</div>
+ <div class="tst-top"><span><img src="/w/toro_full.webp" alt="">TORO</span><button type="button" class="tst-mute" aria-label="Sound on">🔇</button></div>
+ <video muted playsinline preload="metadata"></video>
+ <div class="tst-tap"><button type="button" class="nx" aria-label="Next"></button><button type="button" class="pv" aria-label="Previous"></button></div>
+ </div><div class="tst-cap"><small>TORO · 12 AI VIDEOS</small><b></b></div>
+ <div class="tst-chips">${items.map((x,k)=>`<button type="button" data-k="${k}">${x[3]}</button>`).join('')}</div>`;
+ host.classList.add('st-on');host.parentNode.insertBefore(w,host.nextSibling);
+ host.querySelectorAll('video').forEach(v=>{v.pause();v.removeAttribute('autoplay')});
+ const v=w.querySelector('video'),bars=[...w.querySelectorAll('.tst-bars b')],cap=w.querySelector('.tst-cap b'),chips=[...w.querySelectorAll('.tst-chips button')],mu=w.querySelector('.tst-mute');
+ let k=0,vis=false;
+ const show=n=>{k=(n+items.length)%items.length;bars.forEach((b,j)=>b.style.setProperty('--p',j<k?1:0));chips.forEach((c,j)=>c.setAttribute('aria-pressed',j===k));cap.textContent='TORO '+items[k][2];
+  v.classList.add('fade');setTimeout(()=>{v.src=items[k][0];v.poster=items[k][1];if(vis)v.play().catch(()=>{});v.classList.remove('fade')},200)};
+ v.addEventListener('timeupdate',()=>{if(v.duration)bars[k].style.setProperty('--p',v.currentTime/v.duration)});
+ v.addEventListener('ended',()=>show(k+1));
+ w.querySelector('.nx').onclick=()=>show(k+1);w.querySelector('.pv').onclick=()=>show(k-1);
+ chips.forEach(c=>c.onclick=()=>show(+c.dataset.k));
+ mu.onclick=()=>{v.muted=!v.muted;mu.textContent=v.muted?'🔇':'🔊';mu.setAttribute('aria-label',v.muted?'Sound on':'Mute');if(v.paused)v.play().catch(()=>{})};
+ new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis)v.play().catch(()=>{});else v.pause()},{threshold:.4}).observe(w);
+ show(0)})();
+
 /* tutorials */
 (()=>{
 const ART={
