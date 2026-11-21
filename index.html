@@ -1286,6 +1286,27 @@ main .sttl,main .wtag{position:relative;z-index:2}
  .rcs-anat{grid-template-columns:minmax(0,1fr)}.rcs-arr{transform:rotate(90deg);justify-self:center}.rcs-bub{justify-self:end}
  .rcs-jr{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:62%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none}.rcs-jr::-webkit-scrollbar{display:none}.rcs-st{scroll-snap-align:start}
  .rcs section{padding-block:64px}}
+.rcs.rbn{--L:#F25A1A;background:#140d0a}
+.rcs.rbn .rcs-tldr div,.rcs.rbn .rcs-pains li,.rcs.rbn .rcs-d,.rcs.rbn .rcs-iter li{background:#1f1612}
+.rcs.rbn .rcs-ins{background:#F25A1A;color:#fff}
+.rcs.rbn .rcs-ins .kick{color:#fff}.rcs.rbn .rcs-ins .kick i{background:#fff}
+.rcs.rbn .rcs-ins .lead{color:rgba(255,255,255,.88)}
+.rcs.rbn .rcs-ins h2 em{background:#1F1410;color:#fff}
+.rcs.rbn .rcs-rep{background:#FFE6DA;color:#1F1410}.rcs.rbn .rcs-bub{color:#1F1410}
+.rcs.rbn .rcs-chips div small{color:#FF9A6B}
+.rcs.rbn .rcs-d .yes{background:rgba(242,90,26,.13)}
+.rcs.rbn .rcs-st figure{background:#F25A1A}
+.rcs.rbn .rcs-end .cta a.s{border-color:#F25A1A}
+.rcs-iter{list-style:none;padding:0;margin:48px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.rcs-iter li{border-radius:20px;padding:24px 22px;background:#151516;border:1px solid rgba(255,255,255,.07);position:relative}
+.rcs-iter li .mono{color:rgba(251,252,246,.45)}
+.rcs-iter li b{display:block;font-family:var(--display);font-size:24px;margin:16px 0 8px}
+.rcs-iter li p{margin:0;font-size:15px;color:rgba(251,252,246,.65)}
+.rcs-iter li.x b{text-decoration:line-through;text-decoration-color:#ff6b5b;text-decoration-thickness:2px}
+.rcs-iter li.ok{background:var(--L);border-color:var(--L);color:#fff}.rcs.rbn .rcs-iter li.ok{background:#F25A1A;border-color:#F25A1A}
+.rcs-iter li.ok .mono,.rcs-iter li.ok p{color:rgba(255,255,255,.9)}
+@media (max-width:1000px){.rcs-iter{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.rcs-iter{grid-template-columns:minmax(0,1fr)}}
 </style>
 
 <a class="skip" href="#intro">דלגו לתוכן</a>
@@ -1391,7 +1412,7 @@ main .sttl,main .wtag{position:relative;z-index:2}
   <div class="in">
 <div class="stage"><div class="wtag"><span class="mono">World 03 · Flame</span><span>מוצר · בוט ואפליקציה</span></div>
 <div class="sttl"><h2 class="ptitle">ברני</h2><p class="psub">BURN-IE. מאמן תזונה בוואטסאפ, שהוא בעצם להבה ששורפת לכם קלוריות</p></div></div>
-    <div class="lb-hero home-bn"><div class="bn" id="bnWorld"></div><div class="copy"><p>מצלמים את הצלחת או סתם כותבים מה אכלתם, וברני כבר סופר, מציע מה לאכול אחר כך, מזכיר לשתות ומחבר אתכם לחברים ולתזונאית. מעדיפים מסכים? יש גם אפליקציה</p><p class="mono" style="opacity:.75">לחצו על הלהבה, היא לא שורפת</p><a class="lnk" href="#b-bernie">לכל הסיפור של ברני ←</a></div><div class="wa" data-kind="bernie" id="bnWa"></div></div>
+    <div class="lb-hero home-bn"><div class="bn" id="bnWorld"></div><div class="copy"><p>מצלמים את הצלחת או סתם כותבים מה אכלתם, וברני כבר סופר, מציע מה לאכול אחר כך, מזכיר לשתות ומחבר אתכם לחברים ולתזונאית. מעדיפים מסכים? יש גם אפליקציה</p><p class="mono" style="opacity:.75">לחצו על הלהבה, היא לא שורפת</p><a class="lnk" href="#b-bernie">הקייס המלא: איך בניתי את ברני ←</a></div><div class="wa" data-kind="bernie" id="bnWa"></div></div>
     <div class="bn-strip"><figure><video preload="none" data-lsrc="b/an_splash.mp4" poster="b/an_splash.webp" muted loop playsinline autoplay></video><figcaption>מים: פשששש</figcaption></figure><figure><video preload="none" data-lsrc="b/an_drink.mp4" poster="b/an_drink.webp" muted loop playsinline autoplay></video><figcaption>שותה</figcaption></figure><figure><video preload="none" data-lsrc="b/an_eat.mp4" poster="b/an_eat.webp" muted loop playsinline autoplay></video><figcaption>אוכל</figcaption></figure><figure><video preload="none" data-lsrc="b/an_weigh.mp4" poster="b/an_weigh.webp" muted loop playsinline autoplay></video><figcaption>נשקל</figcaption></figure><figure><video preload="none" data-lsrc="b/an_steps.mp4" poster="b/an_steps.webp" muted loop playsinline autoplay></video><figcaption>רץ</figcaption></figure><figure><video preload="none" data-lsrc="b/an_measure.mp4" poster="b/an_measure.webp" muted loop playsinline autoplay></video><figcaption>נמדד</figcaption></figure></div>
     
     
@@ -2010,6 +2031,94 @@ const CASE_RI=`<div class="rcs">
  <div class="cta"><a class="p" href="https://hirichard.app" target="_blank" rel="noopener">לנסות את ריצ׳רד ↗</a><a class="s" href="#contact">רוצים מוצר כזה? בואו נדבר</a></div>
 </div></section>
 </div>`;
+const CASE_BN=`<div class="rcs rbn">
+<section style="border-top:0"><div class="in">
+ <div class="kick mono"><i></i>Product case study</div>
+ <h2>ספירת קלוריות <em>שלא נמאס ממנה</em></h2>
+ <p class="lead">ברני הוא מאמן תזונה בוואטסאפ עם אפליקציית ווב בגיבוי. עשיתי בו הכל: קונספט, מיתוג, דמות, UX UI, פרונט ופיתוח עם AI. הנה הבעיה, ההחלטות והדרך.</p>
+ <div class="rcs-tldr">
+  <div><small>My role</small><b>הכל, מקצה לקצה</b><span>קונספט, דמות, UX UI, פיתוח</span></div>
+  <div><small>Platform</small><b>וואטסאפ + אפליקציית ווב</b><span>כל פקודה זמינה בשניהם</span></div>
+  <div><small>Data</small><b>USDA FoodData Central</b><span>ערכים אמיתיים, לא ניחוש</span></div>
+  <div><small>Stack</small><b>Next.js · Supabase · Claude</b><span>WhatsApp Cloud API · 38 בדיקות</span></div>
+ </div>
+</div></section>
+
+<section><div class="in">
+ <div class="kick mono"><i></i>01 · The problem</div>
+ <h2>כולם מתחילים לספור. <em>כמעט כולם מפסיקים</em></h2>
+ <p class="lead">ספירת קלוריות עובדת, אבל רק כשמחזיקים בה. ורוב האפליקציות הופכות כל ארוחה למשימה.</p>
+ <ul class="rcs-pains">
+  <li><b>חיפוש במאגר על כל ביס</b><p>להקליד, לגלול, לבחור מנה ולשקול. אחרי שבוע זה כבר לא שווה את המאמץ.</p></li>
+  <li><b>מספרים שנראים מומצאים</b><p>אי אפשר לדעת מה נמדד ומה נוחש, אז מפסיקים להאמין למספר.</p></li>
+  <li><b>אוכל "אסור" ותחושת אשמה</b><p>אדום, אזהרות וחריגות. זה גורם להסתיר ארוחות, לא לאכול טוב יותר.</p></li>
+  <li><b>לבד מול המסך</b><p>בלי חברים, בלי תזונאית ובלי מישהו ששמח איתכם כשמשהו מצליח.</p></li>
+ </ul>
+</div></section>
+
+<section class="rcs-ins"><div class="in">
+ <div class="kick mono"><i></i>02 · The insight</div>
+ <h2>מצלמים את הצלחת. <em>ברני סופר</em></h2>
+ <p class="lead">אותה גישה כמו בריצ׳רד: התהליך קורה בוואטסאפ, איפה שאתם כבר נמצאים. ובמקום אפליקציה קרה, חבר עם אופי: להבה ששורפת קלוריות, ועושה "פשששש!" כשאתם שותים מים.</p>
+ <div class="rcs-anat" id="rcsAnat">
+  <div class="rcs-bub"><small>You</small>📷 צילום של הצלחת</div>
+  <div class="rcs-arr mono" aria-hidden="true">→</div>
+  <div class="rcs-chips">
+   <div><small>Dish</small><b>שקשוקה ולחם</b></div>
+   <div><small>Calories</small><b>520 קק״ל</b></div>
+   <div><small>Source</small><b>📊 מהמאגר</b></div>
+   <div><small>Left today</small><b>750</b></div>
+  </div>
+  <div class="rcs-arr mono" aria-hidden="true">→</div>
+  <div class="rcs-rep"><b>שקשוקה ולחם · 520 קק״ל</b>נשארו לך 750 להיום. לארוחת ערב משהו עם חלבון?</div>
+ </div>
+</div></section>
+
+<section><div class="in">
+ <div class="kick mono"><i></i>03 · Key decisions</div>
+ <h2>שש החלטות <em>שעשו את ההבדל</em></h2>
+ <p class="lead">כל החלטה כאן היא ויתור על הדרך המקובלת, ולכל אחת יש סיבה.</p>
+ <div class="rcs-dec">
+  <div class="rcs-d"><h3>צילום במקום חיפוש</h3><div class="no"><small>Instead of</small><span>חיפוש במאגר ושקילת כל מנה</span></div><div class="yes"><small>I chose</small>צילום או משפט חופשי בוואטסאפ, ותיקון כמות בלחיצה</div><p class="why">הרישום צריך לקחת שניות, אחרת מפסיקים. מי שרוצה דיוק מקבל באפליקציה בורר מנות: נוסח, קטנה, גדולה או גרמים.</p></div>
+  <div class="rcs-d"><h3>שקיפות במספרים</h3><div class="no"><small>Instead of</small><span>מספר אחד שנראה מדויק</span></div><div class="yes"><small>I chose</small>📊 כשהערך מהמאגר, ≈ כשברני העריך</div><p class="why">אמון נבנה כשיודעים מה נמדד ומה נוחש. הערכים מגיעים מ־USDA FoodData Central, ומה שמוערך מסומן בגלוי.</p></div>
+  <div class="rcs-d"><h3>עצה, לא נזיפה</h3><div class="no"><small>Instead of</small><span>אוכל "אסור" ואזהרות באדום</span></div><div class="yes"><small>I chose</small>הצעה אחת לארוחה הבאה, לפי מה שנשאר ביום</div><p class="why">ברני אף פעם לא אומר "רע". הוא מסתכל קדימה: מה יאזן את היום, כמה חלבון חסר, ומה אפשר להכין עם מה שיש.</p></div>
+  <div class="rcs-d"><h3>בטיחות לפני הכל</h3><div class="no"><small>Instead of</small><span>כל יעד שהמשתמש מבקש</span></div><div class="yes"><small>I chose</small>יעד מתחת לטווח הבריא פשוט לא נשמר</div><p class="why">מוצר תזונה אחראי על הבריאות של אנשים. עדיף להגיד "לא" ברוך מאשר לעזור למישהו להזיק לעצמו.</p></div>
+  <div class="rcs-d"><h3>לא לבד</h3><div class="no"><small>Instead of</small><span>אפליקציה אישית וסגורה</span></div><div class="yes"><small>I chose</small>מסלול משותף עם חברים, ותזונאית שרואה רק באישור</div><p class="why">התמדה עולה כשיש עם מי לחגוג. תזונאית יכולה לשלוח תפריט, ו"מחק אותי" מוחק הכל בלי שאלות.</p></div>
+  <div class="rcs-d"><h3>וואטסאפ וגם כפתור</h3><div class="no"><small>Instead of</small><span>צ׳אטבוט בלבד, או אפליקציה בלבד</span></div><div class="yes"><small>I chose</small>כל פקודה בוואטסאפ זמינה גם בכפתור באפליקציה</div><p class="why">לא כולם אוהבים לכתוב לבוט. הצ׳אט טוב לרישום מהיר, והאפליקציה לתכנון, גרפים ומדדי גוף.</p></div>
+ </div>
+</div></section>
+
+<section><div class="in">
+ <div class="kick mono"><i></i>04 · Design iterations</div>
+ <h2>ארבעה כיוונים <em>עד שזה הרגיש נכון</em></h2>
+ <p class="lead">לא הגעתי לעיצוב בניסיון הראשון. כל כיוון נפסל מסיבה ברורה, והסיבות האלה הגדירו את הכיוון הסופי.</p>
+ <ol class="rcs-iter">
+  <li class="x"><span class="mono">V1</span><b>כהה וצועק</b><p>עמוס ולא נעים לעין. אפליקציה שפותחים כמה פעמים ביום צריכה להרגיע.</p></li>
+  <li class="x"><span class="mono">V2</span><b>לבן מינימלי</b><p>נקי, אבל משעמם. בלי צבע ובלי אופי, ברני נעלם.</p></li>
+  <li class="x"><span class="mono">V3</span><b>צבעוני ומלא אנימציות</b><p>מצועצע מדי. הדמות התחרתה במספרים במקום לעזור.</p></li>
+  <li class="ok"><span class="mono">V4 ✓</span><b>כתום לבן</b><p>ברני במרכז, תנועה עדינה, ואש אחת בכל מסך שמסמנת רק את הדבר החשוב.</p></li>
+ </ol>
+</div></section>
+
+<section><div class="in">
+ <div class="kick mono"><i></i>05 · The journey</div>
+ <h2>מהארוחה הראשונה <em>ועד הקילו השני</em></h2>
+ <p class="lead">כל מסך בנוי סביב מספר אחד גדול, והכתום מסמן רק את מה שחשוב עכשיו.</p>
+ <div class="rcs-jr">
+  <div class="rcs-st"><figure class="shot"><img loading="lazy" decoding="async" src="b/s_01.webp" alt="מסך הבית של ברני: כמה קלוריות נשארו"></figure><div class="n">01</div><b>מספר אחד להיום</b><p>כמה קלוריות נשארו, וטבעת היעד שבוערת בקצה.</p></div>
+  <div class="rcs-st"><figure class="shot"><img loading="lazy" decoding="async" src="b/s_03.webp" alt="הוספת ארוחה עם בורר מנות"></figure><div class="n">02</div><b>רישום בשניות</b><p>מנה, כמות, וזהו. או פשוט תמונה בוואטסאפ.</p></div>
+  <div class="rcs-st"><figure class="shot"><img loading="lazy" decoding="async" src="b/s_04.webp" alt="מה לאכול עכשיו"></figure><div class="n">03</div><b>מה לאכול עכשיו?</b><p>הצעה לפי מה שנשאר ביום ומה שחסר בחלבון.</p></div>
+  <div class="rcs-st"><figure class="shot"><img loading="lazy" decoding="async" src="b/s_12.webp" alt="המסלול המשותף עם חברים"></figure><div class="n">04</div><b>עם חברים</b><p>מסלול משותף ודירוג שבועי, בלי לחשוף מה כל אחד אכל.</p></div>
+  <div class="rcs-st"><figure class="shot"><img loading="lazy" decoding="async" src="b/s_14.webp" alt="חגיגה על 2 קילו פחות"></figure><div class="n">05</div><b>חוגגים כל הצלחה</b><p>2 ק״ג פחות? ברני חוגג, ואפשר לשתף.</p></div>
+ </div>
+</div></section>
+
+<section class="rcs-end"><div class="in">
+ <h2>ברני. <em>אתם אוכלים</em>, הוא שורף</h2>
+ <p class="lead" style="margin:0 auto">בהמשך העמוד: הדמות בתנועה, הצ׳אט החי וכל העבודות.</p>
+ <div class="cta"><a class="s" href="#contact">רוצים מוצר כזה? בואו נדבר</a></div>
+</div></section>
+</div>`;
 /* brand page */
 const BORD=ORDER.filter(b=>ITEMS.some(i=>i.b===b));
 const FLOW=['logo','print','social','ads','web','video','ai'];
@@ -2025,11 +2134,11 @@ function renderBrand(id){const b=BR[id],a=acc(id),its=ITEMS.filter(i=>i.b===id);
        ${b.home?`<p style="margin-top:44px"><a class="lnk" href="#${b.home}">לעולם של הפרויקט בדף הבית ←</a></p>`:''}${b.link?`<p style="margin-top:${b.home?14:44}px"><a class="lnk" href="${b.link}" target="_blank" rel="noopener">לאתר החי ↗</a></p>`:''}</div>
      <div class="hero-m">${b.mascot?`<img loading="lazy" decoding="async" class="mascot" src="${b.mascot}" alt="הדמות של ${esc(b.n)}">`:`<div class="cover shot"><img loading="lazy" decoding="async" src="${cover.src}" alt="${esc(b.n)}"></div>`}</div>
    </div></header>
-   ${id==='richard'?CASE_RI:''}
+   ${id==='richard'?CASE_RI:id==='bernie'?CASE_BN:''}
    ${b.live==='chat'?`<section class="live-r"><div class="lr-t"><span class="mono">Live demo</span><h2>ככה מדברים עם ריצ׳רד</h2><p>בלי להתקין כלום ובלי טפסים. כותבים, מקליטים או מצלמים קבלה, והוא מבין עברית של בני אדם</p></div><div class="wa"></div></section>`:''}
    ${b.live==='bernie'?`<section class="live-bn"><div class="lb-hero"><div class="bn" id="bnBrand"></div><div><span class="mono">BURN-IE</span><h2>ברני שורף קלוריות</h2><p>אותו טריק כמו Richard, שהוא RICH HARD: שם של בן אדם שמסתתרת בו המשמעות. ברני הוא להבה, אז כששופכים עליו מים הוא עושה "פשששש!"</p></div><div class="wa" data-kind="bernie"></div></div>
      <div class="bn-strip">${['splash','drink','eat','weigh','steps','measure'].map(a=>`<figure><video preload="none" data-lsrc="b/an_${a}.mp4" poster="b/an_${a}.webp" muted loop playsinline autoplay></video><figcaption>${{splash:'מים: פשששש',drink:'שותה',eat:'אוכל',weigh:'נשקל',steps:'רץ',measure:'נמדד'}[a]}</figcaption></figure>`).join('')}</div>
-     <div class="bn-path"><h3>הדרך לעיצוב</h3><ol><li class="x"><b>כהה וצועק</b>עמוס ולא נעים לעין</li><li class="x"><b>לבן מינימלי</b>משעמם, בלי צבע ואופי</li><li class="x"><b>צבעוני ומלא אנימציות</b>מצועצע מדי</li><li class="ok"><b>כתום לבן</b>ברני במרכז ותנועה עדינה ✓</li></ol></div>
+     
      <div class="bn-ux"><div><b>הכל גם באפליקציה</b>כל פקודה בוואטסאפ זמינה גם בכפתור</div><div><b>שקיפות במספרים</b>📊 מהמאגר, ≈ ברני העריך</div><div><b>בטיחות</b>יעד מתחת לטווח הבריא לא נשמר</div><div><b>פרטיות</b>"מחק אותי" מוחק הכל, תזונאית רואה רק באישור</div></div>
      <p class="mono bn-tech">Next.js · Supabase · WhatsApp Cloud API · Claude · USDA FoodData Central · 38 tests</p></section>`:''}
    ${PROC[id]?`<section class="bproc">${PROC[id]}</section>`:''}
