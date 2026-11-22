@@ -1368,7 +1368,7 @@ main .sttl,main .wtag{position:relative;z-index:2}
     <div class="hw b" id="hwb">Ben Shaul</div>
     <div class="crt" id="crt"><div class="scr"><video id="vid" autoplay muted playsinline preload="auto"></video><script>(function(){var v=document.getElementById("vid"),m=matchMedia("(max-width:900px) and (orientation:portrait)").matches;v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute("webkit-playsinline","");v.poster=m?"/a/hero_v.jpg":"/a/hero.jpg";v.src=m?"/a/hero_v_en.mp4":"/a/hero_en.mp4";document.documentElement.classList.toggle("vhero",m)})()</script></div></div>
     <div class="shint" id="shint" aria-hidden="true"><span>Scroll for full screen</span><i>↓</i></div>
-    <div id="hctl"><button id="snd" type="button" aria-pressed="false" aria-label="Turn sound on"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sl"><b>Turn on sound</b><small>With narration</small></span></button><button id="rpl" type="button" aria-label="Play from the start" title="Play from the start"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z" fill="currentColor"/></svg></button></div>
+    <div id="hctl"><button id="snd" type="button" aria-pressed="false" aria-label="Turn sound on"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sl"><b>Turn on sound</b><small>With narration and music</small></span></button><button id="rpl" type="button" aria-label="Play from the start" title="Play from the start"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z" fill="currentColor"/></svg></button></div>
     <p class="hero-sub" id="hsub"><b>DESIGN · CODE · AI</b>Designer, developer and AI director in one. You bring an idea, I hand back a brand, a website and a video that work<br><span class="hs-ctas"><a class="lnk pri" href="#work">Take a look →</a><a class="lnk" href="#contact">Let’s talk ↗</a></span></p>
   </div>
 </section>
@@ -1554,7 +1554,7 @@ main .sttl,main .wtag{position:relative;z-index:2}
   <div class="in">
     <div class="wtag" style="border-color:var(--line)"><span class="mono">Design tricks · 20 videos</span><span>Tutorials</span></div>
     <h2 class="tu-h">20 design<br><em>tricks</em></h2>
-    <p class="tu-lead">A series of short videos, under a minute each, in my voice (Hebrew). Each trick also has a page with an explanation, before and after examples and real-world photos</p>
+    <p class="tu-lead">A series of short videos, under a minute each, with narration (in Hebrew), music and animated examples. Each trick also has a page with an explanation, before and after examples and real-world photos</p>
     <div class="tu-g" id="tuG"></div>
     <div class="tu-more"><button type="button" id="tuMore">All 20 tricks</button></div>
   </div>
@@ -1676,7 +1676,7 @@ const vid=$('#vid'),snd=$('#snd');
 {const mq=matchMedia('(max-width:900px) and (orientation:portrait)');const pick=()=>{const m=mq.matches;const want=m?'/a/hero_v_en.mp4':'/a/hero_en.mp4';document.documentElement.classList.toggle('vhero',m);
   if(!vid.getAttribute('src')||vid.getAttribute('src')!==want){const t=vid.currentTime||0,mu=vid.muted;vid.poster=m?'/a/hero_v.jpg':'/a/hero.jpg';vid.src=want;vid.muted=mu;vid.addEventListener('loadedmetadata',()=>{try{vid.currentTime=t}catch(e){}vid.play().catch(()=>{})},{once:true});if(window.ScrollTrigger)setTimeout(()=>ScrollTrigger.refresh(),100)}};
  (mq.addEventListener?mq.addEventListener('change',pick):mq.addListener(pick));pick()}
-const sndUI=()=>{const on=!vid.muted;snd.setAttribute('aria-pressed',String(on));snd.setAttribute('aria-label',on?'Mute':'Turn sound on');snd.querySelector('.sl b').textContent=on?'Quiet please':'Turn on sound';snd.querySelector('.sl small').textContent=on?'Click to mute':'With narration'};
+const sndUI=()=>{const on=!vid.muted;snd.setAttribute('aria-pressed',String(on));snd.setAttribute('aria-label',on?'Mute':'Turn sound on');snd.querySelector('.sl b').textContent=on?'Quiet please':'Turn on sound';snd.querySelector('.sl small').textContent=on?'Click to mute':'With narration and music'};
 snd.addEventListener('click',()=>{if(vid.muted){vid.muted=false;vid.play().catch(()=>{})}else vid.muted=true;sndUI()});
 /* the sound plays one round: when the video ends it goes quiet and keeps looping silently */
 $('#rpl').addEventListener('click',()=>{const b=$('#rpl');b.classList.remove('spin');void b.offsetWidth;b.classList.add('spin');try{vid.currentTime=0}catch(e){}vid.play().catch(()=>{})});

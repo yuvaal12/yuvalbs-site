@@ -1365,7 +1365,7 @@ main .sttl,main .wtag{position:relative;z-index:2}
     <div class="hw b" id="hwb">בן שאול</div>
     <div class="crt" id="crt"><div class="scr"><video id="vid" autoplay muted playsinline preload="auto"></video><script>(function(){var v=document.getElementById("vid"),m=matchMedia("(max-width:900px) and (orientation:portrait)").matches;v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute("webkit-playsinline","");v.poster=m?"a/hero_v.jpg":"a/hero.jpg";v.src=m?"a/hero_v.mp4":"a/hero.mp4";document.documentElement.classList.toggle("vhero",m)})()</script></div></div>
     <div class="shint" id="shint" aria-hidden="true"><span>גללו למסך מלא</span><i>↓</i></div>
-    <div id="hctl"><button id="snd" type="button" aria-pressed="false" aria-label="הפעלת סאונד"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sl"><b>תדליקו סאונד</b><small>הקריינות בקול שלי</small></span></button><button id="rpl" type="button" aria-label="לנגן מההתחלה" title="לנגן מההתחלה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z" fill="currentColor"/></svg></button></div>
+    <div id="hctl"><button id="snd" type="button" aria-pressed="false" aria-label="הפעלת סאונד"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sl"><b>תדליקו סאונד</b><small>עם קריינות ומוזיקה</small></span></button><button id="rpl" type="button" aria-label="לנגן מההתחלה" title="לנגן מההתחלה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z" fill="currentColor"/></svg></button></div>
     <p class="hero-sub" id="hsub"><b>DESIGN · CODE · AI</b>מעצב, מפתח ובמאי AI בגוף אחד. אתם מביאים רעיון, אני מחזיר מותג, אתר וסרטון שעובדים<br><span class="hs-ctas"><a class="lnk pri" href="#work">בואו לראות ←</a><a class="lnk" href="#contact">יאללה, נדבר ↗</a></span></p>
   </div>
 </section>
@@ -1551,7 +1551,7 @@ main .sttl,main .wtag{position:relative;z-index:2}
   <div class="in">
     <div class="wtag" style="border-color:var(--line)"><span class="mono">Design tricks · 20 videos</span><span>הדרכות</span></div>
     <h2 class="tu-h">20 טריקים<br><em>בעיצוב</em></h2>
-    <p class="tu-lead">סדרה של סרטונים קצרים, עד דקה כל אחד, בקול שלי. לכל טריק יש גם עמוד עם הסבר, דוגמאות לפני ואחרי ותמונות מהעולם האמיתי</p>
+    <p class="tu-lead">סדרה של סרטונים קצרים, עד דקה כל אחד, עם קריינות, מוזיקה ודוגמאות בתנועה. לכל טריק יש גם עמוד עם הסבר, דוגמאות לפני ואחרי ותמונות מהעולם האמיתי</p>
     <div class="tu-g" id="tuG"></div>
     <div class="tu-more"><button type="button" id="tuMore">לכל 20 הטריקים</button></div>
   </div>
@@ -1673,7 +1673,7 @@ const vid=$('#vid'),snd=$('#snd');
 {const mq=matchMedia('(max-width:900px) and (orientation:portrait)');const pick=()=>{const m=mq.matches;const want=m?'a/hero_v.mp4':'a/hero.mp4';document.documentElement.classList.toggle('vhero',m);
   if(!vid.getAttribute('src')||vid.getAttribute('src')!==want){const t=vid.currentTime||0,mu=vid.muted;vid.poster=m?'a/hero_v.jpg':'a/hero.jpg';vid.src=want;vid.muted=mu;vid.addEventListener('loadedmetadata',()=>{try{vid.currentTime=t}catch(e){}vid.play().catch(()=>{})},{once:true});if(window.ScrollTrigger)setTimeout(()=>ScrollTrigger.refresh(),100)}};
  (mq.addEventListener?mq.addEventListener('change',pick):mq.addListener(pick));pick()}
-const sndUI=()=>{const on=!vid.muted;snd.setAttribute('aria-pressed',String(on));snd.setAttribute('aria-label',on?'השתקה':'הפעלת סאונד');snd.querySelector('.sl b').textContent=on?'שקט בבקשה':'תדליקו סאונד';snd.querySelector('.sl small').textContent=on?'לחצו כדי להשתיק':'הקריינות בקול שלי'};
+const sndUI=()=>{const on=!vid.muted;snd.setAttribute('aria-pressed',String(on));snd.setAttribute('aria-label',on?'השתקה':'הפעלת סאונד');snd.querySelector('.sl b').textContent=on?'שקט בבקשה':'תדליקו סאונד';snd.querySelector('.sl small').textContent=on?'לחצו כדי להשתיק':'עם קריינות ומוזיקה'};
 snd.addEventListener('click',()=>{if(vid.muted){vid.muted=false;vid.play().catch(()=>{})}else vid.muted=true;sndUI()});
 /* the sound plays one round: when the video ends it goes quiet and keeps looping silently */
 $('#rpl').addEventListener('click',()=>{const b=$('#rpl');b.classList.remove('spin');void b.offsetWidth;b.classList.add('spin');try{vid.currentTime=0}catch(e){}vid.play().catch(()=>{})});
