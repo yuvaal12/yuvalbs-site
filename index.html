@@ -176,7 +176,10 @@ nav.top .lg{width:30px;height:36px}
 .tl li i{font-style:normal;color:#a9a59c}
 .edu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:8px}
 .edu div{border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:4px;min-width:0}
-.edu b{font:700 18px var(--display)}.edu i{font-style:normal;color:#a9a59c;font-size:15px}
+.edu b{font:700 18px var(--display)}
+.edu .lg{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.edu .lg img{height:40px;width:auto;max-width:100%;background:#fff;border-radius:10px;padding:7px 10px;object-fit:contain}
+.edu .lg img.dk{background:#0b2e37;padding:3px 8px}.edu i{font-style:normal;color:#a9a59c;font-size:15px}
 /* process */
 .case,.hcase{margin-top:clamp(56px,10vh,120px);padding-top:28px;border-top:2px solid currentColor}
 .case-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:28px}
@@ -1393,9 +1396,9 @@ main .sttl,main .wtag{position:relative;z-index:2}
         <li><span>2014 · 2015</span><b>בודק תוכנה</b><i>Check Point</i></li>
       </ol>
       <div class="edu">
-        <div><span class="mono">2023 · 2025</span><b>קורסים אקדמאיים בעיצוב גרפי</b><i>בית הספר ויצו, אוניברסיטת חיפה<br>בית הספר גורן, מכללת עמק יזרעאל</i></div>
-        <div><span class="mono">2020</span><b>Full Stack Developer</b><i>Coding Academy</i></div>
-        <div><span class="mono">Winner</span><b>CodeGuru Extreme</b><i>תחרויות 8 ו 9</i></div>
+        <div><span class="mono">2023 · 2025</span><b>קורסים אקדמאיים בעיצוב גרפי</b><i>בית הספר ויצו, אוניברסיטת חיפה<br>בית הספר גורן, מכללת עמק יזרעאל</i><span class="lg"><img loading="lazy" src="a/edu_wizo.svg" alt="בית הספר לעיצוב ויצו, אוניברסיטת חיפה"><img loading="lazy" src="a/edu_yvc.webp" alt="המכללה האקדמית עמק יזרעאל"></span></div>
+        <div><span class="mono">2020</span><b>Full Stack Developer</b><i>Coding Academy</i><span class="lg"><img loading="lazy" src="a/edu_ca.webp" alt="Coding Academy"></span></div>
+        <div><span class="mono">Winner</span><b>CodeGuru Extreme</b><i>תחרויות 8 ו 9</i><span class="lg"><img loading="lazy" class="dk" src="a/edu_cgx.webp" alt="CodeGuru Extreme"></span></div>
       </div>
     </div>
   </div>
