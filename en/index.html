@@ -1346,6 +1346,9 @@ main .sttl,main .wtag{position:relative;z-index:2}
  .tst-chips button{border:1.5px solid rgba(17,17,17,.18);background:#fff;color:#111;border-radius:99px;padding:8px 14px;font:600 14px var(--body);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
  .tst-chips button[aria-pressed="true"]{background:#0B3C49;border-color:#0B3C49;color:#fff}
 }
+
+video.lv{display:block;width:100%;height:auto;max-width:100%}
+.shot>video.lv{height:100%;object-fit:cover}
 .hw{font-size:clamp(64px,12vw,220px)}
 </style>
 
@@ -2623,10 +2626,16 @@ bs.forEach(b=>{b.textContent='0';io.observe(b)})})();
  reg();let q=0;new MutationObserver(()=>{if(!q)q=requestAnimationFrame(()=>{q=0;reg()})}).observe(document.body,{childList:true,subtree:true})})();
 </script>
 
+<script>window.VMAP={'/n/dk2m_bill.webp':'/v/c_duk_bill.mp4','/n/x_toro_bill.webp':'/v/c_toro_bill.mp4','/n/ri_couch.webp':'/v/c_ri_couch.mp4'};</script>
 <script>
 /* lazy-load autoplay videos: download only when they come near the screen */
 (()=>{const io=('IntersectionObserver' in window)?new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const v=e.target;io.unobserve(v);if(v.dataset.lsrc){v.src=v.dataset.lsrc;v.removeAttribute('data-lsrc');v.preload='auto';v.play().catch(()=>{})}}),{rootMargin:'400px 0px'}):null;
- const reg=()=>document.querySelectorAll('video[data-lsrc]:not([data-lz])').forEach(v=>{v.dataset.lz=1;if(io)io.observe(v);else{v.src=v.dataset.lsrc;v.removeAttribute('data-lsrc')}});
+ /* living covers: still images that now have a motion version (Higgsfield) */
+ const VMAP=window.VMAP||{};
+ const swap=()=>document.querySelectorAll('img[src]:not([id]):not([data-nv])').forEach(im=>{const s=im.getAttribute('src'),m=VMAP[s];if(!m||im.closest('#lb,.lb,dialog'))return;
+  const v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.autoplay=true;v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('autoplay','');v.setAttribute('loop','');v.preload='none';
+  v.poster=s;v.dataset.lsrc=m;v.className=im.className+' lv';v.setAttribute('aria-label',im.alt||'');im.replaceWith(v)});
+ const reg=()=>{swap();document.querySelectorAll('video[data-lsrc]:not([data-lz])').forEach(v=>{v.dataset.lz=1;if(io)io.observe(v);else{v.src=v.dataset.lsrc;v.removeAttribute('data-lsrc')}})};
  reg();let q=0;new MutationObserver(()=>{if(!q)q=requestAnimationFrame(()=>{q=0;reg()})}).observe(document.body,{childList:true,subtree:true})})();
 </script>
 
