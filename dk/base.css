@@ -1,0 +1,17 @@
+@font-face{font-family:Rub;font-weight:900;src:url(fonts/rubik-hebrew-900-normal.woff2)}
+@font-face{font-family:Rub;font-weight:900;src:url(fonts/rubik-latin-900-normal.woff2);unicode-range:U+0000-00FF,U+20AA,U+2013,U+2014}
+@font-face{font-family:Rub;font-weight:700;src:url(fonts/rubik-hebrew-700-normal.woff2)}
+@font-face{font-family:Rub;font-weight:700;src:url(fonts/rubik-latin-700-normal.woff2);unicode-range:U+0000-00FF,U+20AA}
+@font-face{font-family:Rub;font-weight:500;src:url(fonts/rubik-hebrew-500-normal.woff2)}
+@font-face{font-family:Rub;font-weight:500;src:url(fonts/rubik-latin-500-normal.woff2);unicode-range:U+0000-00FF,U+20AA}
+@font-face{font-family:Mono;src:url(fonts/ibm-plex-mono-latin-500-normal.woff2)}
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#111;font-family:Rub}
+.s{width:1920px;height:1080px;position:relative;overflow:hidden}
+.pg{position:absolute;bottom:56px;left:80px;font:500 22px Mono;letter-spacing:.14em;opacity:.55;direction:ltr}
+.kick{font:500 24px Mono;letter-spacing:.2em;direction:ltr;text-align:right}
+.src{position:absolute;bottom:56px;right:80px;font:500 19px Rub;opacity:.55;max-width:1300px}
+h1{font:900 150px/0.95 Rub;letter-spacing:-.02em}
+h2{font:900 92px/1.02 Rub;letter-spacing:-.01em}
+p.l{font:500 34px/1.45 Rub}

@@ -1,0 +1,206 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>kitezo · Brand Pitch</title>
+<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="motion.css">
+<style>
+:root{--n:#1B1446;--c:#FF6B4A;--sky:#8FD3FF;--sun:#FFC93C;--cr:#FFF6EC;--g:#3CCB8B}
+.s{background:var(--cr);color:var(--n)}
+.tag{position:absolute;top:56px;right:80px;font:500 22px Mono;letter-spacing:.2em;direction:ltr;z-index:5}
+.fic{position:absolute;top:50px;left:80px;font:700 20px Rub;padding:10px 22px;border:2px solid currentColor;border-radius:40px;opacity:.8;z-index:5}
+.word{font:900 200px/0.9 Rub;letter-spacing:-.03em;direction:ltr;display:inline-block}
+.card{border-radius:36px;padding:44px}
+.phone{width:380px;height:780px;border-radius:60px;background:var(--n);padding:16px;box-shadow:0 40px 80px rgba(27,20,70,.25)}
+.scr{width:100%;height:100%;border-radius:46px;overflow:hidden;position:relative;direction:rtl}
+.cloud{position:absolute;background:#fff;border-radius:100px}
+.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud:before{width:55%;height:160%;top:-80%;left:15%}.cloud:after{width:40%;height:120%;top:-50%;right:15%}
+.bgimg{position:absolute;inset:0;background-size:cover;background-position:center}
+.pg,.src{z-index:5}
+/* motion: plays when a slide gets .on (viewer), static otherwise */
+@keyframes up{from{opacity:0;transform:translateY(70px)}}
+@keyframes fade{from{opacity:0}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}70%{transform:scale(1.06)}}
+@keyframes zoom{from{transform:scale(1.14)}}
+@keyframes grow{from{transform:scaleY(0)}}
+@keyframes wide{from{transform:scaleX(0)}}
+@keyframes drift{from{transform:translateX(-120px)}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-22px) rotate(calc(var(--r,0deg) + 4deg))}}
+.s.on .a{animation:up .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+.s.on .f{animation:fade 1.2s ease both;animation-delay:var(--d,0s)}
+.s.on .p{animation:pop .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+.s.on .z{animation:zoom 6s cubic-bezier(.2,.6,.2,1) both}
+.s.on .gx{transform-origin:right;animation:wide 1s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+.s.on .cloud{animation:drift 8s ease-out both}
+.s.on .bob{animation:bob 4s ease-in-out infinite}
+.mq{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:0;font:900 150px/1.05 Rub;white-space:nowrap;color:rgba(255,246,236,.06);overflow:hidden}
+@keyframes mq{to{transform:translateX(50%)}}
+.s.on .mq div{animation:mq 30s linear infinite}
+.s.on .mq div:nth-child(2n){animation-direction:reverse}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="kite" viewBox="0 0 230 300"><path d="M115 10 L215 120 L115 230 L15 120Z" fill="#FF6B4A"/><path d="M115 10 L115 230 M15 120 L215 120" stroke="#1B1446" stroke-width="10" stroke-linecap="round"/><path d="M115 230 C 95 255, 135 265, 115 290" stroke="#1B1446" stroke-width="10" fill="none" stroke-linecap="round"/><circle cx="85" cy="100" r="10" fill="#1B1446"/><circle cx="145" cy="100" r="10" fill="#1B1446"/><path d="M90 140 Q115 160 140 140" stroke="#1B1446" stroke-width="9" fill="none" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<!-- 1 cover: full-bleed photo -->
+<section class="s" style="background:var(--n);color:#fff">
+ <div class="bgimg z" style="background-image:url(kz/img/hero.jpg)"></div>
+ <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(27,20,70,.8) 0%,rgba(27,20,70,.2) 38%,transparent 55%)"></div>
+ <div class="tag" style="color:var(--n)">BRAND PITCH · CONCEPT</div>
+ <div class="fic">מותג בדיוני · קונספט עיצובי</div>
+ <div style="position:absolute;left:110px;bottom:140px;text-align:left">
+  <div class="word a" style="font-size:240px;--d:.2s">kitezo</div>
+  <p class="a" style="font:700 52px Rub;margin-top:10px;--d:.45s">שולחים את המשפחה החוצה</p>
+ </div>
+ <div class="src" style="opacity:.8">פיץ׳ למותג בדיוני · קונספט, מיתוג ועיצוב: יובל בן שאול · הדמיות נוצרו ב-AI</div>
+ <div class="pg">01 / 11</div></section>
+
+<!-- 2 the challenge -->
+<section class="s" style="background:var(--n);color:var(--cr)">
+ <div class="mq"><div>מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך</div><div>מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך</div><div>מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך</div><div>מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך</div><div>מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך</div><div>מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך</div><div>מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך</div><div>מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך</div><div>מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך מסך</div></div>
+ <div class="tag" style="color:var(--sun)">THE CHALLENGE</div>
+ <div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center">
+  <div>
+   <h1 class="a" style="font-size:150px">אחר הצהריים. כולם בבית</h1>
+   <h1 class="a" style="font-size:190px;color:var(--c);margin-top:20px;--d:.35s">כל אחד במסך שלו</h1>
+   <p class="l a" style="margin:50px auto 0;opacity:.75;max-width:1000px;--d:.6s">הורים רוצים לצאת עם הילדים, אבל אין רעיון, אין זמן לתכנן, ובסוף נשארים בבית.</p>
+  </div>
+ </div>
+ <div class="pg">02 / 11</div></section>
+
+<!-- 3 the idea -->
+<section class="s" style="background:var(--sun)">
+ <div class="tag">THE IDEA</div><div class="fic">קונספט</div>
+ <div style="position:absolute;right:140px;top:220px;width:900px">
+  <div class="kick a" style="text-align:right">ONE MISSION. EVERY WEEK</div>
+  <h1 class="a" style="margin-top:30px;font-size:140px;--d:.1s">משימה אחת<br>בשבוע,<br>בחוץ</h1>
+  <p class="l a" style="margin-top:40px;max-width:820px;--d:.25s">אפליקציה שמגישה לכל משפחה משימת חוץ קצרה, מותאמת לגיל הילדים, למזג האוויר ולמה שיש ליד הבית.</p>
+ </div>
+ <div style="position:absolute;left:140px;top:200px;display:grid;gap:26px;width:640px">
+  <div class="card p" style="--d:.4s;background:var(--cr);display:flex;gap:30px;align-items:center"><div style="font:900 80px Rub;color:var(--c);direction:ltr">1</div><div><b style="font:900 40px Rub">בוחרים</b><p style="font:500 28px Rub;margin-top:6px">גיל, זמן פנוי, מקום</p></div></div>
+  <div class="card p" style="--d:.55s;background:var(--cr);display:flex;gap:30px;align-items:center"><div style="font:900 80px Rub;color:var(--c);direction:ltr">2</div><div><b style="font:900 40px Rub">יוצאים</b><p style="font:500 28px Rub;margin-top:6px">משימה עם הוראות פשוטות</p></div></div>
+  <div class="card p" style="--d:.7s;background:var(--n);color:var(--cr);display:flex;gap:30px;align-items:center"><div style="font:900 80px Rub;color:var(--sun);direction:ltr">3</div><div><b style="font:900 40px Rub">אוספים</b><p style="font:500 28px Rub;margin-top:6px;opacity:.8">תמונה, מדבקה, זיכרון</p></div></div>
+ </div>
+ <div class="pg">03 / 11</div></section>
+
+<!-- 4 mascot WOW -->
+<section class="s" style="background:linear-gradient(180deg,rgb(145,196,217),rgb(185,221,233))">
+ <div class="bgimg z" style="background-image:url(kz/img/mascot.jpg);left:-420px;right:420px;-webkit-mask-image:linear-gradient(90deg,#000 80%,transparent)"></div>
+ <div class="tag">THE CHARACTER</div><div class="fic">הדמיית תלת-ממד · AI</div>
+ <div style="position:absolute;right:110px;top:290px;width:560px">
+  <h1 class="a" style="font-size:140px">מכירים?<br>זה העפיפון</h1>
+  <p class="l a" style="margin-top:36px;--d:.25s">הסמל של המותג קם לחיים כדמות שמלווה את הילדים בכל משימה: מעודדת, מסבירה ושמחה איתם בסוף.</p>
+ </div>
+ <div class="pg">04 / 11</div></section>
+
+<!-- 5 logo -->
+<section class="s">
+ <div class="tag">THE MARK</div>
+ <div style="position:absolute;inset:0;display:grid;grid-template-columns:1.1fr 1fr">
+  <div style="display:grid;place-items:center;border-left:3px solid var(--n)">
+   <div class="p" style="display:flex;align-items:center;gap:44px;direction:ltr"><svg class="bob" width="190" height="248" style="--r:-6deg"><use href="#kite"/></svg><span class="word" style="font-size:170px">kitezo</span></div>
+  </div>
+  <div style="padding:200px 120px 0 140px">
+   <h2 class="a">עפיפון<br>שמחייך</h2>
+   <p class="l a" style="margin-top:40px;font-size:31px;--d:.15s">העפיפון הוא הסמל הכי פשוט של משחק בחוץ: צריך רוח, שמיים ומישהו שמחזיק את החוט. הצלב של המסגרת הופך לפרצוף, והזנב מצייר את התנועה.</p>
+   <div style="display:flex;gap:40px;margin-top:60px;direction:ltr">
+    <div class="p" style="--d:.35s;width:200px;height:200px;border-radius:40px;background:var(--n);display:grid;place-items:center"><svg width="110" height="140"><use href="#kite"/></svg></div>
+    <div class="p" style="--d:.5s;width:200px;height:200px;border-radius:50%;background:var(--c);display:grid;place-items:center"><span style="font:900 120px Rub;color:var(--cr)">k</span></div>
+   </div>
+  </div>
+ </div>
+ <div class="pg">05 / 11</div></section>
+
+<!-- 6 colors & type -->
+<section class="s">
+ <div class="tag">COLOR & TYPE</div>
+ <div style="position:absolute;right:140px;top:170px"><h2 class="a">צבעים של יום בחוץ</h2></div>
+ <div style="position:absolute;right:140px;left:140px;top:340px;display:flex;gap:24px;height:420px;direction:ltr">
+  <div class="a" style="--d:.1s;flex:2;background:var(--c);border-radius:36px;padding:36px;display:flex;flex-direction:column;justify-content:flex-end;color:var(--cr)"><b style="font:900 44px Rub">Kite Coral</b><span style="font:500 24px Mono">#FF6B4A</span></div>
+  <div class="a" style="--d:.2s;flex:1.5;background:var(--n);border-radius:36px;padding:36px;display:flex;flex-direction:column;justify-content:flex-end;color:var(--cr)"><b style="font:900 44px Rub">Dusk</b><span style="font:500 24px Mono">#1B1446</span></div>
+  <div class="a" style="--d:.3s;flex:1.2;background:var(--sky);border-radius:36px;padding:36px;display:flex;flex-direction:column;justify-content:flex-end"><b style="font:900 44px Rub">Sky</b><span style="font:500 24px Mono">#8FD3FF</span></div>
+  <div class="a" style="--d:.4s;flex:1;background:var(--sun);border-radius:36px;padding:36px;display:flex;flex-direction:column;justify-content:flex-end"><b style="font:900 44px Rub">Sun</b><span style="font:500 24px Mono">#FFC93C</span></div>
+  <div class="a" style="--d:.5s;flex:.8;background:var(--g);border-radius:36px;padding:36px;display:flex;flex-direction:column;justify-content:flex-end"><b style="font:900 44px Rub">Grass</b><span style="font:500 24px Mono">#3CCB8B</span></div>
+ </div>
+ <div style="position:absolute;right:140px;left:140px;top:820px;display:flex;justify-content:space-between;align-items:flex-end">
+  <div class="a" style="--d:.6s"><div style="font:900 110px/1 Rub">Aa אב</div><div style="font:500 24px Mono;margin-top:10px;direction:ltr;text-align:right">RUBIK BLACK · HEADLINES</div></div>
+  <div class="a" style="--d:.7s;font:500 34px/1.4 Rub;max-width:760px">טיפוגרפיה עגולה וכבדה, שמרגישה כמו צעצוע ונקראת טוב גם על מסך קטן בשמש.</div>
+ </div>
+ <div class="pg">06 / 11</div></section>
+
+<!-- 7 app screens -->
+<section class="s" style="background:var(--c)">
+ <div class="tag" style="color:var(--cr)">THE APP</div><div class="fic" style="color:var(--cr)">מסכים להמחשה</div>
+ <div style="position:absolute;right:140px;top:260px;width:640px;color:var(--cr)">
+  <h2 class="a" style="font-size:100px">פחות מסך.<br>יותר שמיים</h2>
+  <p class="l a" style="margin-top:40px;--d:.15s">האפליקציה בנויה כדי שתסגרו אותה מהר: משימה אחת, שלושה צעדים, וכפתור גדול של ״יצאנו!״.</p>
+ </div>
+ <div style="position:absolute;left:120px;top:150px;display:flex;gap:50px;align-items:flex-start;direction:ltr">
+  <div class="phone a" style="margin-top:60px;--d:.3s"><div class="scr" style="background:var(--sky)">
+   <div class="cloud" style="width:140px;height:36px;right:40px;top:110px"></div>
+   <div style="padding:60px 34px 0;font:700 22px Rub">שלום, משפחת לוי 👋</div>
+   <svg class="bob" style="position:absolute;left:125px;top:150px;--r:-8deg" width="130" height="170"><use href="#kite"/></svg>
+   <div style="margin:240px 24px 0;background:var(--cr);border-radius:32px;padding:30px">
+    <div style="font:500 18px Mono;color:var(--c);direction:ltr;text-align:right">MISSION OF THE WEEK</div>
+    <div style="font:900 40px/1.05 Rub;margin-top:12px">צד עלים בכל<br>צבעי הקשת</div>
+    <div style="font:500 20px Rub;opacity:.7;margin-top:12px">45 דק׳ · גינה ליד הבית · גילאי 4–8</div>
+    <div style="margin-top:24px;background:var(--c);color:var(--cr);border-radius:40px;padding:18px;text-align:center;font:900 28px Rub">יצאנו!</div>
+   </div></div></div>
+  <div class="phone a" style="--d:.45s"><div class="scr" style="background:var(--cr)">
+   <div style="padding:60px 34px 0;font:900 36px Rub">האלבום שלנו</div>
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:30px 28px">
+    <div style="height:150px;border-radius:24px;background:url(kz/img/hero.jpg) 30% 60%/360%"></div><div style="height:150px;border-radius:24px;background:var(--sun)"></div>
+    <div style="height:150px;border-radius:24px;background:var(--sky)"></div><div style="height:150px;border-radius:24px;background:var(--n);display:grid;place-items:center"><svg width="70" height="90"><use href="#kite"/></svg></div>
+    <div style="height:150px;border-radius:24px;background:url(kz/img/phone.jpg) 40% 50%/400%"></div><div style="height:150px;border-radius:24px;border:4px dashed var(--n);opacity:.4"></div>
+   </div>
+   <div style="margin:0 28px;font:700 22px Rub;opacity:.7">עוד משימה אחת למדבקה הבאה</div>
+  </div></div>
+ </div>
+ <div class="pg" style="color:var(--cr)">07 / 11</div></section>
+
+<!-- 8 in the wild: phone photo -->
+<section class="s" style="background:#2b3a1c;color:#fff">
+ <div class="bgimg z" style="background-image:url(kz/img/phone.jpg)"></div>
+ <div style="position:absolute;inset:0;background:linear-gradient(270deg,transparent 45%,rgba(27,20,70,.8) 85%)"></div>
+ <div class="tag">IN THE WILD</div><div class="fic">הדמיה · AI</div>
+ <div style="position:absolute;left:110px;top:330px;width:620px">
+  <h1 class="a" style="font-size:130px">מסך אחד<br>שמוציא<br><span style="color:var(--sun)">החוצה</span></h1>
+ </div>
+ <div class="pg">08 / 11</div></section>
+
+<!-- 9 campaign -->
+<section class="s" style="background:var(--n);color:var(--cr)">
+ <div class="tag" style="color:var(--sun)">LAUNCH CAMPAIGN</div><div class="fic">קונספט קמפיין · הדמיה</div>
+ <div class="f" style="position:absolute;left:80px;top:130px;width:1160px;height:648px;border-radius:36px;overflow:hidden;background:url(kz/img/billboard.jpg) center/cover"></div>
+ <div style="position:absolute;right:100px;top:150px;width:480px">
+  <h2 class="a" style="font-size:104px">המסך<br><span style="color:var(--c)">יחכה</span></h2>
+  <p class="l a" style="margin-top:24px;opacity:.75;font-size:30px;--d:.15s">שלטי חוצות ורשתות, שמתחילים במקום שבו ההורים כבר נמצאים: בטלפון.</p>
+ </div>
+ <div style="position:absolute;right:100px;width:480px;top:560px;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+  <div class="p" style="--d:.4s;background:var(--c);border-radius:28px;padding:28px;height:320px;display:flex;flex-direction:column;justify-content:space-between"><div style="font:900 36px/1.1 Rub">אפס<br>התראות.<br>המון<br>רוח</div><div style="font:500 16px Mono;direction:ltr;text-align:right">STORY · 9:16</div></div>
+  <div class="p" style="--d:.55s;background:var(--sun);color:var(--n);border-radius:28px;padding:28px;height:320px;display:flex;flex-direction:column;justify-content:space-between"><div style="font:900 36px/1.1 Rub">שבת.<br>4 שעות.<br>משימה<br>אחת</div><div style="font:500 16px Mono;direction:ltr;text-align:right">POST · 1:1</div></div>
+ </div>
+ <div style="position:absolute;left:80px;top:810px;width:1160px;display:flex;justify-content:space-between;font:500 20px Mono;letter-spacing:.14em;opacity:.6;direction:ltr"><span>OOH · BILLBOARD 48 SHEET</span><span>TEL AVIV · CONCEPT</span></div>
+ <div class="pg">09 / 11</div></section>
+
+<!-- 10 merch -->
+<section class="s" style="background:var(--n);color:var(--cr)">
+ <div class="bgimg z" style="background-image:url(kz/img/merch.jpg);bottom:230px;background-position:center 35%"></div>
+ <div class="tag" style="color:var(--n)">BRAND WORLD</div><div class="fic" style="color:var(--n)">הדמיה · AI</div>
+ <div style="position:absolute;right:120px;left:120px;bottom:70px;height:110px;display:flex;justify-content:space-between;align-items:center">
+  <div class="a" style="font:900 64px Rub">המותג יוצא מהאפליקציה</div>
+  <p class="a" style="--d:.15s;font:500 28px/1.4 Rub;opacity:.8;max-width:620px">ערכת עפיפון, תיק, כובע ומדבקות שמחכים בסוף כל משימה.</p>
+ </div>
+ <div class="pg" style="bottom:24px;opacity:.4">10 / 11</div></section>
+
+<!-- 11 close -->
+<section class="s" style="background:var(--sky)">
+ <div class="cloud" style="width:420px;height:100px;left:200px;top:220px"></div>
+ <div class="cloud" style="width:300px;height:76px;right:240px;bottom:220px;opacity:.85"></div>
+ <div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center">
+  <div><svg class="bob p" width="230" height="300" style="--r:8deg;transform:rotate(8deg)"><use href="#kite"/></svg>
+  <h1 class="a" style="margin-top:30px;font-size:150px;--d:.2s">נתראה בחוץ</h1>
+  <div class="word a" style="font-size:90px;margin-top:20px;--d:.35s">kitezo</div></div>
+ </div>
+ <div class="src" style="opacity:.7">kitezo הוא מותג בדיוני שנוצר כתרגיל מיתוג. כל השמות, המסכים, הקמפיינים וההדמיות (שנוצרו ב-AI) להמחשה בלבד.</div>
+ <div class="pg">11 / 11</div></section>
+
+<script src="motion.js"></script>
+</body></html>
