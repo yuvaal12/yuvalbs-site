@@ -1,116 +1,270 @@
 <!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cyber Nation in Numbers</title>
 <link rel="stylesheet" href="base.css"><link rel="stylesheet" href="motion.css">
 <style>
-:root{--bg:#070B1F;--c1:#3DF2C8;--c2:#7B61FF;--c3:#FF4D8D;--t:#EAF0FF}
+:root{--bg:#070B1F;--c1:#3DF2C8;--c2:#7B61FF;--c3:#FF4D8D;--c4:#FFC24D;--t:#EAF0FF;--mu:#8a95b8}
 .s{background:var(--bg);color:var(--t)}
-.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(61,242,200,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(61,242,200,.07) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent)}
-.glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.55}
-.tag{position:absolute;top:56px;right:80px;font:500 22px Mono;letter-spacing:.2em;color:var(--c1);direction:ltr}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(61,242,200,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(61,242,200,.06) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent)}
+.glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.5}
+.tag{position:absolute;top:56px;right:80px;font:500 22px Mono;letter-spacing:.2em;color:var(--c1);direction:ltr;z-index:3}
+.ai{position:absolute;top:50px;left:80px;font:700 18px Rub;padding:8px 18px;border:1.5px solid rgba(234,240,255,.35);border-radius:30px;opacity:.7;z-index:3}
 .big{font:900 260px/0.9 Rub;letter-spacing:-.03em;background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;color:transparent;direction:ltr;display:inline-block}
-.box{border:1.5px solid rgba(61,242,200,.25);border-radius:28px;padding:36px;background:rgba(255,255,255,.03)}
-.lab{font:500 26px Rub;opacity:.7}
+.box{border:1.5px solid rgba(61,242,200,.22);border-radius:28px;padding:34px;background:rgba(255,255,255,.035);backdrop-filter:blur(6px)}
+.lab{font:500 26px/1.35 Rub;opacity:.72}
 .num{font:900 96px/1 Rub;direction:ltr;display:inline-block}
+.src{z-index:3}.pg{z-index:3}
+.ch{position:absolute;font:900 520px/0.8 Rub;color:transparent;-webkit-text-stroke:3px rgba(61,242,200,.55);direction:ltr;letter-spacing:-.04em}
+.shade-l{position:absolute;inset:0;background:linear-gradient(90deg,#070B1F 30%,rgba(7,11,31,.55) 60%,rgba(7,11,31,.05))}
+.shade-r{position:absolute;inset:0;background:linear-gradient(270deg,#070B1F 34%,rgba(7,11,31,.55) 62%,rgba(7,11,31,.05))}
+.note{font:500 22px/1.4 Rub;opacity:.55}
 </style></head><body>
 
+<!-- 01 cover -->
 <section class="s"><div class="bgimg z" style="background-image:url(img3/c_hero.jpg);background-position:center 35%"></div><div style="position:absolute;inset:0;background:linear-gradient(0deg,#070B1F 8%,rgba(7,11,31,.55) 45%,rgba(7,11,31,.1) 75%)"></div>
- <div class="tag">DATA STORY · 01</div><div style="position:absolute;top:50px;left:80px;font:700 19px Rub;padding:9px 20px;border:1.5px solid rgba(234,240,255,.4);border-radius:30px;opacity:.75">הדמיה · AI</div>
- <div style="position:absolute;right:120px;bottom:170px;width:1500px">
-  <div class="kick" style="color:var(--c1)">ISRAEL CYBER · 2025</div>
-  <h1 style="margin-top:24px;font-size:180px">מעצמת סייבר במספרים</h1>
-  <p class="l" style="margin-top:40px;opacity:.75;max-width:1000px">עשור של צמיחה בתעשיית הסייבר הישראלית, ושנה אחת ששברה שיאים.</p>
+ <div class="tag">DATA STORY · ISRAEL CYBER 2025</div><div class="ai">הדמיה · AI</div>
+ <div style="position:absolute;right:120px;bottom:170px;width:1600px">
+  <h1 style="font-size:190px">מעצמת סייבר במספרים</h1>
+  <p class="l" style="margin-top:30px;opacity:.8;max-width:1100px">עשור של צמיחה בתעשיית הסייבר הישראלית, ושנה שבה נשברו שיאים</p>
  </div>
- <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025</div>
- <div class="pg">01 / 08</div></section>
+ <div class="src">מקור הנתונים: YL Ventures, State of the Cyber Nation · עיצוב וניתוח: יובל בן שאול</div>
+ <div class="pg">01 / 16</div></section>
 
-<section class="s"><div class="bgimg z" style="background-image:url(img3/c_core.jpg);left:auto;width:1500px;right:-200px"></div><div style="position:absolute;inset:0;background:linear-gradient(90deg,#070B1F 42%,rgba(7,11,31,.2) 75%,transparent)"></div>
- <div class="tag">TOTAL FUNDING 2025</div>
- <div style="position:absolute;left:120px;top:0;bottom:0;width:1060px;display:flex;align-items:center">
-  <div><div class="big" style="font-size:300px">$4.4B</div>
-  <p class="l" style="margin-top:20px;font-size:44px">שיא כל הזמנים בגיוסים של חברות סייבר ישראליות</p>
-  <div style="display:flex;gap:24px;margin-top:60px">
-   <div class="box" style="min-width:320px"><div class="num" style="color:var(--c1)">+9%</div><div class="lab" style="margin-top:12px">לעומת 2024</div></div>
-   <div class="box" style="min-width:320px"><div class="num" style="color:var(--c2)">130</div><div class="lab" style="margin-top:12px">סבבי גיוס</div></div>
-   <div class="box" style="min-width:320px"><div class="num" style="color:var(--c3)">+46%</div><div class="lab" style="margin-top:12px">יותר סבבים משנה קודמת</div></div>
+<!-- 02 headline number -->
+<section class="s"><div class="bgimg z" style="background-image:url(img3/c_core.jpg);left:auto;width:1500px;right:-200px"></div><div class="shade-l"></div>
+ <div class="tag">2025 · TOTAL FUNDING</div>
+ <div style="position:absolute;left:120px;top:0;bottom:0;width:1100px;display:flex;align-items:center">
+  <div><div class="big p" style="font-size:330px">$5.1B</div>
+  <p class="l" style="margin-top:10px;font-size:46px">גייסו חברות הסייבר הישראליות ב-2025</p>
+  <div style="display:flex;gap:22px;margin-top:56px">
+   <div class="box" style="min-width:330px"><div class="num" style="color:var(--c1)">136</div><div class="lab" style="margin-top:12px">סבבי גיוס, הכי הרבה אי פעם</div></div>
+   <div class="box" style="min-width:330px"><div class="num" style="color:var(--c2)">+27%</div><div class="lab" style="margin-top:12px">בכסף לעומת 2024</div></div>
+   <div class="box" style="min-width:330px"><div class="num" style="color:var(--c3)">+53%</div><div class="lab" style="margin-top:12px">בכמות הסבבים לעומת 2024</div></div>
   </div></div></div>
- <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025 (דרך Calcalist Tech)</div>
- <div class="pg">02 / 08</div></section>
+ <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025 (הדוח המלא, ינואר 2026). הדוח המקדים מדצמבר 2025 דיווח על ‎$4.4B‎ ב-130 סבבים</div>
+ <div class="pg">02 / 16</div></section>
 
+<!-- 03 timeline -->
+<section class="s"><div class="grid"></div><div class="glow" style="width:700px;height:700px;background:var(--c2);left:300px;top:-300px;opacity:.3"></div>
+ <div class="tag">A DECADE IN FUNDING</div>
+ <div style="position:absolute;right:120px;top:150px;width:560px">
+  <h2>רכבת הרים<br>של עשור</h2>
+  <p class="l" style="margin-top:34px;opacity:.75;font-size:30px">שיא מטורף ב-2021, נפילה חדה ב-2023, ומאז חזרה מהירה למעלה.</p>
+  <div class="note" style="margin-top:30px">הגיוס השנתי במיליארדי דולרים. השנים 2016–2019 לא מוצגות כי לא אימתתי אותן מול המקור</div>
+ </div>
+ <svg id="tl" width="1180" height="800" style="position:absolute;left:80px;top:170px;direction:ltr;overflow:visible"></svg>
+ <div class="src">מקור: YL Ventures, דוחות State of the Cyber Nation לשנים 2021, 2022 ו-2025</div>
+ <div class="pg">03 / 16</div></section>
+
+<!-- 04 chapter money -->
+<section class="s"><div class="bgimg z" style="background-image:url(img3/c_money.jpg)"></div><div class="shade-l"></div>
+ <div class="tag">CHAPTER 01</div><div class="ai">הדמיה · AI</div>
+ <div class="ch f" style="left:80px;bottom:60px">01</div>
+ <div style="position:absolute;left:120px;top:300px;width:900px">
+  <div class="kick" style="color:var(--c1);text-align:left">FOLLOW THE MONEY</div>
+  <h1 style="margin-top:24px;font-size:170px">מאיפה מגיע<br>הכסף</h1>
+ </div>
+ <div class="pg">04 / 16</div></section>
+
+<!-- 05 stages -->
 <section class="s"><div class="grid"></div>
- <div class="tag">A DECADE OF GROWTH</div>
- <div style="position:absolute;right:120px;top:170px;width:620px">
-  <div class="kick" style="color:var(--c1)">2015 → 2025</div>
-  <h2 style="margin-top:24px">עשור.<br>פי <span style="color:var(--c1)">6</span><br>בגיוסים</h2>
-  <p class="l" style="margin-top:40px;opacity:.7;font-size:30px">מ-689 מיליון דולר ב-2015 ל-4.4 מיליארד ב-2025.</p>
+ <div class="tag">ROUNDS BY STAGE · 2023–2025</div>
+ <div style="position:absolute;right:120px;top:150px;width:1680px">
+  <h2>הצמיחה הגיעה <span style="color:var(--c1)">מהשלבים המוקדמים</span></h2>
+  <p class="l" style="margin-top:20px;opacity:.7;font-size:30px">מספר הסבבים בכל שלב, שלוש שנים אחרונות</p>
  </div>
- <svg id="dec" style="position:absolute;left:120px;top:180px;direction:ltr" width="1040" height="760"></svg>
- <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025</div>
- <div class="pg">03 / 08</div></section>
+ <div id="stg" style="position:absolute;right:120px;left:120px;top:420px;height:470px;display:grid;grid-template-columns:repeat(4,1fr);gap:60px;align-items:end"></div>
+ <div style="position:absolute;left:120px;top:330px;display:flex;gap:30px;font:500 22px Mono;direction:ltr"><span><i style="display:inline-block;width:18px;height:18px;border-radius:5px;background:#2a3352;vertical-align:-3px"></i> 2023</span><span><i style="display:inline-block;width:18px;height:18px;border-radius:5px;background:#5160a0;vertical-align:-3px"></i> 2024</span><span><i style="display:inline-block;width:18px;height:18px;border-radius:5px;background:var(--c1);vertical-align:-3px"></i> 2025</span></div>
+ <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025 (הדוח המלא)</div>
+ <div class="pg">05 / 16</div></section>
 
-<section class="s"><div class="grid"></div><div class="glow" style="width:700px;height:700px;background:var(--c3);left:-250px;bottom:-300px;opacity:.3"></div>
- <div class="tag">ROUNDS BY STAGE · 2025</div>
- <div style="position:absolute;right:120px;top:170px;width:1680px">
-  <h2>כמה גייסו, <span style="color:var(--c1)">ובאיזה שלב</span></h2>
-  <div id="stages" style="margin-top:80px;display:grid;gap:34px"></div>
+<!-- 06 seed -->
+<section class="s"><div class="grid"></div><div class="glow" style="width:800px;height:800px;background:var(--c1);right:-300px;bottom:-400px;opacity:.25"></div>
+ <div class="tag">SEED · 2015 → 2025</div>
+ <div style="position:absolute;right:120px;top:150px"><h2>ה-Seed <span style="color:var(--c1)">גדל בכל מדד</span></h2></div>
+ <div style="position:absolute;right:120px;left:120px;top:360px;display:grid;grid-template-columns:1fr 1fr;gap:60px">
+  <div class="box" style="padding:50px">
+   <div class="lab">מספר סבבי Seed בשנה</div>
+   <div style="display:flex;align-items:flex-end;gap:50px;margin-top:40px;height:330px;direction:ltr">
+    <div style="text-align:center"><div class="num" style="font-size:70px;color:var(--mu)">31</div><div class="gy" style="width:180px;height:124px;background:#2a3352;border-radius:16px 16px 0 0;margin-top:14px"></div><div style="font:500 26px Mono;margin-top:12px">2015</div></div>
+    <div style="text-align:center"><div class="num" style="font-size:110px;color:var(--c1)">75</div><div class="gy" style="--d:.5s;width:180px;height:300px;background:linear-gradient(var(--c1),var(--c2));border-radius:16px 16px 0 0;margin-top:14px"></div><div style="font:500 26px Mono;margin-top:12px">2025</div></div>
+    <div style="flex:1;font:900 60px Rub;color:var(--c1);align-self:center;text-align:center">×2.4</div>
+   </div></div>
+  <div class="box" style="padding:50px">
+   <div class="lab">סבב Seed ממוצע</div>
+   <div style="display:flex;align-items:flex-end;gap:50px;margin-top:40px;height:330px;direction:ltr">
+    <div style="text-align:center"><div class="num" style="font-size:70px;color:var(--mu)">$2.9M</div><div class="gy" style="width:180px;height:92px;background:#2a3352;border-radius:16px 16px 0 0;margin-top:14px"></div><div style="font:500 26px Mono;margin-top:12px">2015</div></div>
+    <div style="text-align:center"><div class="num" style="font-size:110px;color:var(--c2)">$9.5M</div><div class="gy" style="--d:.5s;width:180px;height:300px;background:linear-gradient(var(--c2),var(--c3));border-radius:16px 16px 0 0;margin-top:14px"></div><div style="font:500 26px Mono;margin-top:12px">2025</div></div>
+    <div style="flex:1;font:900 60px Rub;color:var(--c2);align-self:center;text-align:center">×3.3</div>
+   </div></div>
  </div>
- <div class="src">מספר סבבים וגודל סבב ממוצע. מקור: YL Ventures, State of the Cyber Nation 2025</div>
- <div class="pg">04 / 08</div></section>
+ <div class="src">מקור: YL Ventures. נתוני 2025 מהדוח המלא (ינואר 2026), נתוני 2015 מההודעה לעיתונות (דצמבר 2025)</div>
+ <div class="pg">06 / 16</div></section>
 
+<!-- 07 chapter global -->
+<section class="s"><div class="bgimg z" style="background-image:url(img3/c_globe.jpg)"></div><div class="shade-l"></div>
+ <div class="tag">CHAPTER 02</div><div class="ai">הדמיה · AI</div>
+ <div class="ch f" style="left:80px;bottom:60px">02</div>
+ <div style="position:absolute;left:120px;top:300px;width:900px">
+  <div class="kick" style="color:var(--c1);text-align:left">GLOBAL CAPITAL</div>
+  <h1 style="margin-top:24px;font-size:170px">העולם<br>נכנס פנימה</h1>
+ </div>
+ <div class="pg">07 / 16</div></section>
+
+<!-- 08 global vs israeli -->
 <section class="s"><div class="grid"></div>
- <div class="tag">SEED IS THE NEW SERIES A</div>
- <div style="position:absolute;right:120px;top:170px;width:1680px">
-  <h2>סבב Seed ממוצע <span style="color:var(--c1)">גדל פי 3</span></h2>
-  <div style="display:flex;align-items:flex-end;gap:120px;margin-top:90px;justify-content:center;height:560px" id="seed"></div>
+ <div class="tag">WHO INVESTS IN SEED · 2025</div>
+ <div style="position:absolute;right:120px;top:150px;width:1680px">
+  <h2>לראשונה, הכסף הגלובלי <span style="color:var(--c1)">עקף את המקומי</span></h2>
+  <p class="l" style="margin-top:20px;opacity:.7;font-size:30px">במספר סבבי ה-Seed שבהם השתתפו משקיעים גלובליים לעומת קרנות ישראליות</p>
  </div>
- <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025</div>
- <div class="pg">05 / 08</div></section>
-
-<section class="s"><div class="grid"></div><div class="glow" style="width:900px;height:900px;background:var(--c2);right:-400px;bottom:-400px;opacity:.35"></div>
- <div class="tag">MEGA ROUNDS · 2025</div>
- <div style="position:absolute;right:120px;top:170px;width:1680px">
-  <h2>חמשת הסבבים <span style="color:var(--c1)">הגדולים</span></h2>
-  <div id="mega" style="margin-top:70px;display:grid;gap:22px"></div>
- </div>
- <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025</div>
- <div class="pg">06 / 08</div></section>
-
-<section class="s"><div class="grid"></div>
- <div class="tag">WHERE THE MONEY GOES</div>
- <div style="position:absolute;right:120px;top:170px;width:1680px">
-  <h2>הקטגוריות <span style="color:var(--c1)">החמות</span></h2>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:80px">
-   <div class="box" style="height:420px;display:flex;flex-direction:column"><div class="kick" style="color:var(--c1)">SECURITY FOR AI</div><div style="margin-top:auto"><span class="num" style="font-size:150px">12</span></div><div class="lab" style="margin-top:14px">חברות Seed באבטחת AI (לעומת 8 ב-2024)</div></div>
-   <div class="box" style="height:420px;display:flex;flex-direction:column"><div class="kick" style="color:var(--c2)">VULNERABILITY & RISK</div><div style="margin-top:auto"><span class="num" style="font-size:150px">20</span></div><div class="lab" style="margin-top:14px">חברות שגייסו בניהול פגיעויות וסיכונים</div></div>
-   <div class="box" style="height:420px;display:flex;flex-direction:column"><div class="kick" style="color:var(--c3)">ENDPOINT</div><div style="margin-top:auto"><span class="num" style="font-size:150px">11</span></div><div class="lab" style="margin-top:14px">סבבים באבטחת קצה (לעומת סבב 1 ב-2024)</div></div>
+ <div style="position:absolute;right:120px;left:120px;top:440px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end">
+  <div>
+   <div style="display:flex;align-items:baseline;gap:24px"><span class="num" style="font-size:240px;color:var(--c1)">46</span><span style="font:700 40px Rub">משקיעים גלובליים</span></div>
+   <div style="height:60px;margin-top:20px;border-radius:14px;background:rgba(255,255,255,.05);position:relative;overflow:hidden"><div class="gx" style="position:absolute;right:0;top:0;bottom:0;width:100%;background:linear-gradient(270deg,var(--c1),var(--c2));border-radius:14px"></div></div>
+  </div>
+  <div>
+   <div style="display:flex;align-items:baseline;gap:24px"><span class="num" style="font-size:240px;color:var(--mu)">37</span><span style="font:700 40px Rub">קרנות ישראליות</span></div>
+   <div style="height:60px;margin-top:20px;border-radius:14px;background:rgba(255,255,255,.05);position:relative;overflow:hidden"><div class="gx" style="--d:.5s;position:absolute;right:0;top:0;bottom:0;width:80.4%;background:#5160a0;border-radius:14px"></div></div>
   </div>
  </div>
- <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025</div>
- <div class="pg">07 / 08</div></section>
+ <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025 (הדוח המלא). סבב יכול לכלול את שני סוגי המשקיעים</div>
+ <div class="pg">08 / 16</div></section>
 
-<section class="s"><div class="grid"></div><div class="glow" style="width:1000px;height:1000px;background:var(--c1);left:50%;top:50%;margin:-500px;opacity:.2"></div>
+<!-- 09 split seed -->
+<section class="s"><div class="grid"></div><div class="glow" style="width:900px;height:900px;background:var(--c2);left:-300px;top:-300px;opacity:.3"></div>
+ <div class="tag">THE SPLIT SEED</div>
+ <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 120px;gap:100px">
+  <div>
+   <h2>ה-Seed <span style="color:var(--c1)">המפוצל</span></h2>
+   <p class="l" style="margin-top:34px;opacity:.8">קרן אמריקאית וקרן ישראלית שמשקיעות סכום שווה באותו סבב. המייסדים מקבלים גם את הידע המקומי וגם את הגישה לשוק האמריקאי.</p>
+  </div>
+  <div style="display:grid;place-items:center">
+   <svg width="700" height="560" viewBox="0 0 700 560" style="direction:ltr;overflow:visible">
+    <circle class="p" cx="260" cy="260" r="200" fill="rgba(61,242,200,.12)" stroke="#3DF2C8" stroke-width="3"/>
+    <circle class="p" style="--d:.3s" cx="440" cy="260" r="200" fill="rgba(123,97,255,.12)" stroke="#7B61FF" stroke-width="3"/>
+    <text x="170" y="270" text-anchor="middle" font-family="Mono" font-size="30" fill="#3DF2C8">US VC</text>
+    <text x="530" y="270" text-anchor="middle" font-family="Mono" font-size="30" fill="#7B61FF">IL VC</text>
+    <text x="350" y="250" text-anchor="middle" font-family="Rub" font-weight="900" font-size="96" fill="#EAF0FF">14</text>
+    <text x="350" y="300" text-anchor="middle" font-family="Rub" font-weight="700" font-size="26" fill="#EAF0FF" opacity=".75">סבבים ב-2025</text>
+    <text x="350" y="520" text-anchor="middle" font-family="Rub" font-weight="500" font-size="28" fill="#8a95b8">לעומת 12 ב-2024</text>
+   </svg>
+  </div>
+ </div>
+ <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025 (הדוח המלא)</div>
+ <div class="pg">09 / 16</div></section>
+
+<!-- 10 mega rounds -->
+<section class="s"><div class="grid"></div><div class="glow" style="width:900px;height:900px;background:var(--c2);right:-400px;bottom:-400px;opacity:.35"></div>
+ <div class="tag">MEGA ROUNDS · 2025</div>
+ <div style="position:absolute;right:120px;top:150px;width:1680px">
+  <h2>חמשת הסבבים <span style="color:var(--c1)">הגדולים</span></h2>
+  <div id="mega" style="margin-top:70px;display:grid;gap:24px"></div>
+ </div>
+ <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025</div>
+ <div class="pg">10 / 16</div></section>
+
+<!-- 11 exits wow -->
+<section class="s"><div class="bgimg z" style="background-image:url(img3/c_exit.jpg)"></div><div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,11,31,.92) 6%,rgba(7,11,31,0) 30%),linear-gradient(90deg,rgba(7,11,31,.9) 25%,rgba(7,11,31,0) 50%)"></div>
+ <div class="tag">CHAPTER 03 · EXITS</div><div class="ai">הדמיה · AI</div>
+ <div style="position:absolute;left:120px;top:260px;width:720px">
+  <div class="kick" style="color:var(--c1);text-align:left">THE YEAR OF EXITS</div>
+  <h1 style="font-size:150px;margin-top:24px">שנת<br>האקזיטים</h1>
+  <p class="l" style="margin-top:24px;opacity:.8">שלוש עסקאות רכישה של מיליארדים, בשנה אחת. מתחת לכל אחת: החברה הרוכשת</p>
+ </div>
+ <div class="p" style="--d:.5s;position:absolute;left:1440px;top:870px;width:260px;text-align:center"><div class="num" style="font-size:70px;color:var(--c1)">$32B</div><div style="font:900 30px Rub;direction:ltr">Wiz</div><div style="font:500 20px Rub;opacity:.7">Google</div></div>
+ <div class="p" style="--d:.7s;position:absolute;left:1150px;top:870px;width:300px;text-align:center"><div class="num" style="font-size:70px;color:var(--c2)">$25B</div><div style="font:900 30px Rub;direction:ltr">CyberArk</div><div style="font:500 20px Rub;opacity:.7;direction:ltr">Palo Alto Networks</div></div>
+ <div class="p" style="--d:.9s;position:absolute;left:880px;top:870px;width:280px;text-align:center"><div class="num" style="font-size:70px;color:var(--c3)">$7.75B</div><div style="font:900 30px Rub;direction:ltr">Armis</div><div style="font:500 20px Rub;opacity:.7">ServiceNow</div></div>
+ <div class="src" style="right:auto;left:300px;bottom:56px">מקור: YL Ventures, State of the Cyber Nation 2025 (הדוח המלא)</div>
+ <div class="pg">11 / 16</div></section>
+
+<!-- 12 exits vs funding -->
+<section class="s"><div class="grid"></div>
+ <div class="tag">EXITS VS. FUNDING</div>
+ <div style="position:absolute;right:120px;top:150px;width:1680px">
+  <h2>שלושה אקזיטים שווים <span style="color:var(--c1)">יותר מפי 12</span><br>מכל הגיוס של השנה</h2>
+ </div>
+ <div style="position:absolute;right:120px;left:120px;top:520px;display:grid;gap:40px">
+  <div style="display:grid;grid-template-columns:420px 1fr;align-items:center;gap:30px"><div><div class="num" style="font-size:90px;color:var(--c1)">$64.75B</div><div class="lab">שווי שלוש העסקאות יחד</div></div><div style="height:110px;border-radius:20px;position:relative;background:rgba(255,255,255,.04)"><div class="gx" style="position:absolute;right:0;top:0;bottom:0;width:100%;border-radius:20px;background:linear-gradient(270deg,var(--c1),var(--c2),var(--c3))"></div></div></div>
+  <div style="display:grid;grid-template-columns:420px 1fr;align-items:center;gap:30px"><div><div class="num" style="font-size:90px;color:var(--mu)">$5.1B</div><div class="lab">כל הגיוס של 2025</div></div><div style="height:110px;border-radius:20px;position:relative;background:rgba(255,255,255,.04)"><div class="gx" style="--d:.6s;position:absolute;right:0;top:0;bottom:0;width:7.9%;border-radius:20px;background:#5160a0"></div></div></div>
+ </div>
+ <div class="src">חישוב: 32 + 25 + 7.75 = ‎$64.75B‎, לעומת ‎$5.1B‎. מקור הנתונים: YL Ventures, State of the Cyber Nation 2025</div>
+ <div class="pg">12 / 16</div></section>
+
+<!-- 13 consolidation -->
+<section class="s"><div class="grid"></div><div class="glow" style="width:800px;height:800px;background:var(--c1);left:-300px;bottom:-400px;opacity:.22"></div>
+ <div class="tag">ISRAELI-ON-ISRAELI M&A</div>
+ <div style="position:absolute;right:120px;top:150px;width:760px">
+  <div class="big" style="font-size:300px">12</div>
+  <h2 style="margin-top:10px;font-size:76px">סטארטאפים ישראליים נרכשו ע״י חברות סייבר ישראליות</h2>
+  <p class="l" style="margin-top:26px;opacity:.75;font-size:30px">הכי הרבה רכישות "ישראלית קונה ישראלית" אי פעם</p>
+ </div>
+ <div style="position:absolute;left:120px;top:250px;width:820px;display:grid;gap:24px">
+  <div class="kick" style="color:var(--c1);text-align:left">EXAMPLES FROM THE REPORT</div>
+  <div class="box m" style="display:flex;justify-content:space-between;align-items:center;direction:ltr"><b style="font:900 48px Rub">Cato Networks</b><span style="font:500 26px Mono;color:var(--c1)">→ Aim Security</span></div>
+  <div class="box m" style="display:flex;justify-content:space-between;align-items:center;direction:ltr"><b style="font:900 48px Rub">Cyera</b><span style="font:500 26px Mono;color:var(--c1)">→ Otterize</span></div>
+  <div class="box m" style="display:flex;justify-content:space-between;align-items:center;direction:ltr"><b style="font:900 48px Rub">Pentera</b><span style="font:500 26px Mono;color:var(--c1)">→ DevOcean</span></div>
+  <div class="note m">רוכשות נוספות שמוזכרות בדוח: Check Point ו-Orca Security</div>
+ </div>
+ <div class="src">מקור: YL Ventures, הודעה לעיתונות (דצמבר 2025) והדוח המלא (ינואר 2026)</div>
+ <div class="pg">13 / 16</div></section>
+
+<!-- 14 hot categories -->
+<section class="s"><div class="bgimg z" style="background-image:url(img3/c_ai.jpg);left:auto;width:1400px;right:-250px"></div><div class="shade-l"></div>
+ <div class="tag">CHAPTER 04 · WHERE THE MONEY GOES</div><div class="ai">הדמיה · AI</div>
+ <div style="position:absolute;left:120px;top:150px;width:1000px">
+  <h2>הקטגוריות <span style="color:var(--c1)">החמות</span></h2>
+  <div style="display:grid;gap:24px;margin-top:60px">
+   <div class="box" style="display:grid;grid-template-columns:200px 1fr;align-items:center;gap:30px"><span class="num" style="font-size:120px;color:var(--c1)">12</span><div><div class="kick" style="color:var(--c1);text-align:right">SECURITY FOR AI</div><div class="lab" style="margin-top:8px">חברות שגייסו Seed באבטחת AI, לעומת 8 ב-2024</div></div></div>
+   <div class="box" style="display:grid;grid-template-columns:200px 1fr;align-items:center;gap:30px"><span class="num" style="font-size:120px;color:var(--c2)">20</span><div><div class="kick" style="color:var(--c2);text-align:right">VULNERABILITY & RISK</div><div class="lab" style="margin-top:8px">חברות בניהול פגיעויות וסיכונים, הקטגוריה הגדולה ביותר</div></div></div>
+   <div class="box" style="display:grid;grid-template-columns:200px 1fr;align-items:center;gap:30px"><span class="num" style="font-size:120px;color:var(--c3)">11</span><div><div class="kick" style="color:var(--c3);text-align:right">ENDPOINT SECURITY</div><div class="lab" style="margin-top:8px">סבבים באבטחת קצה, לעומת סבב אחד בלבד ב-2024</div></div></div>
+  </div>
+ </div>
+ <div class="src">מקור: YL Ventures, הודעה לעיתונות על State of the Cyber Nation 2025 (דצמבר 2025)</div>
+ <div class="pg">14 / 16</div></section>
+
+<!-- 15 2021 vs 2025 -->
+<section class="s"><div class="grid"></div>
+ <div class="tag">2021 VS. 2025</div>
+ <div style="position:absolute;right:120px;top:150px;width:1680px">
+  <h2>אותו מספר עסקאות. <span style="color:var(--c1)">הרבה פחות היפ</span></h2>
+  <p class="l" style="margin-top:20px;opacity:.75;font-size:30px">2025 שברה את שיא הסבבים של 2021, אבל עם 58% מהכסף</p>
+ </div>
+ <div style="position:absolute;right:120px;left:120px;top:440px;display:grid;grid-template-columns:1fr 1fr;gap:40px">
+  <div class="box" style="padding:50px;opacity:.85"><div style="font:400 90px Anton;color:var(--mu);direction:ltr;text-align:right">2021</div>
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px"><div><div class="num" style="color:var(--t)">$8.84B</div><div class="lab">סך הגיוס</div></div><div><div class="num" style="color:var(--t)">135</div><div class="lab">סבבים</div></div></div></div>
+  <div class="box" style="padding:50px;border-color:rgba(61,242,200,.6)"><div style="font:400 90px Anton;color:var(--c1);direction:ltr;text-align:right">2025</div>
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px"><div><div class="num" style="color:var(--c1)">$5.1B</div><div class="lab">סך הגיוס</div></div><div><div class="num" style="color:var(--c1)">136</div><div class="lab">סבבים, שיא חדש</div></div></div></div>
+ </div>
+ <div class="src">מקור: YL Ventures, State of the Cyber Nation 2021 ו-2025. חישוב: 5.1 / 8.84 ≈ 58%</div>
+ <div class="pg">15 / 16</div></section>
+
+<!-- 16 takeaway -->
+<section class="s"><div class="grid"></div><div class="glow" style="width:1000px;height:1000px;background:var(--c1);left:50%;top:50%;margin:-500px;opacity:.18"></div>
  <div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center">
   <div><div class="kick" style="color:var(--c1);text-align:center">THE TAKEAWAY</div>
-  <h1 style="margin-top:30px;font-size:130px">יותר חברות.<br>סבבים גדולים יותר.<br><span style="background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;color:transparent">כסף גלובלי</span></h1>
-  <p class="l" style="margin-top:40px;opacity:.7">קרנות אמריקאיות וגלובליות הובילו את רוב הסבבים, מ-Seed ועד C+</p></div></div>
- <div class="src">מקור: YL Ventures, State of the Cyber Nation 2025 · עיצוב: יובל בן שאול</div>
- <div class="pg">08 / 08</div></section>
+  <h1 style="margin-top:30px;font-size:120px">יותר חברות.<br>כסף גלובלי.<br><span style="background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;color:transparent">ואקזיטים בגודל היסטורי</span></h1>
+  <p class="l" style="margin-top:40px;opacity:.6;font-size:26px;max-width:1200px">סיכום של המעצב, על בסיס הנתונים</p></div></div>
+ <div class="src">מקורות: YL Ventures, State of the Cyber Nation 2021, 2022, 2025 והודעה לעיתונות מדצמבר 2025 · עיצוב: יובל בן שאול</div>
+ <div class="pg">16 / 16</div></section>
 
 <script>
-// decade comparison bars
-{const svg=document.getElementById('dec');const D=[['סך גיוסים ($M)',689,4400,'$689M','$4.4B'],['סבב Seed ממוצע ($M)',2.9,9.6,'$2.9M','$9.6M'],['מספר סבבי Seed',31,71,'31','71'],['סך כל הסבבים',72,130,'72','130']];
- let h='';D.forEach((d,i)=>{const y=40+i*180,mx=d[2],w1=d[1]/mx*820,w2=820;
-  h+=`<text x="1040" y="${y}" text-anchor="end" font-family="Rub" font-weight="700" font-size="30" fill="#EAF0FF">${d[0]}</text>`;
-  h+=`<rect class="gx" style="--d:${.2+i*.12}s" x="${1040-w1}" y="${y+18}" width="${w1}" height="42" rx="10" fill="#2a3352"/><text x="${1040-w1-16}" y="${y+50}" text-anchor="end" font-family="Mono" font-size="26" fill="#8a95b8">2015 · ${d[3]}</text>`;
-  h+=`<rect class="gx" style="--d:${.3+i*.12}s" x="${1040-w2}" y="${y+72}" width="${w2}" height="54" rx="12" fill="url(#g)"/><text x="${1040-w2+24}" y="${y+110}" font-family="Rub" font-weight="900" font-size="36" fill="#070B1F">2025 · ${d[4]}</text>`});
- svg.innerHTML=`<defs><linearGradient id="g" x1="1" x2="0"><stop offset="0" stop-color="#3DF2C8"/><stop offset="1" stop-color="#7B61FF"/></linearGradient></defs>`+h}
-// stages
-{const S=[['Seed',71,9.6,'#3DF2C8'],['Series A',33,33.1,'#7B61FF'],['Series B',17,54.6,'#FF4D8D'],['Growth (C+)',9,234.9,'#FFC24D']];const mx=71;
- document.getElementById('stages').innerHTML=S.map(([n,c,a,col])=>`<div style="display:grid;grid-template-columns:260px 1fr 330px;align-items:center;gap:30px">
- <div style="font:900 44px Rub;direction:ltr;text-align:right">${n}</div>
- <div style="height:70px;background:rgba(255,255,255,.05);border-radius:14px;position:relative;overflow:hidden"><div class="gx" style="--d:${.3+S.findIndex(x=>x[0]==n)*.12}s;position:absolute;right:0;top:0;bottom:0;width:${c/mx*100}%;background:${col};border-radius:14px"></div><div style="position:absolute;top:0;bottom:0;display:flex;align-items:center;font:900 40px Rub;white-space:nowrap;${c/mx>.35?'right:24px;color:#070B1F':'right:calc('+(c/mx*100)+'% + 20px);color:'+col}">${c} סבבים</div></div>
- <div style="font:500 30px Rub;opacity:.85">ממוצע <b style="font:900 44px Rub;direction:ltr;display:inline-block;color:${col}">$${a}M</b></div></div>`).join('')}
-// seed bars
-{const B=[['2015',2.9],['2025',9.6]];document.getElementById('seed').innerHTML=B.map(([y,v],i)=>`<div style="text-align:center"><div style="font:900 80px Rub;direction:ltr;color:${i?'#3DF2C8':'#8a95b8'}">$${v}M</div><div class="gy" style="--d:${.3+i*.25}s;width:280px;height:${v/9.6*420}px;margin-top:20px;border-radius:24px 24px 0 0;background:${i?'linear-gradient(#3DF2C8,#7B61FF)':'#2a3352'}"></div><div style="font:500 34px Mono;margin-top:18px">${y}</div></div>`).join('')}
+// timeline
+{const svg=document.getElementById('tl');const D=[[2015,.689],[2020,2.75],[2021,8.84],[2022,3.22],[2023,1.89],[2024,4.03],[2025,5.1]];
+ const X=i=>60+i*175,Y=v=>660-v/9*580;let h='<defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3DF2C8" stop-opacity=".45"/><stop offset="1" stop-color="#3DF2C8" stop-opacity="0"/></linearGradient><linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#7B61FF"/><stop offset="1" stop-color="#3DF2C8"/></linearGradient></defs>';
+ for(let g=0;g<=8;g+=2)h+=`<line x1="40" x2="1140" y1="${Y(g)}" y2="${Y(g)}" stroke="rgba(234,240,255,.08)"/><text x="20" y="${Y(g)+8}" text-anchor="end" font-family="Mono" font-size="20" fill="#8a95b8">$${g}B</text>`;
+ const pts=D.map((d,i)=>[X(i),Y(d[1])]);
+ h+=`<path class="f" style="--d:.9s" d="M${pts[1][0]},660 ${pts.slice(1).map(p=>'L'+p[0]+','+p[1]).join(' ')} L${pts[6][0]},660Z" fill="url(#ga)"/>`;
+ h+=`<line class="dr" style="--len:200;--d:.2s" x1="${pts[0][0]}" y1="${pts[0][1]}" x2="${pts[1][0]}" y2="${pts[1][1]}" stroke="#8a95b8" stroke-width="5" stroke-dasharray="10 12"/>`;
+ h+=`<path class="dr" style="--len:2200;--d:.3s" d="M${pts.slice(1).map(p=>p.join(',')).join(' L')}" fill="none" stroke="url(#gl)" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>`;
+ D.forEach((d,i)=>{const [x,y]=pts[i],hl=d[0]==2021||d[0]==2025||d[0]==2023;h+=`<circle class="p" style="--d:${(.4+i*.12).toFixed(2)}s" cx="${x}" cy="${y}" r="${hl?16:11}" fill="${d[0]==2025?'#3DF2C8':d[0]==2021?'#7B61FF':d[0]==2023?'#FF4D8D':'#EAF0FF'}"/>`+
+  `<text class="p" style="--d:${(.5+i*.12).toFixed(2)}s" x="${x}" y="${y-34}" text-anchor="middle" font-family="Rub" font-weight="900" font-size="${hl?50:34}" fill="${d[0]==2025?'#3DF2C8':d[0]==2021?'#9d8bff':d[0]==2023?'#FF4D8D':'#EAF0FF'}">$${d[1]<1?Math.round(d[1]*1000)+'M':d[1]+'B'}</text>`+
+  `<text x="${x}" y="705" text-anchor="middle" font-family="Mono" font-size="24" fill="#8a95b8">${d[0]}</text>`});
+ h+=`<text x="${X(.5)}" y="705" text-anchor="middle" font-family="Mono" font-size="18" fill="#5160a0">2016–19</text>`;
+ h+=`<text x="${X(2)}" y="${Y(8.84)+70}" text-anchor="middle" font-family="Rub" font-weight="700" font-size="24" fill="#9d8bff">שיא הבועה</text><text x="${X(4)}" y="${Y(1.89)+60}" text-anchor="middle" font-family="Rub" font-weight="700" font-size="24" fill="#FF4D8D">הנפילה</text>`;
+ svg.innerHTML=h}
+// stages grouped
+{const S=[['Seed',36,50,75],['Series A',20,16,34],['Series B',8,7,18],['Series C+',7,16,9]];const mx=75,H=400;
+ document.getElementById('stg').innerHTML=S.map(([n,a,b,c],k)=>`<div><div style="display:flex;align-items:flex-end;gap:12px;height:${H}px;direction:ltr;justify-content:center">${[[a,'#2a3352'],[b,'#5160a0'],[c,'#3DF2C8']].map(([v,col],j)=>`<div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div style="font:900 ${j==2?46:30}px Rub;color:${j==2?'#3DF2C8':'#8a95b8'};margin-bottom:10px">${v}</div><div class="gy" style="--d:${(.2+k*.12+j*.08).toFixed(2)}s;width:90px;height:${v/mx*(H-70)}px;background:${col};border-radius:12px 12px 0 0"></div></div>`).join('')}</div><div style="font:900 40px Rub;margin-top:18px;text-align:center;direction:ltr">${n}</div></div>`).join('')}
 // mega
 {const M=[['Cyera',540,'Series E'],['Armis',435,'Series E'],['Cato Networks',359,'Series G'],['Island',250,'Series E'],['Dream Security',100,'Series B · Unicorn']];
- document.getElementById('mega').innerHTML=M.map(([n,v,s],i)=>`<div style="display:grid;grid-template-columns:80px 380px 1fr 220px;align-items:center;gap:30px"><div style="font:500 30px Mono;color:#3DF2C8">0${i+1}</div><div style="font:900 50px Rub;direction:ltr;text-align:right">${n}</div><div style="height:56px;border-radius:12px;background:rgba(255,255,255,.05);position:relative"><div class="gx" style="--d:${.25+i*.1}s;position:absolute;right:0;top:0;bottom:0;width:${v/540*100}%;border-radius:12px;background:linear-gradient(270deg,#3DF2C8,#7B61FF)"></div></div><div style="direction:ltr;text-align:left"><div style="font:900 50px Rub">$${v}M</div><div style="font:500 20px Mono;opacity:.6">${s}</div></div></div>`).join('')}
+ document.getElementById('mega').innerHTML=M.map(([n,v,s],i)=>`<div style="display:grid;grid-template-columns:80px 420px 1fr 240px;align-items:center;gap:30px"><div style="font:500 30px Mono;color:#3DF2C8">0${i+1}</div><div style="font:900 54px Rub;direction:ltr;text-align:right">${n}</div><div style="height:60px;border-radius:12px;background:rgba(255,255,255,.05);position:relative"><div class="gx" style="--d:${(.25+i*.1).toFixed(2)}s;position:absolute;right:0;top:0;bottom:0;width:${v/540*100}%;border-radius:12px;background:linear-gradient(270deg,#3DF2C8,#7B61FF)"></div></div><div style="direction:ltr;text-align:left"><div style="font:900 50px Rub">$${v}M</div><div style="font:500 20px Mono;opacity:.6">${s}</div></div></div>`).join('')}
 </script><script src="motion.js"></script></body></html>

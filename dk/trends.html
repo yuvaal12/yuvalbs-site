@@ -1,115 +1,238 @@
 <!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Design in the AI Era</title>
 <link rel="stylesheet" href="base.css"><link rel="stylesheet" href="motion.css">
 <style>
-:root{--bg:#F3EEE6;--k:#141414;--o:#FF5B2E;--b:#2E5BFF;--y:#FFD23F}
+:root{--bg:#F3EEE6;--k:#141414;--o:#FF5B2E;--b:#2E5BFF;--y:#FFD23F;--g:#d9d2c6}
 .s{background:var(--bg);color:var(--k)}
-.top{position:absolute;top:56px;right:80px;left:80px;display:flex;justify-content:space-between;font:500 22px Mono;letter-spacing:.18em;direction:ltr}
-.rule{position:absolute;top:100px;left:80px;right:80px;height:3px;background:var(--k)}
+.top{position:absolute;top:56px;right:80px;left:80px;display:flex;justify-content:space-between;font:500 22px Mono;letter-spacing:.18em;direction:ltr;z-index:3}
+.rule{position:absolute;top:100px;left:80px;right:80px;height:3px;background:currentColor;z-index:3}
 .stat{font:900 300px/0.85 Rub;letter-spacing:-.04em;direction:ltr;display:inline-block}
-.ital{font-family:Anton;font-weight:400;letter-spacing:.01em}
+.ai{position:absolute;bottom:50px;left:300px;font:700 18px Rub;padding:7px 16px;border-radius:30px;background:var(--bg);color:var(--k);z-index:3}
+.src{z-index:3}.pg{z-index:3}
+.chn{position:absolute;font:400 600px/0.8 Anton;direction:ltr}
+.pill{display:inline-block;font:700 26px Rub;padding:10px 24px;border-radius:40px;border:2.5px solid currentColor}
 </style></head><body>
 
+<!-- 01 cover -->
 <section class="s">
  <div class="bgimg z" style="background-image:url(img3/t_hero.jpg);top:400px;background-position:center 32%"></div>
  <div class="top"><span>TREND REPORT · 2026</span><span style="color:var(--o)">DESIGN × AI</span></div><div class="rule"></div>
  <div style="position:absolute;right:80px;left:80px;top:140px;display:flex;justify-content:space-between;align-items:flex-end">
   <h1 style="font-size:190px;white-space:nowrap">עיצוב בעידן ה-AI</h1>
-  <p class="l" style="width:460px;font-size:28px;text-align:left;direction:rtl">מה באמת משתנה בעבודה של מעצבים, מפתחים ומנהלי מוצר. תובנות מתוך דוח ה-AI של Figma</p>
+  <p class="l" style="width:460px;font-size:28px;direction:rtl">מה באמת משתנה בעבודה של מעצבים, מפתחים ומנהלי מוצר, לפי שני דוחות של Figma</p>
  </div>
- <div style="position:absolute;bottom:40px;left:80px;font:700 18px Rub;background:var(--bg);padding:8px 16px;border-radius:30px">הדמיה · AI</div>
- <div class="src" style="background:var(--bg);padding:8px 16px;border-radius:30px;opacity:.9;bottom:40px">מקור הנתונים: Figma, 2026 AI Report · עיצוב וניתוח: יובל בן שאול</div>
+ <div class="ai" style="left:80px;bottom:40px">הדמיה · AI</div>
+ <div class="src" style="background:var(--bg);padding:8px 16px;border-radius:30px;opacity:.9;bottom:40px">מקורות: Figma, 2026 AI Report ו-State of the Designer 2026 · עיצוב וניתוח: יובל בן שאול</div>
 </section>
 
+<!-- 02 methodology -->
 <section class="s">
  <div class="top"><span>METHODOLOGY</span><span>02</span></div><div class="rule"></div>
- <div style="position:absolute;right:120px;top:190px;width:1680px">
-  <h2>על מה זה מבוסס</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:90px;border-top:3px solid var(--k)">
-   <div style="padding:40px 0 0 40px;border-left:3px solid var(--k)"><div class="stat" style="font-size:200px">8,403</div><p class="l" style="margin-top:20px">תשובות לסקר, לאורך שלוש שנים</p></div>
-   <div style="padding:40px 40px 0;border-left:3px solid var(--k)"><div class="stat" style="font-size:200px;color:var(--o)">639</div><p class="l" style="margin-top:20px">ראיונות עומק</p></div>
-   <div style="padding:40px 40px 0"><div class="stat" style="font-size:200px;color:var(--b)">10</div><p class="l" style="margin-top:20px">שווקים, ביניהם ארה״ב, יפן, ברזיל והודו</p></div>
+ <div style="position:absolute;right:120px;top:170px;width:1680px">
+  <h2>שני דוחות. <span style="color:var(--o)">שאלה אחת</span></h2>
+  <p class="l" style="margin-top:16px;opacity:.7;font-size:30px">מה ה-AI עושה לעבודה של מי שבונה מוצרים</p>
+ </div>
+ <div style="position:absolute;right:120px;left:120px;top:420px;display:grid;grid-template-columns:3fr 1.25fr;gap:60px">
+  <div style="border-top:4px solid var(--k);padding-top:20px">
+   <div class="pill" style="color:var(--b)">2026 AI Report</div>
+   <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-top:36px">
+    <div class="m"><div class="stat" style="font-size:150px">8,403</div><p class="l" style="font-size:26px;margin-top:14px">תשובות לסקר, לאורך שלוש שנים</p></div>
+    <div class="m" style="padding-right:40px"><div class="stat" style="font-size:150px;color:var(--o)">639</div><p class="l" style="font-size:26px;margin-top:14px">ראיונות עומק</p></div>
+    <div class="m" style="padding-right:40px"><div class="stat" style="font-size:150px;color:var(--b)">10</div><p class="l" style="font-size:26px;margin-top:14px">שווקים, ביניהם ברזיל, הודו ודרום קוריאה</p></div>
+   </div>
+  </div>
+  <div style="border-top:4px solid var(--k);padding-top:20px">
+   <div class="pill" style="color:var(--o)">State of the Designer 2026</div>
+   <div class="m" style="margin-top:36px"><div class="stat" style="font-size:150px;color:var(--o)">906</div><p class="l" style="font-size:26px;margin-top:14px">מעצבים בחמישה אזורים בעולם</p></div>
   </div>
  </div>
- <div class="src">מעצבים, מפתחים ומנהלי מוצר · מקור: Figma, 2026 AI Report</div>
- <div class="pg">02 / 08</div></section>
+ <div class="src">מעצבים, מפתחים ומנהלי מוצר · מקורות: Figma, 2026 AI Report; Figma, State of the Designer 2026</div>
+ <div class="pg">02 / 16</div></section>
 
-<section class="s" style="background:var(--o);color:var(--k)">
- <div class="top"><span>INSIGHT 01 · COLLABORATION</span><span>03</span></div>
+<!-- 03 chapter 1 -->
+<section class="s">
+ <div class="bgimg z" style="background-image:url(img3/t_ch1.jpg);background-position:30% center"></div>
+ <div class="chn f" style="left:60px;bottom:40px;color:var(--o);opacity:.9">01</div>
+ <div class="top"><span>CHAPTER 01</span><span>03</span></div>
+ <div style="position:absolute;right:120px;top:300px;width:700px">
+  <div class="kick">ADOPTION</div>
+  <h1 style="font-size:180px;margin-top:20px">כולם<br>כבר בפנים</h1>
+ </div>
+ <div class="ai">הדמיה · AI</div>
+ <div class="pg">03 / 16</div></section>
+
+<!-- 04 72% -->
+<section class="s" style="background:var(--o)">
+ <div class="top"><span>INSIGHT 01 · DAILY USE</span><span>04</span></div><div class="rule"></div>
+ <div class="stat p" style="position:absolute;left:60px;top:170px;font-size:580px;color:var(--k)">72%</div>
+ <div style="position:absolute;right:120px;bottom:170px;width:560px">
+  <h2 style="font-size:76px">מהמעצבים כבר משתמשים ב-AI גנרטיבי בעבודה היומיומית</h2>
+ </div>
+ <div class="src">מקור: Figma, State of the Designer 2026 (906 מעצבים)</div>
+ <div class="pg">04 / 16</div></section>
+
+<!-- 05 collaboration 7 -> 41 -->
+<section class="s" style="background:var(--k);color:var(--bg)">
+ <div class="top"><span style="color:var(--y)">INSIGHT 02 · COLLABORATION</span><span>05</span></div><div class="rule" style="opacity:.3"></div>
  <div style="position:absolute;right:120px;top:230px;width:760px">
   <h2 style="font-size:84px">כמה אומרים ש-AI באמת משנה את העבודה המשותפת בצוות?</h2>
-  <p class="l" style="margin-top:40px">בתוך שנתיים, מעט מאוד הפך לכמעט חצי.</p>
+  <p class="l" style="margin-top:40px;opacity:.75">בתוך שנתיים, מעט מאוד הפך לכמעט חצי</p>
  </div>
- <div style="position:absolute;left:120px;top:200px;display:flex;align-items:flex-end;gap:70px;direction:ltr">
-  <div style="text-align:center"><div class="gy" style="--d:.4s;width:250px;height:84px;background:rgba(0,0,0,.25);border-radius:20px 20px 0 0" id="b1"></div><div class="stat" style="font-size:110px;margin-top:20px">7%</div><div style="font:500 28px Mono">2 YEARS AGO</div></div>
-  <div style="text-align:center"><div class="gy" style="--d:.6s;width:250px;height:490px;background:var(--k);border-radius:20px 20px 0 0"></div><div class="stat" style="font-size:110px;margin-top:20px">41%</div><div style="font:500 28px Mono">TODAY</div></div>
+ <div style="position:absolute;left:140px;top:200px;display:flex;align-items:flex-end;gap:80px;direction:ltr;height:760px">
+  <div style="text-align:center"><div class="stat" style="font-size:110px;margin-bottom:20px;color:#8f877c">7%</div><div class="gy" style="--d:.3s;width:260px;height:84px;background:#3a3631;border-radius:20px 20px 0 0"></div><div style="font:500 28px Mono;margin-top:16px">2 YEARS AGO</div></div>
+  <div style="text-align:center"><div class="stat" style="font-size:140px;margin-bottom:20px;color:var(--y)">41%</div><div class="gy" style="--d:.5s;width:260px;height:490px;background:var(--y);border-radius:20px 20px 0 0"></div><div style="font:500 28px Mono;margin-top:16px">TODAY</div></div>
  </div>
  <div class="src">מקור: Figma, 2026 AI Report</div>
- <div class="pg">03 / 08</div></section>
+ <div class="pg">05 / 16</div></section>
 
+<!-- 06 adoption patterns -->
 <section class="s">
- <div class="top"><span>INSIGHT 02 · ROLES BLUR</span><span>04</span></div><div class="rule"></div>
+ <div class="top"><span>INSIGHT 03 · ADOPTION PATTERNS</span><span>06</span></div><div class="rule"></div>
+ <div style="position:absolute;right:120px;top:170px;width:1680px">
+  <h2>ארבע דרכים שבהן צוותים <span style="color:var(--b)">מאמצים AI</span></h2>
+  <div id="stack" style="display:flex;height:170px;margin-top:80px;border-radius:28px;overflow:hidden;direction:ltr"></div>
+  <div id="stackl" style="display:grid;grid-template-columns:36fr 27fr 20fr 18fr;gap:20px;margin-top:40px;direction:ltr"></div>
+ </div>
+ <div class="src">אחוז מהמשיבים בכל דפוס. התיאורים בעברית הם הפרשנות שלי לשמות הדפוסים · מקור: Figma, 2026 AI Report</div>
+ <div class="pg">06 / 16</div></section>
+
+<!-- 07 speed vs trust -->
+<section class="s" style="background:var(--b);color:#fff">
+ <div class="top"><span>INSIGHT 04 · SPEED VS. TRUST</span><span>07</span></div><div class="rule" style="opacity:.4"></div>
+ <div style="position:absolute;right:120px;top:170px;width:1680px">
+  <h2>המהירות כבר כאן. <span style="color:var(--y)">האמון עוד לא</span></h2>
+ </div>
+ <div id="trust" style="position:absolute;right:120px;left:120px;top:400px;display:grid;gap:44px"></div>
+ <div class="src">מעצבים ומפתחים · מקור: נתוני Figma 2025, מתוך עמוד Design Statistics של Figma</div>
+ <div class="pg">07 / 16</div></section>
+
+<!-- 08 chapter 2 -->
+<section class="s">
+ <div class="bgimg z" style="background-image:url(img3/t_ch2.jpg);background-position:30% center"></div>
+ <div class="chn f" style="left:60px;bottom:40px;color:var(--b);opacity:.9">02</div>
+ <div class="top"><span>CHAPTER 02</span><span>08</span></div>
+ <div style="position:absolute;right:120px;top:300px;width:700px">
+  <div class="kick">ROLES BLUR</div>
+  <h1 style="font-size:170px;margin-top:20px">התפקידים<br>מתערבבים</h1>
+ </div>
+ <div class="ai">הדמיה · AI</div>
+ <div class="pg">08 / 16</div></section>
+
+<!-- 09 slope -->
+<section class="s">
+ <div class="top"><span>INSIGHT 05 · DESIGN ⇄ CODE</span><span>09</span></div><div class="rule"></div>
  <div style="position:absolute;right:120px;top:180px;width:640px">
   <h2>הגבולות<br>בין התפקידים<br><span style="color:var(--o)">נמחקים</span></h2>
-  <p class="l" style="margin-top:40px;font-size:30px">יותר מעצבים משתתפים בפיתוח, ויותר מפתחים עושים עבודת עיצוב.</p>
+  <p class="l" style="margin-top:40px;font-size:30px">יותר מעצבים משתתפים בפיתוח, ויותר מפתחים עושים עבודת עיצוב. אצל המעצבים, הנתון כמעט הוכפל בשנה.</p>
  </div>
  <svg id="slope" width="1000" height="760" style="position:absolute;left:100px;top:180px;direction:ltr"></svg>
  <div class="src">מקור: Figma, 2026 AI Report (השוואה ל-2025)</div>
- <div class="pg">04 / 08</div></section>
+ <div class="pg">09 / 16</div></section>
 
+<!-- 10 canvas -->
 <section class="s" style="background:var(--k);color:var(--bg)">
- <div class="bgimg z" style="background-image:url(img3/t_canvas.jpg)"></div><div style="position:absolute;inset:0;background:linear-gradient(270deg,rgba(20,20,20,.92) 40%,rgba(20,20,20,.7))"></div>
- <div style="position:absolute;bottom:52px;left:300px;font:700 18px Rub;opacity:.6">הדמיה · AI</div>
- <div class="top"><span>INSIGHT 03 · THE CANVAS</span><span>05</span></div>
- <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 120px;gap:80px">
-  <div><h2>הקנבס עדיין<br><span style="color:var(--y)">מרכז העבודה</span></h2><p class="l" style="margin-top:40px;opacity:.75">בונים מוצר עושים חצי או יותר מהעבודה שלהם על הקנבס. ואחד מכל חמישה מפתחים מעדיף להתחיל שם פרויקט.</p></div>
-  <div style="position:relative;display:grid;place-items:center"><svg width="700" height="700" viewBox="0 0 700 700"><circle cx="350" cy="350" r="290" fill="none" stroke="#2b2b2b" stroke-width="80"/><circle cx="350" cy="350" r="290" fill="none" stroke="#FFD23F" stroke-width="80" id="ring" class="dr" transform="rotate(-90 350 350)" stroke-linecap="round"/></svg><div style="position:absolute;text-align:center"><div class="stat" style="font-size:220px;color:var(--y)">76%</div></div></div>
+ <div class="bgimg z" style="background-image:url(img3/t_canvas.jpg)"></div><div style="position:absolute;inset:0;background:linear-gradient(270deg,rgba(20,20,20,.94) 40%,rgba(20,20,20,.72))"></div>
+ <div class="top"><span style="color:var(--y)">INSIGHT 06 · THE CANVAS</span><span>10</span></div>
+ <div style="position:absolute;inset:0;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;padding:0 120px;gap:80px">
+  <div><h2>הקנבס עדיין<br><span style="color:var(--y)">מרכז העבודה</span></h2>
+   <p class="l" style="margin-top:30px;opacity:.8">76% מבוני המוצרים עושים חצי או יותר מהעבודה שלהם על הקנבס</p>
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:50px">
+    <div class="m" style="border-top:3px solid var(--y);padding-top:16px"><div class="stat" style="font-size:96px;color:var(--y)">6/10</div><p style="font:500 24px/1.35 Rub;margin-top:10px;opacity:.8">מבלים שם את רוב הזמן</p></div>
+    <div class="m" style="border-top:3px solid var(--bg);padding-top:16px"><div class="stat" style="font-size:96px">1/5</div><p style="font:500 24px/1.35 Rub;margin-top:10px;opacity:.8">מהמפתחים מעדיפים להתחיל פרויקט על הקנבס</p></div>
+   </div></div>
+  <div style="position:relative;display:grid;place-items:center"><svg width="640" height="640" viewBox="0 0 700 700"><circle cx="350" cy="350" r="290" fill="none" stroke="#2b2b2b" stroke-width="80"/><circle cx="350" cy="350" r="290" fill="none" stroke="#FFD23F" stroke-width="80" id="ring" class="dr" transform="rotate(-90 350 350)" stroke-linecap="round"/></svg><div style="position:absolute;text-align:center"><div class="stat" style="font-size:200px;color:var(--y)">76%</div></div></div>
  </div>
+ <div class="ai" style="left:80px;bottom:120px">הדמיה · AI</div>
  <div class="src">מקור: Figma, 2026 AI Report</div>
- <div class="pg">05 / 08</div></section>
+ <div class="pg">10 / 16</div></section>
 
+<!-- 11 chapter 3 -->
 <section class="s">
- <div class="top"><span>INSIGHT 04 · DESIGN MATTERS</span><span>06</span></div><div class="rule"></div>
- <div style="position:absolute;right:120px;top:190px;width:700px">
-  <h2>ה-AI לא החליף את העיצוב. <span style="color:var(--o)">הוא הגביר אותו</span></h2>
-  <div style="margin-top:60px;display:grid;gap:30px">
-   <div><span class="stat" style="font-size:140px">90%</span><p class="l" style="font-size:30px">אומרים שהעיצוב חשוב לפחות כמו לפני ה-AI</p></div>
-   <div><span class="stat" style="font-size:140px;color:var(--o)">~6/10</span><p class="l" style="font-size:30px">אומרים שהוא חשוב יותר מבעבר</p></div>
+ <div class="bgimg z" style="background-image:url(img3/t_ch3.jpg);background-position:center"></div>
+ <div class="chn f" style="right:60px;bottom:40px;color:var(--y);opacity:.95">03</div>
+ <div class="top"><span>CHAPTER 03</span><span>11</span></div>
+ <div style="position:absolute;right:120px;top:260px;width:760px">
+  <div class="kick">DESIGN MATTERS</div>
+  <h1 style="font-size:160px;margin-top:20px">העיצוב<br>רק התחזק</h1>
+ </div>
+ <div class="ai">הדמיה · AI</div>
+ <div class="pg">11 / 16</div></section>
+
+<!-- 12 waffle -->
+<section class="s">
+ <div class="top"><span>INSIGHT 07 · DESIGN MATTERS</span><span>12</span></div><div class="rule"></div>
+ <div style="position:absolute;right:120px;top:150px;width:720px">
+  <h2 style="font-size:80px">ה-AI לא החליף את העיצוב. <span style="color:var(--o)">הוא הגביר אותו</span></h2>
+  <div style="margin-top:36px;display:grid;gap:18px">
+   <div class="m"><span class="stat" style="font-size:110px">90%</span><p class="l" style="font-size:28px">אומרים שהעיצוב חשוב לפחות כמו לפני ה-AI</p></div>
+   <div class="m"><span class="stat" style="font-size:110px;color:var(--o)">~6/10</span><p class="l" style="font-size:28px">אומרים שהוא חשוב יותר מבעבר</p></div>
+   <div class="m"><span class="stat" style="font-size:110px;color:var(--b)">65%</span><p class="l" style="font-size:28px">מהמפתחים אומרים שהוא חשוב לפחות כמו קודם</p></div>
   </div>
  </div>
  <div id="waffle" style="position:absolute;left:140px;top:200px;display:grid;grid-template-columns:repeat(10,58px);gap:12px;direction:ltr"></div>
- <div style="position:absolute;left:140px;top:960px;font:500 22px Rub;opacity:.6;display:flex;gap:30px"><span>■ <b style="color:var(--o)">כתום</b>: חשוב יותר (כ-60%)</span><span>■ שחור: לפחות כמו קודם (90% ביחד)</span></div>
+ <div style="position:absolute;left:140px;top:930px;font:500 22px Rub;opacity:.7;display:flex;gap:30px"><span><b style="color:var(--o)">■ כתום:</b> חשוב יותר (כמעט 6 מכל 10)</span><span><b>■ שחור:</b> לפחות כמו קודם (90% ביחד)</span></div>
  <div class="src">מקור: Figma, 2026 AI Report</div>
- <div class="pg">06 / 08</div></section>
+ <div class="pg">12 / 16</div></section>
 
-<section class="s">
- <div class="top"><span>INSIGHT 05 · ADOPTION</span><span>07</span></div><div class="rule"></div>
- <div style="position:absolute;right:120px;top:180px;width:1680px">
-  <h2>ארבע דרכים שבהן צוותים <span style="color:var(--b)">מאמצים AI</span></h2>
-  <div id="stack" style="display:flex;height:150px;margin-top:80px;border-radius:24px;overflow:hidden;direction:ltr"></div>
-  <div id="stackl" style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:40px;direction:ltr"></div>
+<!-- 13 split -->
+<section class="s" style="background:var(--y)">
+ <div class="top"><span>INSIGHT 08 · A SPLIT PROFESSION</span><span>13</span></div><div class="rule"></div>
+ <div style="position:absolute;right:120px;top:170px;width:1680px">
+  <h2>המקצוע מתפצל <span style="color:var(--o)">לשלושה</span></h2>
+  <p class="l" style="margin-top:16px;font-size:30px">מעצבים נשאלו אם תחום העיצוב השתפר או הורע בשנה האחרונה</p>
  </div>
- <div class="src">אחוז מהמשיבים בכל דפוס. מקור: Figma, 2026 AI Report</div>
- <div class="pg">07 / 08</div></section>
+ <div style="position:absolute;right:120px;left:120px;top:470px;display:flex;height:300px;border-radius:30px;overflow:hidden;direction:ltr">
+  <div class="gx l" style="--d:.2s;flex:36;background:var(--k);color:var(--y);display:flex;flex-direction:column;justify-content:center;padding:0 40px"><div class="stat" style="font-size:130px">36%</div><div style="font:700 32px Rub;direction:rtl;text-align:left">השתפר</div></div>
+  <div class="gx l" style="--d:.4s;flex:35;background:var(--o);color:var(--k);display:flex;flex-direction:column;justify-content:center;padding:0 40px"><div class="stat" style="font-size:130px">35%</div><div style="font:700 32px Rub;direction:rtl;text-align:left">הורע</div></div>
+  <div class="gx l" style="--d:.6s;flex:29;background:#fff3c4;color:var(--k);display:flex;flex-direction:column;justify-content:center;padding:0 40px"><div class="stat" style="font-size:130px">29%</div><div style="font:700 32px Rub;direction:rtl;text-align:left">לא השתנה</div></div>
+ </div>
+ <p class="l m" style="position:absolute;right:120px;top:820px;font-size:30px;width:1300px">כמעט שוויון מושלם בין האופטימיים לפסימיים</p>
+ <div class="src">מקור: Figma, State of the Designer 2026 (906 מעצבים)</div>
+ <div class="pg">13 / 16</div></section>
 
+<!-- 14 satisfaction -->
 <section class="s" style="background:var(--k);color:var(--bg)">
- <div class="top"><span>SO WHAT?</span><span>08</span></div>
+ <div class="top"><span style="color:var(--o)">INSIGHT 09 · WHO'S HAPPIER</span><span>14</span></div><div class="rule" style="opacity:.3"></div>
+ <div style="position:absolute;right:120px;top:170px;width:1680px"><h2>מי שמאמץ, <span style="color:var(--o)">מרוצה יותר</span></h2></div>
+ <div style="position:absolute;right:120px;left:120px;top:400px;display:grid;grid-template-columns:1fr 1fr;gap:80px">
+  <div style="border-top:4px solid var(--o);padding-top:30px" class="m"><div class="stat" style="font-size:240px;color:var(--o)">+25%</div><p class="l" style="margin-top:24px">סיכוי גבוה יותר לדווח על שביעות רצון עולה בעבודה, אצל מעצבים שמגבירים את השימוש ב-AI</p></div>
+  <div style="border-top:4px solid var(--bg);padding-top:30px" class="m"><div class="stat" style="font-size:240px">87%</div><p class="l" style="margin-top:24px">מהמעצבים אומרים שכשיש להם מילה בהחלטות, הם עובדים טוב יותר</p></div>
+ </div>
+ <div class="src">מקור: Figma, State of the Designer 2026 (906 מעצבים)</div>
+ <div class="pg">14 / 16</div></section>
+
+<!-- 15 what it means -->
+<section class="s">
+ <div class="top"><span>WHAT IT MEANS</span><span>15</span></div><div class="rule"></div>
+ <div style="position:absolute;right:120px;top:170px;width:1680px"><h2>שלושה דברים שהייתי <span style="color:var(--o)">עושה מחר בבוקר</span></h2></div>
+ <div style="position:absolute;right:120px;left:120px;top:420px;display:grid;grid-template-columns:repeat(3,1fr);gap:36px">
+  <div class="m" style="background:var(--k);color:var(--bg);border-radius:32px;padding:44px;height:440px;display:flex;flex-direction:column"><div style="font:400 120px Anton;color:var(--o);direction:ltr;text-align:right">01</div><div style="margin-top:auto;font:900 46px/1.1 Rub">ללמוד לבנות, לא רק לעצב</div><p style="font:500 24px/1.4 Rub;margin-top:14px;opacity:.75">כי 41% מהמעצבים כבר משתתפים בפיתוח</p></div>
+  <div class="m" style="background:var(--b);color:#fff;border-radius:32px;padding:44px;height:440px;display:flex;flex-direction:column"><div style="font:400 120px Anton;color:var(--y);direction:ltr;text-align:right">02</div><div style="margin-top:auto;font:900 46px/1.1 Rub">להשאיר את הקנבס במרכז</div><p style="font:500 24px/1.4 Rub;margin-top:14px;opacity:.8">כי שם עדיין עובדים 76% מבוני המוצרים</p></div>
+  <div class="m" style="background:var(--o);color:var(--k);border-radius:32px;padding:44px;height:440px;display:flex;flex-direction:column"><div style="font:400 120px Anton;color:var(--k);direction:ltr;text-align:right">03</div><div style="margin-top:auto;font:900 46px/1.1 Rub">להשקיע בקראפט</div><p style="font:500 24px/1.4 Rub;margin-top:14px;opacity:.85">כי 90% אומרים שהעיצוב חשוב לפחות כמו קודם</p></div>
+ </div>
+ <div class="src">המלצות אישיות שלי, על בסיס הנתונים בדוחות של Figma</div>
+ <div class="pg">15 / 16</div></section>
+
+<!-- 16 takeaway -->
+<section class="s" style="background:var(--k);color:var(--bg)">
+ <div class="top"><span>SO WHAT?</span><span>16</span></div>
  <div style="position:absolute;right:120px;top:240px;width:1680px">
   <div class="kick" style="color:var(--o)">THE TAKEAWAY</div>
-  <h1 style="margin-top:30px;font-size:140px">המעצבים שינצחו<br>הם אלה שיודעים<br><span style="color:var(--o)">גם לבנות</span></h1>
+  <h1 style="margin-top:30px;font-size:150px">המעצבים שינצחו<br>הם אלה שיודעים<br><span style="color:var(--o)">גם לבנות</span></h1>
  </div>
- <div class="src">מסקנה של המעצב, על בסיס הנתונים · מקור: Figma, 2026 AI Report</div>
- <div class="pg">08 / 08</div></section>
+ <div class="src">מסקנה של המעצב, על בסיס הנתונים · מקורות: Figma, 2026 AI Report; State of the Designer 2026; Design Statistics</div>
+ <div class="pg">16 / 16</div></section>
 
 <script>
-document.getElementById('b1').style.height=(7/41*490)+'px';
 {const r=290,c=2*Math.PI*r;const e=document.getElementById('ring');e.style.cssText=`--len:${c*.76};stroke-dasharray:${c*.76} ${c};--d:.3s`}
 {const svg=document.getElementById('slope');const X1=180,X2=760,Y=v=>660-v/70*560;let h='';
  h+=`<line x1="${X1}" y1="60" x2="${X1}" y2="680" stroke="#141414" stroke-width="2"/><line x1="${X2}" y1="60" x2="${X2}" y2="680" stroke="#141414" stroke-width="2"/>`;
  h+=`<text x="${X1}" y="725" text-anchor="middle" font-family="Mono" font-size="28" fill="#141414">2025</text><text x="${X2}" y="725" text-anchor="middle" font-family="Mono" font-size="28" fill="#141414">2026</text>`;
- [[21,41,'#FF5B2E','Designers in dev'],[44,60,'#2E5BFF','Developers doing design']].forEach(([a,b,col,l])=>{h+=`<line class="dr" style="--len:700;--d:${col=='#FF5B2E'?.3:.5}s" x1="${X1}" y1="${Y(a)}" x2="${X2}" y2="${Y(b)}" stroke="${col}" stroke-width="12" stroke-linecap="round"/><circle cx="${X1}" cy="${Y(a)}" r="22" fill="${col}"/><circle cx="${X2}" cy="${Y(b)}" r="22" fill="${col}"/><text x="${X1-40}" y="${Y(a)+22}" text-anchor="end" font-family="Rub" font-weight="900" font-size="64" fill="${col}">${a}%</text><text x="${X2+40}" y="${Y(b)+22}" font-family="Rub" font-weight="900" font-size="64" fill="${col}">${b}%</text><text x="${(X1+X2)/2}" y="${(Y(a)+Y(b))/2-48}" text-anchor="middle" font-family="Rub" font-weight="700" font-size="30" fill="${col}">${l==='Designers in dev'?'מעצבים שמשתתפים בפיתוח':'מפתחים שעושים עיצוב'}</text>`});
+ [[21,41,'#FF5B2E','מעצבים שמשתתפים בפיתוח'],[44,60,'#2E5BFF','מפתחים שעושים עיצוב']].forEach(([a,b,col,l],k)=>{h+=`<line class="dr" style="--len:700;--d:${.3+k*.25}s" x1="${X1}" y1="${Y(a)}" x2="${X2}" y2="${Y(b)}" stroke="${col}" stroke-width="12" stroke-linecap="round"/><circle cx="${X1}" cy="${Y(a)}" r="22" fill="${col}"/><circle class="p" style="--d:${1+k*.25}s" cx="${X2}" cy="${Y(b)}" r="22" fill="${col}"/><text x="${X1-40}" y="${Y(a)+22}" text-anchor="end" font-family="Rub" font-weight="900" font-size="64" fill="${col}">${a}%</text><text class="p" style="--d:${1.1+k*.25}s" x="${X2+40}" y="${Y(b)+22}" font-family="Rub" font-weight="900" font-size="64" fill="${col}">${b}%</text><text x="${(X1+X2)/2}" y="${(Y(a)+Y(b))/2-48}" text-anchor="middle" font-family="Rub" font-weight="700" font-size="30" fill="${col}">${l}</text>`});
  svg.innerHTML=h}
 {const w=document.getElementById('waffle');let h='';for(let i=0;i<100;i++){const c=i<60?'#FF5B2E':i<90?'#141414':'#d9d2c6';h+=`<i class="p" style="--d:${(.2+i*.012).toFixed(3)}s;width:58px;height:58px;border-radius:12px;background:${c};display:block"></i>`}w.innerHTML=h}
-{const A=[['Unified',36,'#2E5BFF','אימוץ מאוחד'],['Directive',27,'#FF5B2E','מגיע מלמעלה'],['Grassroots',20,'#FFD23F','מגיע מהשטח'],['Nascent',18,'#141414','עוד בהתחלה']];
- document.getElementById('stack').innerHTML=A.map(([n,v,c])=>`<div class="gx l" style="--d:${(.3+A.findIndex(x=>x[0]==n)*.15).toFixed(2)}s;flex:${v};background:${c};display:flex;align-items:center;justify-content:center;font:900 64px Rub;color:${c=='#FFD23F'?'#141414':'#fff'}">${v}%</div>`).join('');
- document.getElementById('stackl').innerHTML=A.map(([n,v,c,he])=>`<div><div style="width:40px;height:10px;background:${c};border-radius:5px"></div><div style="font:400 56px Anton;margin-top:14px">${n}</div><div style="font:700 30px Rub;margin-top:6px;direction:rtl;text-align:left">${he}</div></div>`).join('')}
+{const A=[['Unified',36,'#2E5BFF','אימוץ מאוחד בכל הצוות'],['Directive',27,'#FF5B2E','מגיע מלמעלה, מההנהלה'],['Grassroots',20,'#FFD23F','מגיע מהשטח, מהעובדים'],['Nascent',18,'#141414','עוד בהתחלה']];
+ document.getElementById('stack').innerHTML=A.map(([n,v,c],i)=>`<div class="gx l" style="--d:${(.3+i*.15).toFixed(2)}s;flex:${v};background:${c};display:flex;align-items:center;justify-content:center;font:900 80px Rub;color:${c=='#FFD23F'?'#141414':'#fff'}">${v}%</div>`).join('');
+ document.getElementById('stackl').innerHTML=A.map(([n,v,c,he])=>`<div class="m"><div style="width:40px;height:10px;background:${c};border-radius:5px"></div><div style="font:400 60px Anton;margin-top:14px">${n}</div><div style="font:700 28px/1.3 Rub;margin-top:6px;direction:rtl;text-align:left">${he}</div></div>`).join('')}
+{const T=[[78,'אומרים שכלי AI מאיצים משמעותית את העבודה','#FFD23F'],[58,'אומרים שה-AI משפר את איכות העבודה','#ffffff'],[40,'עדיין לא סומכים לגמרי על תוצרים של AI','#FF5B2E']];
+ document.getElementById('trust').innerHTML=T.map(([v,l,c],i)=>`<div style="display:grid;grid-template-columns:260px 1fr;align-items:center;gap:40px"><div class="stat" style="font-size:130px;color:${c}">${v}%</div><div><div style="font:700 34px Rub;margin-bottom:14px">${l}</div><div style="height:34px;border-radius:17px;background:rgba(255,255,255,.18);position:relative;overflow:hidden"><div class="gx" style="--d:${(.3+i*.15).toFixed(2)}s;position:absolute;right:0;top:0;bottom:0;width:${v}%;background:${c};border-radius:17px"></div></div></div></div>`).join('')}
 </script><script src="motion.js"></script></body></html>
