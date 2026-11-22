@@ -1471,7 +1471,7 @@ video.lv{display:block;width:100%;height:auto;max-width:100%}
         <a class="lnk" href="#b-toro">לכל הפרויקט ←</a>
       </div>
     </div>
-    <div class="hs hs-reel"><button type="button" class="hs-b hs-p" aria-label="הקודם">→</button><div class="reel"><video preload="none" data-lsrc="w/tv_lawyer.mp4" poster="w/tv_lawyer.webp" muted loop playsinline autoplay></video><video preload="none" data-lsrc="w/tv_barber.mp4" poster="w/tv_barber.webp" muted loop playsinline autoplay></video><video preload="none" data-lsrc="w/tv_driving.mp4" poster="w/tv_driving.webp" muted loop playsinline autoplay></video><video preload="none" data-lsrc="w/tv_chef.mp4" poster="w/tv_chef.webp" muted loop playsinline autoplay></video><video preload="none" data-lsrc="w/tv_pilates.mp4" poster="w/tv_pilates.webp" muted loop playsinline autoplay></video></div><button type="button" class="hs-b hs-n" aria-label="הבא">←</button></div>
+    <div class="hs hs-reel"><button type="button" class="hs-b hs-p" aria-label="הקודם">→</button><div class="reel"><video preload="none" data-lsrc="v/c_toro_wave.mp4" poster="v/c_toro_wave.webp" muted loop playsinline autoplay aria-label="השור של TORO מנופף לשלום"></video><video preload="none" data-lsrc="w/tv_lawyer.mp4" poster="w/tv_lawyer.webp" muted loop playsinline autoplay></video><video preload="none" data-lsrc="w/tv_barber.mp4" poster="w/tv_barber.webp" muted loop playsinline autoplay></video><video preload="none" data-lsrc="w/tv_driving.mp4" poster="w/tv_driving.webp" muted loop playsinline autoplay></video><video preload="none" data-lsrc="w/tv_chef.mp4" poster="w/tv_chef.webp" muted loop playsinline autoplay></video><video preload="none" data-lsrc="w/tv_pilates.mp4" poster="w/tv_pilates.webp" muted loop playsinline autoplay></video></div><button type="button" class="hs-b hs-n" aria-label="הבא">←</button></div>
     
     
     
@@ -2623,7 +2623,7 @@ bs.forEach(b=>{b.textContent='0';io.observe(b)})})();
  reg();let q=0;new MutationObserver(()=>{if(!q)q=requestAnimationFrame(()=>{q=0;reg()})}).observe(document.body,{childList:true,subtree:true})})();
 </script>
 
-<script>window.VMAP={'n/dk2m_bill.webp':'v/c_duk_bill.mp4','n/x_toro_bill.webp':'v/c_toro_bill.mp4','n/ri_couch.webp':'v/c_ri_couch.mp4','n/elal_term.webp':'v/c_elal_term.mp4','n/hso_street.webp':'v/c_hso_street.mp4','n/lega_desk.webp':'v/c_lega_desk.mp4','n/ella_desk.webp':'v/c_ella_desk.mp4'};</script>
+<script>window.VMAP={'n/dk2m_bill.webp':'v/c_duk_bill.mp4','n/x_toro_bill.webp':'v/c_toro_bill.mp4','n/ri_couch.webp':'v/c_ri_couch.mp4','n/elal_term.webp':'v/c_elal_term.mp4','n/hso_street.webp':'v/c_hso_street.mp4','n/lega_desk.webp':'v/c_lega_desk.mp4','n/ella_desk.webp':'v/c_ella_desk.mp4','n/x_ri_butler.webp':'v/c_ri_butler.mp4'};</script>
 <script>
 /* lazy-load autoplay videos: download only when they come near the screen */
 (()=>{const io=('IntersectionObserver' in window)?new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const v=e.target;io.unobserve(v);if(v.dataset.lsrc){v.src=v.dataset.lsrc;v.removeAttribute('data-lsrc');v.preload='auto';v.play().catch(()=>{})}}),{rootMargin:'400px 0px'}):null;
