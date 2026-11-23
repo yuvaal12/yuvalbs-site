@@ -1349,6 +1349,40 @@ main .sttl,main .wtag{position:relative;z-index:2}
 
 video.lv{display:block;width:100%;height:auto;max-width:100%}
 .shot>video.lv{height:100%;object-fit:cover}
+
+/* ===== living stages: keyed 3D characters + parallax brand layers ===== */
+.lv-on #gl{opacity:0!important;transition:opacity .5s}
+.world .stage{position:relative;isolation:isolate}
+.world .stage>.wtag,.world .stage>.sttl{position:relative;z-index:3}
+.lvs{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:visible}
+.lv-word{position:absolute;right:-4vw;top:30%;transform:translateY(-50%);font:900 clamp(120px,24vw,420px)/.8 var(--display);letter-spacing:-.04em;white-space:nowrap;color:transparent;-webkit-text-stroke:2px currentColor;opacity:.14;direction:ltr;will-change:transform}
+.lv-char{position:absolute;right:2%;bottom:-2%;width:min(46vw,720px);aspect-ratio:1;will-change:transform}
+.lv-char canvas,.lv-char img{width:100%;height:100%;display:block}
+.lv-char img{object-fit:contain}
+.lv-sh{position:absolute;right:12%;left:12%;bottom:7%;height:7%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.35),transparent);filter:blur(6px)}
+.lv-f{position:absolute;will-change:transform;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.28)}
+.lv-f img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.lv-f.ph{width:clamp(110px,10.5vw,170px);aspect-ratio:9/19.5;border-radius:24px;border:5px solid #0b0b0c}
+.lv-f.card{width:clamp(150px,15vw,250px);aspect-ratio:4/3}
+.lv-f.chip{border-radius:999px;padding:12px 18px;font:600 14px/1 var(--body);box-shadow:0 16px 40px rgba(0,0,0,.22);white-space:nowrap;overflow:visible}
+.lv-f.bub{border-radius:18px 18px 18px 4px;padding:12px 16px;font:500 15px/1.35 var(--body);max-width:230px;white-space:normal;box-shadow:0 18px 40px rgba(0,0,0,.25);overflow:visible}
+.lv-f.bub small{display:block;font-family:var(--mono,monospace);font-size:10px;letter-spacing:.12em;opacity:.6;margin-bottom:4px}
+.lv-f.pal{display:flex;gap:0;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.lv-f.pal i{display:block;width:clamp(38px,3.4vw,56px);height:clamp(70px,6.4vw,100px);position:relative}
+.lv-f.pal i span{position:absolute;bottom:6px;right:6px;font:500 9px var(--mono,monospace);letter-spacing:.04em;color:#fff;mix-blend-mode:difference;writing-mode:vertical-rl;transform:rotate(-180deg)}
+.lv-f.logo{background:transparent;box-shadow:none;overflow:visible;width:clamp(120px,12vw,200px)}
+.lv-f.logo img{object-fit:contain;filter:drop-shadow(0 14px 24px rgba(0,0,0,.3))}
+@media (max-width:900px){
+  .lv-f,.lv-word{display:none}
+  .world .stage{padding-top:min(78vw,420px)}
+  .lv-char{right:50%;margin-right:-38vw;width:76vw;top:56px;bottom:auto}
+}
+/* TORO world in its own brand colours */
+.w-clay{color:#F4F7F8}
+.w-clay .lv-word{color:#12B5C8;opacity:.22}
+.w-clay .wtag{border-color:rgba(244,247,248,.35)}
+.w-clay .psub,.w-clay .copy p{color:#DDEFF2}
+@media (prefers-reduced-motion:reduce){.lv-word,.lv-char,.lv-f{transform:none!important}}
 .hw{font-size:clamp(64px,12vw,220px)}
 </style>
 
@@ -1415,7 +1449,12 @@ video.lv{display:block;width:100%;height:auto;max-width:100%}
 
 <section id="w-synth" class="world w-rich wrap" data-g="7" data-bg="#C4F550" data-name="01 · RICHARD">
   <div class="in">
-<div class="stage"><div class="wtag"><span class="mono">World 01 · Butler</span><span>Product · Bot & app</span></div>
+<div class="stage"><div class="lvs" data-k="richard"><div class="lv-word">RICH HARD</div>
+<div class="lv-f ph" data-d="2.2" style="right:8%;top:5%"><img src="/n/ri_home.webp" alt="" loading="lazy"></div>
+<div class="lv-f ph lv-hide-s" data-d="1.1" style="right:27%;top:13%"><img src="/n/ri_insights.webp" alt="" loading="lazy"></div>
+<div class="lv-f bub" data-d="2.6" style="left:38%;top:16%;background:#fff;color:#111"><small>WHATSAPP · את/ה</small>80 pizza</div>
+<div class="lv-f bub" data-d="1.7" style="left:40%;top:32%;background:#111;color:#C4F550"><small>RICH HARD</small>נרשם ✓ אוכל בחוץ. נשארו לך 420 ₪ לחודש</div>
+<div class="lv-char" data-src="/v/k_butler.mp4" data-poster="g/butler_cut.webp"><div class="lv-sh"></div></div></div><div class="wtag"><span class="mono">World 01 · Butler</span><span>Product · Bot & app</span></div>
 <div class="sttl"><h2 class="ptitle"><span class="bowwrap2"></span>Richard</h2><p class="psub">RICH HARD. Your personal budget butler, on WhatsApp</p></div></div>
     <div class="lb-hero"><div class="wa" id="riWa"></div><div class="copy"><p>You text him "80 pizza", and he logs it, files it under a category and raises a flag before you overspend. So you see what’s going out this month, when you’ll hit your goal, and whether your pension is taking too much. Solo, or with the whole household</p><a class="lnk" href="#b-richard">Full case study: how I built Richard →</a></div><div class="rf-shots" style="height:520px"><img src="/n/ri_home.webp" alt="Home screen" loading="lazy"><img src="/n/ri_future.webp" alt="Cash flow" loading="lazy"><img src="/n/ri_insights.webp" alt="Richard found" loading="lazy"></div></div>
     <div class="ri-new" aria-label="What else we made for Richard">
@@ -1453,7 +1492,12 @@ video.lv{display:block;width:100%;height:auto;max-width:100%}
 
 <section id="w-pop" class="world w-bern wrap" data-g="4" data-bg="#F25A1A" data-name="03 · BERNIE">
   <div class="in">
-<div class="stage"><div class="wtag"><span class="mono">World 03 · Flame</span><span>Product · Bot & app</span></div>
+<div class="stage"><div class="lvs" data-k="bernie"><div class="lv-word">BURN-IE</div>
+<div class="lv-f ph" data-d="2.3" style="right:8%;top:5%"><img src="/b/s_01.webp" alt="" loading="lazy"></div>
+<div class="lv-f ph lv-hide-s" data-d="1.2" style="right:27%;top:12%"><img src="/b/s_04.webp" alt="" loading="lazy"></div>
+<div class="lv-f bub" data-d="2" style="left:38%;top:20%;background:#fff;color:#1f1410"><small>BURN-IE</small>שקשוקה ופיתה? 640 קלוריות. אחר הצהריים אולי סלט 🥗</div>
+<div class="lv-f chip" data-d="1.4" style="left:42%;top:44%;background:#FFC93C;color:#1f1410">💧 שתית 6 כוסות היום</div>
+<div class="lv-char" data-src="/v/k_bernie.mp4" data-poster="g/bernie3d_cut.webp"><div class="lv-sh"></div></div></div><div class="wtag"><span class="mono">World 03 · Flame</span><span>Product · Bot & app</span></div>
 <div class="sttl"><h2 class="ptitle">Bernie</h2><p class="psub">BURN-IE. A nutrition coach on WhatsApp who is actually a flame that burns your calories</p></div></div>
     <div class="lb-hero home-bn"><div class="bn" id="bnWorld"></div><div class="copy"><p>Snap your plate or just type what you ate, and Bernie counts it, suggests what to eat next, reminds you to drink and connects you with friends and a dietitian. Prefer screens? There’s an app too</p><p class="mono" style="opacity:.75">Tap the flame, it doesn’t burn</p><a class="lnk" href="#b-bernie">Full case study: how I built Bernie →</a></div><div class="wa" data-kind="bernie" id="bnWa"></div></div>
     <div class="bn-strip"><figure><video preload="none" data-lsrc="/b/an_splash.mp4" poster="/b/an_splash.webp" muted loop playsinline autoplay></video><figcaption>Water: psssh</figcaption></figure><figure><video preload="none" data-lsrc="/b/an_drink.mp4" poster="/b/an_drink.webp" muted loop playsinline autoplay></video><figcaption>Drinks</figcaption></figure><figure><video preload="none" data-lsrc="/b/an_eat.mp4" poster="/b/an_eat.webp" muted loop playsinline autoplay></video><figcaption>Eats</figcaption></figure><figure><video preload="none" data-lsrc="/b/an_weigh.mp4" poster="/b/an_weigh.webp" muted loop playsinline autoplay></video><figcaption>Weighs in</figcaption></figure><figure><video preload="none" data-lsrc="/b/an_steps.mp4" poster="/b/an_steps.webp" muted loop playsinline autoplay></video><figcaption>Runs</figcaption></figure><figure><video preload="none" data-lsrc="/b/an_measure.mp4" poster="/b/an_measure.webp" muted loop playsinline autoplay></video><figcaption>Measures</figcaption></figure></div>
@@ -1462,9 +1506,15 @@ video.lv{display:block;width:100%;height:auto;max-width:100%}
   </div>
 </section>
 
-<section id="w-clay" class="world w-clay wrap" data-g="5" data-bg="#F7E6EE" data-name="04 · 3D CLAY">
+<section id="w-clay" class="world w-clay wrap" data-g="5" data-bg="#0B3C49" data-name="04 · TORO">
   <div class="in">
-<div class="stage"><div class="wtag"><span class="mono">World 04 · 3D Clay</span><span>Product · LEGA6</span></div>
+<div class="stage"><div class="lvs" data-k="toro"><div class="lv-word">TORO</div>
+<div class="lv-f logo" data-d="1.6" style="right:30%;top:5%"><img src="/w/toro_logo.webp" alt="הלוגו של TORO" style="filter:invert(1) hue-rotate(180deg) drop-shadow(0 14px 24px rgba(0,0,0,.3))"></div>
+<div class="lv-f ph" data-d="2.4" style="right:7%;top:6%"><img src="/n/toro_mob.webp" alt="" loading="lazy"></div>
+<div class="lv-f card lv-hide-s" data-d="1.2" style="right:24%;top:34%;width:clamp(200px,20vw,320px);aspect-ratio:16/9"><img src="/w/toro_ui.webp" alt="" loading="lazy"></div>
+<div class="lv-f pal" data-d="0.9" style="left:44%;top:56%"><i style="background:#12B5C8"><span>#12B5C8</span></i><i style="background:#0B3C49;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)"><span>#0B3C49</span></i><i style="background:#5F4437"><span>#5F4437</span></i><i style="background:#F4F7F8"><span>#F4F7F8</span></i></div>
+<div class="lv-f bub" data-d="2" style="left:37%;top:28%;background:#12B5C8;color:#06232b"><small>SMS · TORO</small>תזכורת: מחר ב-10:00 תספורת אצל דני. לאישור השיבו 1</div>
+<div class="lv-char" data-once="1" data-src="/v/k_toro.mp4" data-poster="/w/toro_full.webp"><div class="lv-sh"></div></div></div><div class="wtag"><span class="mono">World 04 · TORO</span><span>Product · LEGA6</span></div>
 <div class="sttl"><h2 class="ptitle">TORO</h2><p class="psub">Bookings without phone calls. A booking system for small businesses, with a bull that does all the grunt work</p></div></div>
     <div class="lp-toro">
       <div class="lt-stage" id="toroStage"><div class="lt-shadow"></div><img loading="lazy" decoding="async" class="lt-m" src="/w/toro_full.webp" alt="The TORO bull, full body" id="toroM"><div class="lt-bub" id="toroBub">Only open slots</div></div>
@@ -1755,7 +1805,7 @@ function selectText(el){const r=document.createRange();r.selectNodeContents(el.f
 
 /* world progress */
 const secs=$$('[data-g]');
-const BG=['#0b0b0c','#0b0b0c','#EDEBE6','#5C94FC','#F25A1A','#F7E6EE','#0d0d0b','#C4F550','#FAF8F2','#07070b','#0b0b0c'];
+const BG=['#0b0b0c','#0b0b0c','#EDEBE6','#5C94FC','#F25A1A','#0B3C49','#0d0d0b','#C4F550','#FAF8F2','#07070b','#0b0b0c'];
 const NAMES=['00 · INTRO','00 · INTRO','02 · DUKORSKY','—','03 · BERNIE','04 · TORO','05 · JAKAMIRO','01 · RICHARD','—','06 · MORE','07 · CONTACT'];
 const hx=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 const SEQ=[0,...[...new Set(secs.map(x=>+x.dataset.g))]];const SL=SEQ.length-1;
@@ -2633,7 +2683,7 @@ bs.forEach(b=>{b.textContent='0';io.observe(b)})})();
  /* living covers: still images that now have a motion version (Higgsfield) */
  const VMAP=window.VMAP||{};
  const swap=()=>document.querySelectorAll('img[src]:not([id]):not([data-nv])').forEach(im=>{const s=im.getAttribute('src'),m=VMAP[s];if(!m||im.closest('#lb,.lb,dialog'))return;
-  const v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.autoplay=true;v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('autoplay','');v.setAttribute('loop','');v.preload='none';
+  const v=document.createElement('video');v.muted=true;v.loop=!box.dataset.once;v.playsInline=true;v.autoplay=true;v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('autoplay','');v.setAttribute('loop','');v.preload='none';
   v.poster=s;v.dataset.lsrc=m;v.className=im.className+' lv';v.setAttribute('aria-label',im.alt||'');im.replaceWith(v)});
  const reg=()=>{swap();document.querySelectorAll('video[data-lsrc]:not([data-lz])').forEach(v=>{v.dataset.lz=1;if(io)io.observe(v);else{v.src=v.dataset.lsrc;v.removeAttribute('data-lsrc')}})};
  reg();let q=0;new MutationObserver(()=>{if(!q)q=requestAnimationFrame(()=>{q=0;reg()})}).observe(document.body,{childList:true,subtree:true})})();
@@ -2651,6 +2701,59 @@ bs.forEach(b=>{b.textContent='0';io.observe(b)})})();
  const next=()=>{const top=c[o.indexOf(0)];top.classList.add('out');setTimeout(()=>{o=o.map(v=>(v+c.length-1)%c.length);top.classList.remove('out');lay()},420)};
  let t=setInterval(next,3600);const reset=()=>{clearInterval(t);t=setInterval(next,3600)};
  d.addEventListener('click',()=>{next();reset()});d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();next();reset()}})})();
+</script>
+<script>
+/* ===== living stages: keyed character videos + parallax brand layers ===== */
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const stages=[...document.querySelectorAll('.lvs')];if(!stages.length)return;
+let mx=0,my=0;addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+const VS='attribute vec2 p;varying vec2 v;void main(){v=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0.,1.);}';
+const FS='precision mediump float;varying vec2 v;uniform sampler2D t;uniform vec3 k;'+
+ 'vec2 cc(vec3 c){return vec2(-.169*c.r-.331*c.g+.5*c.b,.5*c.r-.419*c.g-.081*c.b);}'+
+ 'void main(){vec4 c=texture2D(t,v);float d=distance(cc(c.rgb),cc(k));float a=smoothstep(.07,.16,d);'+
+ 'float m=max(c.r,c.b);if(c.g>m)c.g=mix(m,c.g,a*a);gl_FragColor=vec4(c.rgb*a,a);}';
+function keyer(box){
+  const v=document.createElement('video');v.muted=true;v.loop=!box.dataset.once;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.preload='none';
+  const pim=new Image();pim.src=box.dataset.poster;pim.alt='';pim.style.cssText='position:absolute;inset:0;transition:opacity .4s';box.appendChild(pim);
+  const cv=document.createElement('canvas');cv.style.cssText='position:absolute;inset:0';box.appendChild(cv);
+  const gl=cv.getContext('webgl',{premultipliedAlpha:true,alpha:true});
+  if(!gl){cv.remove();return null}
+  const sh=(t,c)=>{const s=gl.createShader(t);gl.shaderSource(s,c);gl.compileShader(s);return s};
+  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);gl.useProgram(pr);
+  const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  gl.uniform3f(gl.getUniformLocation(pr,'k'),0,177/255,64/255);
+  const tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);
+  [gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T].forEach(p=>gl.texParameteri(gl.TEXTURE_2D,p,gl.CLAMP_TO_EDGE));
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+  gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+  let bad=false;v.addEventListener('error',()=>{bad=true;cv.remove()});
+  return {v,on:false,
+    draw(){if(bad||v.readyState<2)return;const w=v.videoWidth,h=v.videoHeight;if(cv.width!==w){cv.width=w;cv.height=h;gl.viewport(0,0,w,h)}
+      gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,v);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+      if(pim.style.opacity!=='0')pim.style.opacity='0'},
+    start(){if(bad)return;if(!v.src)v.src=box.dataset.src;if(box.dataset.once&&!this.on){try{v.currentTime=0}catch(e){}}v.play().catch(()=>{});this.on=true},stop(){v.pause();this.on=false}};
+}
+const S=stages.map(st=>{const ch=st.querySelector('.lv-char');return{st,stage:st.parentElement,ch,word:st.querySelector('.lv-word'),fl:[...st.querySelectorAll('.lv-f')],k:ch&&ch.dataset.src?keyer(ch):null}});
+const io=new IntersectionObserver(es=>es.forEach(e=>{const s=S.find(x=>x.stage===e.target);if(s&&s.k){e.isIntersecting?s.k.start():s.k.stop()}}),{rootMargin:'200px 0px'});
+S.forEach(s=>io.observe(s.stage));
+const cl=x=>Math.max(0,Math.min(1,x)),ease=t=>1-Math.pow(1-t,3);
+let smx=0,smy=0,lvOn=false;
+function tick(){requestAnimationFrame(tick);smx+=(mx-smx)*.06;smy+=(my-smy)*.06;const vh=innerHeight,vw=innerWidth;let any=false;
+  for(const s of S){const r=s.stage.getBoundingClientRect();if(r.bottom<-200||r.top>vh+200)continue;if(r.top<vh*.55&&r.bottom>vh*.35)any=true;
+    const p=cl((vh-r.top)/(vh+r.height));const enter=ease(cl((vh-r.top)/(vh*.85)));
+    if(s.k&&s.k.on)s.k.draw();
+    if(RM)continue;
+    if(s.ch)s.ch.style.transform=`translate3d(${(1-enter)*-38*vw/100+smx*-26}px,${(1-enter)*60+(p-.5)*-40+smy*-14}px,0) scale(${.82+.18*enter})`;
+    if(s.word)s.word.style.transform=`translate3d(${(p-.5)*-vw*.35+smx*40}px,-50%,0)`;
+    s.fl.forEach((f,i)=>{const d=+f.dataset.d||1;const fe=ease(cl((vh-r.top)/(vh*.9)-i*.06));
+      f.style.transform=`translate3d(${smx*-d*22}px,${(p-.5)*-d*170+(1-fe)*120+smy*-d*14}px,0) rotate(${(p-.5)*d*-6}deg) scale(${.7+.3*fe})`;f.style.opacity=fe});
+  }
+  if(any!==lvOn){lvOn=any;document.documentElement.classList.toggle('lv-on',any)}
+}
+tick();
+})();
 </script>
 
 </html>
