@@ -4,271 +4,224 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>יובל בן שאול · המסע</title>
-<meta name="description" content="מסע מהדמיון אל החלל: עיצוב, קוד ו-AI. תיק העבודות של יובל בן שאול.">
+<meta name="description" content="מסע מהדמיון אל ה-AI: עיצוב, קוד ובינה מלאכותית. תיק העבודות של יובל בן שאול.">
 <link rel="icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Hebrew:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Rubik:wght@300;400;500;700;800&display=swap">
 <style>
-@font-face{font-family:'Ofek';src:url(fonts/ofek.woff2) format('woff2');font-display:swap}
-@font-face{font-family:'Turbo';src:url(fonts/turbo.woff2) format('woff2');font-display:swap}
-@font-face{font-family:'Pixel';src:url(fonts/pixel.woff2) format('woff2');font-display:swap}
-@font-face{font-family:'Madbeka';src:url(fonts/madbeka.woff2) format('woff2');font-display:swap}
-@font-face{font-family:'Shelet';src:url(fonts/shelet.woff2) format('woff2');font-display:swap}
 :root{
-  --paper:#F1ECE1;--ink:#1D1B19;--red:#E8432E;--yel:#F7C21B;--blue:#2443D9;
-  --night:#0A0B1A;--mag:#FF3CAC;--cyan:#2BE7F2;--lime:#C6F432;
-  --body:"IBM Plex Sans Hebrew",system-ui,"Segoe UI",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --bg:#0B0B0C;--bg2:#141416;--fg:#F2F0EA;--mute:#8E8B84;--line:rgba(242,240,234,.14);--acc:#C6F432;
+  --sans:"Rubik",system-ui,"Segoe UI",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --gl:max(16px,env(safe-area-inset-left,0px));--gr:max(16px,env(safe-area-inset-right,0px));
-  color-scheme:light;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{background:var(--paper)}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
 img,video{display:block;max-width:100%}
-.mono{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.wrap{padding-left:var(--gl);padding-right:var(--gr)}
+@media(min-width:900px){.wrap{padding-left:max(56px,env(safe-area-inset-left,0px));padding-right:max(56px,env(safe-area-inset-right,0px))}}
 
-/* ===== SKY: fixed colour field that travels with the story ===== */
-#sky{position:fixed;inset:0;z-index:0;background:var(--paper)}
-#dots{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(29,27,25,.18) 1px,transparent 1.2px);background-size:26px 26px}
-#stars{position:fixed;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;opacity:0}
+/* NAV */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.nav{position:fixed;top:env(safe-area-inset-top,0px);inset-inline:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px var(--gr) 18px var(--gl)}
+@media(min-width:900px){.nav{padding:22px 56px}}
+.nav .me{font-weight:700;font-size:17px;letter-spacing:-.01em;line-height:1.1}
+.nav .me small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.16em;color:var(--mute);margin-top:3px}
+.nav nav{display:flex;gap:10px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:9px;height:42px;padding:0 18px;border-radius:99px;border:1px solid var(--line);background:rgba(11,11,12,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:14px;font-weight:500;cursor:pointer;color:var(--fg);font-family:var(--sans);transition:border-color .3s,background .3s}
+.pill:hover{border-color:var(--fg)}
+.pill.acc{background:var(--acc);border-color:var(--acc);color:#0B0B0C}
+.pill .ic{width:0;height:0;border-style:solid;border-width:5px 8px 5px 0;border-color:transparent currentColor transparent transparent}
+@media(max-width:640px){.nav .hide-s{display:none}}
 
-/* ===== RIDER (the guide) ===== */
-#rider{position:fixed;z-index:30;left:50%;top:50%;width:clamp(170px,23vw,330px);aspect-ratio:777/1100;pointer-events:none;will-change:transform}
-#rider .in{position:absolute;inset:0;animation:bob 3.2s ease-in-out infinite}
-#rider img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
-#rider .col{clip-path:inset(0 0 100% 0)}
-#rider .scan{position:absolute;left:-10%;right:-10%;height:3px;top:0;background:linear-gradient(90deg,transparent,var(--red),transparent);box-shadow:0 0 18px var(--red);opacity:0}
-#rider .flame{position:absolute;right:-2%;bottom:20%;width:38%;height:22%;opacity:0;filter:blur(6px);background:radial-gradient(ellipse at 100% 50%,#fff 0,#FFD36B 18%,#FF7A2F 42%,transparent 70%);transform-origin:0 50%;animation:flick .12s infinite alternate}
-@keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1.2deg)}}
-@keyframes flick{to{transform:scaleX(1.18) scaleY(.9)}}
+/* FILM */
+.film{position:relative}
+.stick{position:sticky;top:0;height:100svh;overflow:hidden;transform-origin:50% 0;will-change:transform}
+.stick canvas{position:absolute;inset:0;width:100%;height:100%}
+.stick .vig{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(11,11,12,.85),transparent 26%),linear-gradient(to bottom,rgba(11,11,12,.55),transparent 18%)}
+.hud{position:absolute;left:0;right:0;bottom:calc(22px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:18px;padding-left:var(--gl);padding-right:var(--gr);color:var(--fg)}
+@media(min-width:900px){.hud{padding:0 56px}}
+.hud .tc{font-family:var(--mono);font-size:12px;letter-spacing:.08em;direction:ltr;min-width:110px;text-align:right}
+.hud .tl{flex:1;height:2px;background:rgba(242,240,234,.2);position:relative;direction:ltr}
+.hud .tl i{position:absolute;left:0;top:0;bottom:0;background:var(--acc);width:0}
+.hud .tl b{position:absolute;top:-4px;width:1px;height:10px;background:rgba(242,240,234,.5)}
+.hud .chap{font-family:var(--mono);font-size:11px;letter-spacing:.14em;white-space:nowrap}
+.intro-hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;transition:opacity .6s}
+.intro-hint .mono{color:var(--fg);opacity:.9}
+.intro-hint i{display:block;width:1px;height:54px;margin:14px auto 0;background:var(--fg);transform-origin:top;animation:drip 1.8s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+.ttl{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;padding:0 16px;transition:opacity .5s,transform .5s}
+.ttl h1{margin:16px 0 0;font-weight:800;font-size:clamp(56px,10vw,190px);line-height:.88;letter-spacing:-.045em}
+.ttl p{margin:22px auto 0;color:rgba(242,240,234,.75);font-size:clamp(16px,1.3vw,20px)}
+.ttl .mono{color:var(--acc)}
+.ttl i{display:block;width:1px;height:54px;margin:26px auto 0;background:var(--fg);transform-origin:top;animation:drip 1.8s ease-in-out infinite}
+.loadbar{position:absolute;top:0;left:0;height:2px;background:var(--acc);width:0;transition:width .3s,opacity .6s}
 
-/* ===== NAV + ALTIMETER ===== */
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:transparent}
-.nav{position:fixed;top:env(safe-area-inset-top,0px);inset-inline:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px var(--gr) 18px var(--gl);mix-blend-mode:difference;color:#fff}
-@media(min-width:900px){.nav{padding:24px 48px}}
-.nav a{text-decoration:none}
-.nav .me{font-weight:700;font-size:18px;letter-spacing:-.01em}
-.nav .me small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.16em;opacity:.7}
-.nav nav{display:flex;gap:22px;align-items:center;font-size:15px}
-.nav .cta{border:1px solid #fff;border-radius:99px;padding:9px 18px}
-@media(max-width:700px){.nav nav a:not(.cta){display:none}}
+/* SPREADS */
+.spread{position:relative;z-index:5;background:var(--bg);padding-block:16svh 14svh;border-radius:28px 28px 0 0;margin-top:-28px;box-shadow:0 -30px 60px rgba(0,0,0,.5)}
+.sh{display:grid;grid-template-columns:auto 1fr;gap:28px 40px;align-items:end;margin-bottom:8svh}
+.sh .n{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--acc);grid-column:1/-1}
+.sh h2{margin:0;font-weight:800;font-size:clamp(52px,8.4vw,150px);line-height:.88;letter-spacing:-.035em}
+.sh p{margin:0;max-width:430px;color:var(--mute);font-size:clamp(16px,1.25vw,19px);justify-self:end}
+@media(max-width:899px){.sh{grid-template-columns:1fr}.sh p{justify-self:start}}
+.ln{display:block;overflow:hidden;padding-bottom:.06em}.ln>span{display:block;transform:translateY(105%)}
 
-.alt{position:fixed;z-index:50;left:max(22px,env(safe-area-inset-left,0px));top:50%;transform:translateY(-50%);height:46vh;display:flex;gap:12px;direction:ltr;mix-blend-mode:difference;color:#fff}
-.alt .bar{width:2px;height:100%;background:rgba(255,255,255,.25);position:relative}
-.alt .bar i{position:absolute;bottom:0;left:-3px;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 12px #fff}
-.alt ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column-reverse;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.14em}
-.alt li{opacity:.45;transition:opacity .3s}.alt li.on{opacity:1}
-.alt .km{position:absolute;bottom:-34px;left:0;font-family:var(--mono);font-size:11px;letter-spacing:.08em;white-space:nowrap}
-@media(max-width:900px){.alt{display:none}}
+/* horizontal gallery */
+.hg{position:relative;height:100svh;overflow:hidden}
+.hg .track{position:absolute;top:0;bottom:0;right:0;display:flex;align-items:center;gap:3vw;padding-right:max(56px,7vw);padding-left:7vw;will-change:transform}
+.hcard{flex:0 0 auto;width:min(72vw,1100px);min-width:0}
+.hcard .m{aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:var(--bg2);position:relative}
+.hcard .m img,.hcard .m video{width:100%;height:100%;object-fit:cover;transform:scale(1.12);will-change:transform}
+.cap{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+.cap h3{margin:0;font-size:clamp(22px,2vw,32px);font-weight:700;letter-spacing:-.01em}
+.cap span{color:var(--mute);font-size:15px}
+.cap a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;white-space:nowrap;border-bottom:1px solid var(--acc);padding-bottom:3px}
+@media(max-width:899px){.hg{height:auto;overflow:visible}.hg .track{position:static;flex-direction:column;padding:0 var(--gr) 0 var(--gl);gap:56px}.hcard{width:100%}}
 
-/* ===== CHAPTERS ===== */
-main{position:relative;z-index:10}
-.ch{position:relative;height:100svh;overflow:hidden}
-.stage{position:absolute;inset:0}
-.tag{display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.14em}
-.tag b{display:inline-block;width:26px;height:1px;background:currentColor}
-.fontnote{font-family:var(--mono);font-size:10px;letter-spacing:.12em;opacity:.55;margin-top:14px}
-.copy{position:absolute;z-index:5;right:var(--gr);max-width:560px;padding-left:16px}
-@media(min-width:900px){.copy{right:max(80px,7vw)}}
-.copy p{font-size:clamp(16px,1.3vw,20px);line-height:1.6;max-width:460px;margin:18px 0 0}
+/* editorial parallax grid */
+.eg{display:grid;grid-template-columns:repeat(12,1fr);gap:28px 3vw;align-items:start}
+.eg .it{min-width:0}
+.eg .m{border-radius:18px;overflow:hidden;background:var(--bg2)}
+.eg .m img,.eg .m video{width:100%;height:100%;object-fit:cover;transform:scale(1.14)}
+.eg .a{grid-column:1/8}.eg .a .m{aspect-ratio:16/10}
+.eg .b{grid-column:8/13;margin-top:22svh}.eg .b .m{aspect-ratio:4/5}
+.eg .c{grid-column:2/7;margin-top:-6svh}.eg .c .m{aspect-ratio:4/5}
+.eg .d{grid-column:7/13;margin-top:10svh}.eg .d .m{aspect-ratio:16/10}
+@media(max-width:899px){.eg{grid-template-columns:1fr;gap:56px}.eg .a,.eg .b,.eg .c,.eg .d{grid-column:1;margin-top:0}}
 
-/* 0 · IMAGINATION */
-#c0 .copy{top:50%;transform:translateY(-50%)}
-#c0 h1{font-family:'Ofek',var(--body);font-weight:400;font-size:clamp(64px,10vw,176px);line-height:.9;margin:16px 0 0;letter-spacing:-.01em}
-#c0 h1 span{display:inline-block}
-#c0 .doodles{position:absolute;inset:0;pointer-events:none}
-#c0 .doodles svg{position:absolute;overflow:visible;stroke:var(--ink);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-#c0 .hint{position:absolute;bottom:calc(28px + env(safe-area-inset-bottom,0px));right:50%;transform:translateX(50%);display:flex;flex-direction:column;align-items:center;gap:10px}
-#c0 .hint i{width:1px;height:46px;background:var(--ink);transform-origin:top;animation:drip 1.8s ease-in-out infinite}
-@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
-@media(max-width:899px){#c0 .copy{top:auto;bottom:110px;transform:none}}
+/* vertical reel */
+.vr{display:grid;grid-template-columns:repeat(4,1fr);gap:2vw}
+.vr .v{aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:var(--bg2);position:relative}
+.vr .v video{width:100%;height:100%;object-fit:cover}
+.vr .v:nth-child(even){margin-top:12svh}
+.vr .v span{position:absolute;bottom:14px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;background:rgba(11,11,12,.7);padding:6px 10px;border-radius:99px;backdrop-filter:blur(8px)}
+.wide{margin-top:12svh}.wide .m{aspect-ratio:16/9;border-radius:20px;overflow:hidden}
+.wide video{width:100%;height:100%;object-fit:cover}
+@media(max-width:899px){.vr{grid-template-columns:1fr 1fr;gap:14px}.vr .v:nth-child(even){margin-top:8svh}}
 
-/* 1 · DESIGN */
-#c1 .shape{position:absolute;border-radius:50%;will-change:transform}
-#c1 .s1{width:44vmax;height:44vmax;background:var(--red);left:-12vmax;top:18%}
-#c1 .s2{width:20vmax;height:20vmax;background:var(--yel);right:8%;bottom:-6vmax}
-#c1 .s3{width:62vw;height:3.2vmax;border-radius:0;background:var(--ink);left:-4vw;top:12%}
-#c1 .s4{width:3.2vmax;height:70vh;border-radius:0;background:var(--blue);left:38%;top:-10%}
-#c1 .s5{width:9vmax;height:9vmax;background:var(--ink);right:30%;top:16%}
-#c1 .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(29,27,25,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(29,27,25,.12) 1px,transparent 1px);background-size:calc(100vw/12) calc(100vw/12)}
-#c1 .copy{top:13%}
-#c1 h2{font-family:'Turbo',var(--body);font-weight:400;font-size:clamp(70px,11vw,200px);line-height:.85;margin:14px 0 0;color:var(--ink)}
-#c1 .tunnel{position:absolute;inset:0;perspective:900px;perspective-origin:50% 50%}
-#c1 .card{position:absolute;left:50%;top:50%;border-radius:14px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.25);background:#fff;will-change:transform,opacity}
-#c1 .card img{width:100%;height:100%;object-fit:cover}
-#c1 .card.logo{background:#fff;display:grid;place-items:center;padding:18px}
-#c1 .card.logo img{object-fit:contain}
+/* stacking product cards */
+.stack{position:relative}
+.pc{position:sticky;top:max(84px,9svh);height:min(82svh,820px);margin-bottom:8svh;border-radius:26px;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr;background:var(--c,#1a1a1a);color:var(--t,#fff);box-shadow:0 -20px 60px rgba(0,0,0,.45);transform-origin:50% 0}
+.pc .tx{padding:clamp(26px,4vw,64px);display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.pc .tx .mono{opacity:.7}
+.pc h3{margin:18px 0 0;font-size:clamp(56px,8vw,150px);line-height:.85;font-weight:800;letter-spacing:-.04em}
+.pc p{font-size:clamp(17px,1.4vw,21px);max-width:420px;margin:22px 0 0;opacity:.85}
+.pc .go{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:99px;background:var(--t,#fff);color:var(--c,#000);font-weight:700;margin-top:24px}
+.pc .im{position:relative;min-width:0}
+.pc .im img,.pc .im video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media(max-width:899px){.pc{grid-template-columns:1fr;grid-template-rows:auto 1fr;height:auto;min-height:78svh}.pc .im{min-height:42svh}}
 
-/* 2 · CODE */
-#c2{color:#E9E7FF}
-#c2 .floor{position:absolute;left:-50%;right:-50%;bottom:-10%;height:62%;transform:perspective(500px) rotateX(62deg);transform-origin:50% 100%;
-  background-image:linear-gradient(var(--mag) 2px,transparent 2px),linear-gradient(90deg,var(--mag) 2px,transparent 2px);background-size:70px 70px;opacity:.55;
-  mask-image:linear-gradient(to top,#000 30%,transparent 95%);-webkit-mask-image:linear-gradient(to top,#000 30%,transparent 95%)}
-#c2 .sun{position:absolute;left:50%;top:22%;width:38vmin;height:38vmin;margin-left:-19vmin;border-radius:50%;background:linear-gradient(#FFD36B,#FF3CAC 70%);
-  mask-image:repeating-linear-gradient(to bottom,#000 0 14px,transparent 14px 20px);-webkit-mask-image:repeating-linear-gradient(to bottom,#000 0 70%,transparent 70% 100%);opacity:.9;filter:drop-shadow(0 0 40px rgba(255,60,172,.6))}
-#c2 .copy{top:12%}
-#c2 h2{font-family:'Pixel',var(--mono);font-weight:400;font-size:clamp(72px,11vw,200px);line-height:.85;margin:14px 0 0;color:var(--cyan);text-shadow:0 0 24px rgba(43,231,242,.6)}
-#c2 pre{position:absolute;z-index:4;left:max(80px,7vw);top:16%;margin:0;font-family:var(--mono);font-size:clamp(12px,1.05vw,16px);line-height:1.75;direction:ltr;text-align:left;color:#C9C6FF;max-width:44vw;white-space:pre-wrap}
-#c2 pre .k{color:var(--mag)}#c2 pre .s{color:var(--lime)}#c2 pre .f{color:var(--cyan)}#c2 pre .c{color:#7B78A8}
-#c2 pre .cur{display:inline-block;width:.6em;height:1.1em;background:var(--cyan);vertical-align:-2px;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-#c2 .phones{position:absolute;inset:0;pointer-events:none}
-#c2 .ph{position:absolute;bottom:-8%;width:clamp(120px,13vw,210px);aspect-ratio:390/844;border-radius:26px;overflow:hidden;border:6px solid #111;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 30px 60px rgba(0,0,0,.6),0 0 60px rgba(43,231,242,.25);will-change:transform}
-#c2 .ph img{width:100%;height:100%;object-fit:cover;object-position:top}
-@media(max-width:899px){#c2 pre{left:var(--gl);right:var(--gr);top:auto;bottom:34%;max-width:none;font-size:12px}}
+/* END */
+.end{position:relative;z-index:5;background:var(--bg);padding-block:18svh 10svh;text-align:center}
+.end h2{margin:0 auto;font-weight:800;font-size:clamp(56px,9vw,170px);line-height:.88;letter-spacing:-.04em;max-width:12ch}
+.end h2 em{font-style:normal;color:var(--acc)}
+.end p{color:var(--mute);margin:28px auto 34px;max-width:460px}
+.end .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.big{height:56px;padding:0 28px;font-size:16px}
+footer{position:relative;z-index:5;background:var(--bg);border-top:1px solid var(--line);padding-block:24px calc(24px + env(safe-area-inset-bottom,0px));color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
-/* 3 · AI */
-#c3{color:#fff}
-#c3 .orb{position:absolute;left:50%;top:50%;width:46vmin;height:46vmin;margin:-23vmin 0 0 -23vmin;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#fff 0,#FFE2B8 12%,#FF8A5B 34%,#B23CFF 62%,rgba(60,20,140,0) 72%);filter:blur(2px);animation:pulse 4s ease-in-out infinite}
-#c3 .halo{position:absolute;left:50%;top:50%;width:90vmin;height:90vmin;margin:-45vmin 0 0 -45vmin;border-radius:50%;background:radial-gradient(circle,rgba(178,60,255,.35),transparent 60%)}
-@keyframes pulse{50%{transform:scale(1.06)}}
-#c3 .ring{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
-#c3 .ringwrap{position:absolute;inset:0;perspective:1400px}
-#c3 .fr{position:absolute;width:clamp(120px,12vw,200px);aspect-ratio:9/16;margin-left:calc(clamp(120px,12vw,200px) / -2);margin-top:calc(clamp(120px,12vw,200px) * -0.89);border-radius:18px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 20px 50px rgba(0,0,0,.5);background:#1a1033;backface-visibility:hidden}
-#c3 .fr video,#c3 .fr img{width:100%;height:100%;object-fit:cover}
-#c3 .copy{top:10%}
-#c3 h2{font-family:'Madbeka',var(--body);font-weight:400;font-size:clamp(80px,12vw,220px);line-height:.85;margin:14px 0 0;background:linear-gradient(90deg,#FFE2B8,#FF8A5B,#C77DFF);-webkit-background-clip:text;background-clip:text;color:transparent}
-
-/* 4 · SPACE */
-#c4{color:#fff;height:100svh}
-#c4 .copy{top:11%}
-#c4 h2{font-family:'Shelet',var(--body);font-weight:400;font-size:clamp(70px,10vw,190px);line-height:.85;margin:14px 0 0}
-#c4 .planets{position:absolute;inset:0}
-.pl{position:absolute;display:block;border-radius:50%;text-decoration:none;will-change:transform}
-.pl .ball{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.15),0 0 60px var(--glow,rgba(120,160,255,.35))}
-.pl .ball img{width:100%;height:100%;object-fit:cover;transform:scale(1.15)}
-.pl .ball::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.35),transparent 38%),radial-gradient(circle at 70% 75%,rgba(0,0,0,.75),transparent 60%)}
-.pl .ringp{position:absolute;left:-28%;right:-28%;top:42%;height:16%;border:2px solid rgba(255,255,255,.35);border-radius:50%;transform:rotate(-14deg)}
-.pl .lbl{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:12px;white-space:nowrap;text-align:center;font-weight:700;font-size:clamp(14px,1.2vw,18px)}
-.pl .lbl small{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;opacity:.65}
-.pl:hover .ball{box-shadow:0 0 0 2px #fff,0 0 90px var(--glow)}
-.pl:hover{z-index:3}
-#c4 .end{position:absolute;bottom:calc(9% + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;z-index:6}
-#c4 .end p{font-size:clamp(16px,1.4vw,20px);opacity:.8;margin:0 0 20px}
-.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:99px;background:#fff;color:#0A0B1A;font-weight:700;text-decoration:none;font-size:16px;transition:transform .3s}
-.btn:hover{transform:translateY(-3px)}
-.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
-@media(max-width:899px){#c4 .copy{top:9%}}
-
-.spacer{height:0}
-@media(prefers-reduced-motion:reduce){#rider .in,#c3 .orb{animation:none}}
+/* sound modal */
+.modal{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.88);display:grid;place-items:center;padding:16px}
+.modal[hidden]{display:none!important}
+.modal video{width:min(1200px,100%);max-height:86svh;border-radius:14px;background:#000}
+.modal .x{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));left:max(16px,env(safe-area-inset-left,0px))}
+@media(prefers-reduced-motion:reduce){.ln>span{transform:none}}
 </style>
 </head>
 <body>
-<div id="sky"></div>
-<div id="dots"></div>
-<canvas id="stars"></canvas>
-
-<div id="rider" aria-hidden="true"><div class="in">
-  <div class="flame"></div>
-  <img class="sk" src="n/j_rider_sk.webp" alt="">
-  <img class="col" src="n/j_rider.webp" alt="">
-  <div class="scan"></div>
-</div></div>
-
 <header class="nav">
   <a class="me" href="index.html">יובל בן שאול<small>DESIGN · CODE · AI</small></a>
-  <nav><a href="index.html#work">עבודות</a><a href="index.html#why">למה אני</a><a class="cta" href="index.html#contact">בואו נדבר</a></nav>
+  <nav>
+    <button class="pill" id="soundBtn" type="button"><span class="ic"></span><span class="hide-s">הסרטון עם קול</span><span class="mono" style="display:none"></span></button>
+    <a class="pill hide-s" href="index.html#work">כל העבודות</a>
+    <a class="pill acc" href="index.html#contact">בואו נדבר</a>
+  </nav>
 </header>
 
-<aside class="alt" aria-hidden="true">
-  <div class="bar"><i id="altDot"></i><span class="km" id="km">0 KM</span></div>
-  <ul id="altList"><li data-i="0">IMAGINE</li><li data-i="1">DESIGN</li><li data-i="2">CODE</li><li data-i="3">AI</li><li data-i="4">SPACE</li></ul>
-</aside>
-
 <main>
-<!-- 0 · IMAGINATION -->
-<section class="ch" id="c0">
- <div class="stage">
-  <div class="doodles" id="doodles">
-   <svg viewBox="0 0 120 120" style="width:9vw;left:8%;top:14%" data-sp="1.6"><path d="M60 10 L72 46 L110 46 L79 68 L90 106 L60 83 L30 106 L41 68 L10 46 L48 46 Z"/></svg>
-   <svg viewBox="0 0 160 160" style="width:11vw;left:30%;top:66%" data-sp="0.9"><path d="M80 80 m0 -6 a6 6 0 1 1 -6 6 a14 14 0 1 1 14 14 a26 26 0 1 1 -26 -26 a40 40 0 1 1 40 40 a56 56 0 1 1 -56 -56"/></svg>
-   <svg viewBox="0 0 100 140" style="width:6vw;left:46%;top:10%" data-sp="2.2"><path d="M50 10 C20 10 12 45 30 66 C38 76 38 86 38 96 L62 96 C62 86 62 76 70 66 C88 45 80 10 50 10 Z M40 106 L60 106 M42 116 L58 116 M46 126 L54 126"/><path d="M50 0 L50 -14 M86 20 L98 10 M14 20 L2 10"/></svg>
-   <svg viewBox="0 0 220 80" style="width:16vw;left:4%;top:76%" data-sp="1.2"><path d="M8 60 C40 10 80 10 110 40 C140 70 180 70 210 20 M196 18 L211 19 L208 34"/></svg>
-   <svg viewBox="0 0 200 110" style="width:14vw;left:52%;top:78%" data-sp="0.7"><path d="M40 90 C10 90 10 55 38 52 C36 25 70 15 86 36 C96 10 140 10 148 40 C178 36 192 70 168 88 C160 94 150 94 140 92 Z"/></svg>
-   <svg viewBox="0 0 120 200" style="width:6.5vw;left:20%;top:30%" data-sp="2.6"><path d="M60 10 C88 40 92 110 82 150 L38 150 C28 110 32 40 60 10 Z M60 60 a12 12 0 1 1 0.1 0 M38 120 L18 160 L38 150 M82 120 L102 160 L82 150 M48 160 L52 186 M60 160 L60 196 M72 160 L68 186"/></svg>
-   <svg viewBox="0 0 140 140" style="width:8vw;left:36%;top:38%" data-sp="1.9"><path d="M70 14 a56 56 0 1 1 -0.1 0 M30 50 C60 64 80 64 110 50 M30 92 C60 78 80 78 110 92 M70 14 C48 40 48 100 70 126 C92 100 92 40 70 126"/></svg>
-  </div>
-  <div class="copy">
-   <span class="tag"><b></b>פרק 01 · דמיון</span>
-   <h1 id="h0">הכל מתחיל<br>בדמיון</h1>
-   <p>אני יובל. מעצב, מפתח ומי שמחבר ביניהם עם AI. בואו למסע קצר: מסקיצה בעיפרון, דרך עיצוב וקוד, ועד החלל.</p>
-   <div class="fontnote">הכותרת בפונט "אופק" · עיצוב שלי</div>
-  </div>
-  <div class="hint mono"><span>גללו כדי להמריא</span><i></i></div>
- </div>
+<!-- FILM 1 · 00:00–00:07.5 -->
+<section class="film" data-a="0" data-b="75" data-chap="פרק 1 · מי אני">
+  <div class="stick"><canvas></canvas><div class="vig"></div><div class="loadbar" id="loadbar"></div>
+    <div class="ttl" id="hint"><span class="mono">DESIGN · CODE · AI</span><h1>יובל בן שאול</h1><p>מעצב, מפתח ומי שמחבר ביניהם עם AI.<br>גללו, והסרטון ייקח אתכם למסע.</p><i></i></div>
+    <div class="hud"><span class="chap mono"></span><span class="tl"><i></i></span><span class="tc">00:00 / 00:52</span></div></div>
 </section>
 
-<!-- 1 · DESIGN -->
-<section class="ch" id="c1">
- <div class="stage">
-  <div class="grid"></div>
-  <div class="shape s1"></div><div class="shape s3"></div><div class="shape s4"></div><div class="shape s5"></div><div class="shape s2"></div>
-  <div class="tunnel" id="tunnel"></div>
-  <div class="copy">
-   <span class="tag"><b></b>פרק 02 · עיצוב</span>
-   <h2>עיצוב</h2>
-   <p>הסקיצה מקבלת צבע. 7 שנים של מיתוג, לוגואים, קמפיינים ופונטים, כל אחד בשפה משלו.</p>
-   <div class="fontnote">פונט "טורבו" · עיצוב שלי</div>
-  </div>
- </div>
+<!-- SPREAD A · branding & campaigns -->
+<section class="spread" id="sa">
+  <div class="wrap"><div class="sh"><span class="n">01 / מעצב גרפי</span><h2><span class="ln"><span>מיתוג</span></span><span class="ln"><span>וקמפיינים</span></span></h2><p>שפה גרפית שלמה, מהלוגו ועד הבילבורד ברחוב. עבודות אמיתיות ללקוחות אמיתיים.</p></div></div>
+  <div class="hg" id="hg"><div class="track">
+    <article class="hcard"><div class="m"><video muted loop playsinline preload="none" data-src="v/c_duk_bill.mp4" poster="n/dk2m_bill.webp"></video></div><div class="cap"><div><h3>אלי דוקורסקי</h3><span>קמפיין בחירות · עיצוב מחדש</span></div><a href="index.html#b-dukorsky">לפרויקט</a></div></article>
+    <article class="hcard"><div class="m"><video muted loop playsinline preload="none" data-src="v/c_hso_street.mp4" poster="n/hso_street.webp"></video></div><div class="cap"><div><h3>התזמורת הסימפונית חיפה</h3><span>פוסטרים ושילוט עונה</span></div><a href="index.html#work">לעבודות</a></div></article>
+    <article class="hcard"><div class="m"><video muted loop playsinline preload="none" data-src="v/c_elal_term.mp4" poster="n/elal_term.webp"></video></div><div class="cap"><div><h3>אל על</h3><span>מערכת תורים בנתב״ג</span></div><a href="index.html#b-elal">לפרויקט</a></div></article>
+    <article class="hcard"><div class="m"><video muted loop playsinline preload="none" data-src="v/jak_pack.mp4" poster="n/x_jak_pack.webp"></video></div><div class="cap"><div><h3>Jakamiro</h3><span>אי קומרס לתכשיטים</span></div><a href="index.html#work">לעבודות</a></div></article>
+  </div></div>
 </section>
 
-<!-- 2 · CODE -->
-<section class="ch" id="c2">
- <div class="stage">
-  <div class="sun"></div>
-  <div class="floor" id="floor"></div>
-  <pre id="code"></pre>
-  <div class="phones">
-   <div class="ph" style="left:42%" data-d="1"><img src="n/ri_mob.webp" alt="ריצ׳רד במובייל" loading="lazy"></div>
-   <div class="ph" style="left:56%" data-d="1.5"><img src="n/toro_mob.webp" alt="TORO במובייל" loading="lazy"></div>
-   <div class="ph" style="left:70%" data-d="0.8"><img src="b/s_01.webp" alt="ברני" loading="lazy"></div>
-  </div>
-  <div class="copy">
-   <span class="tag"><b></b>פרק 03 · קוד</span>
-   <h2>קוד</h2>
-   <p>ואז העיצוב מתחיל לזוז. אתרים, אפליקציות ובוטים שאני בונה מאפס, מהפיקסל הראשון ועד שהמוצר באוויר.</p>
-   <div class="fontnote">פונט "פיקסל" · עיצוב שלי</div>
-  </div>
- </div>
+<!-- FILM 2 · 00:07.5–00:18 -->
+<section class="film" data-a="75" data-b="180" data-chap="פרק 2 · עיצוב פוגש קוד">
+  <div class="stick"><canvas></canvas><div class="vig"></div><div class="hud"><span class="chap mono"></span><span class="tl"><i></i></span><span class="tc"></span></div></div>
 </section>
 
-<!-- 3 · AI -->
-<section class="ch" id="c3">
- <div class="stage">
-  <div class="halo"></div>
-  <div class="orb"></div>
-  <div class="ringwrap"><div class="ring" id="ring"></div></div>
-  <div class="copy">
-   <span class="tag"><b></b>פרק 04 · בינה</span>
-   <h2>AI</h2>
-   <p>וכאן נכנס השותף החדש. דמויות, סרטונים וקמפיינים שנוצרים עם AI, אבל הכיוון, הטעם והסיפור נשארים שלי.</p>
-   <div class="fontnote">פונט "מדבקה" · עיצוב שלי</div>
-  </div>
- </div>
+<!-- SPREAD B · sites & UI -->
+<section class="spread" id="sb">
+  <div class="wrap"><div class="sh"><span class="n">02 / UI · UX · פרונט אנד</span><h2><span class="ln"><span>אתרים</span></span><span class="ln"><span>וממשקים</span></span></h2><p>אני מעצב את המסך וגם כותב את הקוד שלו, אז מה שעוצב הוא בדיוק מה שעולה לאוויר.</p></div>
+  <div class="eg">
+    <div class="it a"><div class="m"><video muted loop playsinline preload="none" data-src="v/c_lega_desk.mp4" poster="n/lega_desk.webp"></video></div><div class="cap"><div><h3>LEGA6</h3><span>אתר החברה שלי · פיתוח, עיצוב ושיווק</span></div><a href="index.html#work">לעבודות</a></div></div>
+    <div class="it b"><div class="m"><img src="n/lega_site.webp" alt="האתר של LEGA6" loading="lazy" style="object-position:top"></div><div class="cap"><div><h3>LEGA6 במובייל</h3><span>דף בית מלא</span></div></div></div>
+    <div class="it c"><div class="m"><video muted loop playsinline preload="none" data-src="v/c_ella_desk.mp4" poster="n/ella_desk.webp"></video></div><div class="cap"><div><h3>אלה רונדל</h3><span>אתר לאימון פיננסי</span></div><a href="index.html#work">לעבודות</a></div></div>
+    <div class="it d"><div class="m"><img src="n/mo_desk.webp" alt="האתר של MODI-IN" loading="lazy"></div><div class="cap"><div><h3>MODI-IN</h3><span>מודיעין עסקי ומחקר ממקורות גלויים</span></div><a href="index.html#b-modiin">לפרויקט</a></div></div>
+  </div></div>
 </section>
 
-<!-- 4 · SPACE -->
-<section class="ch" id="c4">
- <div class="stage">
-  <div class="planets" id="planets"></div>
-  <div class="copy">
-   <span class="tag"><b></b>פרק 05 · חלל</span>
-   <h2>אל החלל</h2>
-   <p>כל כוכב כאן הוא פרויקט אמיתי. לחצו על כוכב כדי לנחות עליו.</p>
-   <div class="fontnote">פונט "שלט" · עיצוב שלי</div>
+<!-- FILM 3 · 00:18–00:31 -->
+<section class="film" data-a="180" data-b="310" data-chap="פרק 3 · שבע שנים ו-AI">
+  <div class="stick"><canvas></canvas><div class="vig"></div><div class="hud"><span class="chap mono"></span><span class="tl"><i></i></span><span class="tc"></span></div></div>
+</section>
+
+<!-- SPREAD C · AI video -->
+<section class="spread" id="sc">
+  <div class="wrap"><div class="sh"><span class="n">03 / וידאו AI</span><h2><span class="ln"><span>דמויות</span></span><span class="ln"><span>שזזות</span></span></h2><p>הדמויות שעיצבתי למוצרים שלי, בסרטוני AI שנבנו סצנה אחרי סצנה.</p></div>
+  <div class="vr">
+    <div class="v"><video muted loop playsinline preload="none" data-src="w/tv_chef.mp4" poster="w/tv_chef.webp"></video><span>TORO · שף</span></div>
+    <div class="v"><video muted loop playsinline preload="none" data-src="w/tv_barber.mp4" poster="w/tv_barber.webp"></video><span>TORO · ספר</span></div>
+    <div class="v"><video muted loop playsinline preload="none" data-src="w/tv_doctor.mp4" poster="w/tv_doctor.webp"></video><span>TORO · רופא</span></div>
+    <div class="v"><video muted loop playsinline preload="none" data-src="v/c_toro_wave.mp4" poster="v/c_toro_wave.webp"></video><span>TORO · הדמות</span></div>
   </div>
-  <div class="end">
-   <p>המסע רק מתחיל. הפרויקט הבא יכול להיות שלכם.</p>
-   <div class="btns"><a class="btn" href="index.html#work">לכל העבודות</a><a class="btn ghost" href="index.html#contact">בואו נדבר</a></div>
+  <div class="wide"><div class="m"><video muted loop playsinline preload="none" data-src="v/c_ri_butler.mp4" poster="n/x_ri_butler.webp"></video></div><div class="cap"><div><h3>הבאטלרים של ריצ׳רד</h3><span>דמות המותג בארבע תנוחות</span></div><a href="index.html#b-richard">לפרויקט</a></div></div>
   </div>
- </div>
+</section>
+
+<!-- FILM 4 · 00:31–00:52 -->
+<section class="film" data-a="310" data-b="526" data-chap="פרק 4 · מרעיון למוצר">
+  <div class="stick"><canvas></canvas><div class="vig"></div><div class="hud"><span class="chap mono"></span><span class="tl"><i></i></span><span class="tc"></span></div></div>
+</section>
+
+<!-- SPREAD D · products -->
+<section class="spread" id="sd">
+  <div class="wrap"><div class="sh"><span class="n">04 / מוצרים שבניתי</span><h2><span class="ln"><span>מרעיון</span></span><span class="ln"><span>למוצר חי</span></span></h2><p>שלושה מוצרים שהקמתי מאפס: שם, מיתוג, דמות, עיצוב, קוד ו-AI.</p></div>
+  <div class="stack">
+    <article class="pc" style="--c:#C6F432;--t:#0B0B0C"><div class="tx"><div><span class="mono">P-01 · FINTECH · WHATSAPP</span><h3>ריצ׳רד</h3><p>מנהל התקציב של הבית, בוואטסאפ. כותבים "80 פיצה", והוא רושם, מסווג ומתריע.</p></div><a class="go" href="index.html#b-richard">לפרויקט המלא</a></div><div class="im"><video muted loop playsinline preload="none" data-src="v/c_ri_couch.mp4" poster="n/ri_couch.webp"></video></div></article>
+    <article class="pc" style="--c:#0B3C49;--t:#F4F7F8"><div class="tx"><div><span class="mono">P-02 · SAAS · LEGA6</span><h3>TORO</h3><p>אפליקציית תורים לעסקים, עם מותג שלם סביב דמות של שור וסדרת סרטוני AI.</p></div><a class="go" href="index.html#b-toro">לפרויקט המלא</a></div><div class="im"><video muted loop playsinline preload="none" data-src="v/c_toro_bill.mp4" poster="n/x_toro_bill.webp"></video></div></article>
+    <article class="pc" style="--c:#FF6A1A;--t:#160A02"><div class="tx"><div><span class="mono">P-03 · AI COACH · BURN-IE</span><h3>ברני</h3><p>מאמן תזונה בוואטסאפ. מצלמים את הצלחת, והוא סופר ומציע מה לאכול אחר כך.</p></div><a class="go" href="index.html#b-bernie">לפרויקט המלא</a></div><div class="im"><img src="b/overview.webp" alt="ברני" loading="lazy"></div></article>
+  </div></div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <span class="mono" style="color:var(--acc)">05 / הפרק הבא</span>
+    <h2 style="margin-top:22px"><span class="ln"><span>הפרויקט הבא</span></span><span class="ln"><span><em>יכול להיות שלכם</em></span></span></h2>
+    <p>עיצוב, קוד ו-AI במקום אחד. ספרו לי מה אתם רוצים לבנות.</p>
+    <div class="row"><a class="pill acc big" href="index.html#contact">בואו נדבר</a><a class="pill big" href="index.html#work">לכל העבודות</a></div>
+  </div>
 </section>
 </main>
+<footer><div class="wrap mono"><span>© יובל בן שאול</span><span>yuvalbs.com</span></div></footer>
+
+<div class="modal" id="modal" hidden><button class="pill x" id="mx" type="button">סגירה ✕</button><video id="mv" controls playsinline preload="none"></video></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -276,180 +229,75 @@ main{position:relative;z-index:10}
 <script>
 (()=>{
 gsap.registerPlugin(ScrollTrigger);
+const mob=matchMedia('(max-width:899px)').matches, portrait=innerHeight>innerWidth;
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const mob=innerWidth<900;
-const lenis=new Lenis({lerp:.085,smoothWheel:true});
-lenis.on('scroll',ScrollTrigger.update);
-gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+const lenis=new Lenis({lerp:.09,smoothWheel:true});
+lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
 
-/* ---------- build: design tunnel cards ---------- */
-const WORK=[['n/dk2_poster.webp',0.8],['w/toro_logo.webp',1,'logo'],['a/hso_a.webp',1],['n/x_elal_sign.webp',1.79],['n/lega_logo.webp',1,'logo'],['a/duk_poster.webp',1],['a/yo_logo.webp',2,'logo'],['n/x_tik_icon.webp',1.79],['w/mod_poster.webp',.8],['a/shk_logo.webp',1,'logo'],['a/mk_swiss.webp',1.79],['n/x_jak_pack.webp',1.79],['a/qc_logo.webp',1,'logo'],['n/x_toro_bill.webp',1.79]];
-const tun=document.getElementById('tunnel');
-const cards=WORK.slice(0,mob?9:WORK.length).map((w,i)=>{
-  const el=document.createElement('div');el.className='card'+(w[2]?' logo':'');
-  const base=mob?150:Math.min(300,innerWidth*.19);const W=w[1]>=1?base*Math.min(w[1],1.6):base*w[1]*1.05;const H=w[1]>=1?W/w[1]:base*1.25;
-  el.style.width=W+'px';el.style.height=H+'px';el.style.margin=(-H/2)+'px 0 0 '+(-W/2)+'px';
-  el.innerHTML=`<img src="${w[0]}" alt="" loading="lazy">`;tun.appendChild(el);
-  const ang=i*2.39996, rad=(mob?.32:.36)*(0.55+((i*37)%10)/14);
-  return {el,x:Math.cos(ang)*rad*innerWidth,y:Math.sin(ang)*rad*innerHeight*.9,z0:-2600-i*420,rot:((i*53)%30)-15};
+/* ---------- frame sequence (scrubbed film) ---------- */
+const N=527, FPS=10, DIR=portrait?'f/m/':'f/d/';
+let dirty=true;const frames=new Array(N);let loaded=0;const lb=document.getElementById('loadbar');
+const src=i=>DIR+String(i+1).padStart(4,'0')+'.webp';
+function load(i){if(frames[i])return;const im=new Image();im.decoding='async';im.src=src(i);frames[i]=im;im.onload=()=>{im.ok=1;loaded++;if(lb){lb.style.width=(loaded/N*100)+'%';if(loaded>=N)lb.style.opacity=0}dirty=true}}
+/* order: first chapter densely, then every 8th, 4th, 2nd, rest */
+const order=[];for(let i=0;i<80;i++)order.push(i);[8,4,2,1].forEach(s=>{for(let i=0;i<N;i+=s)order.push(i)});
+let qi=0;function pump(){let n=0;while(qi<order.length&&n<6){const i=order[qi++];if(!frames[i]){load(i);n++}}if(qi<order.length)setTimeout(pump,60)}pump();
+function nearest(i){for(let d=0;d<N;d++){const a=frames[i-d],b=frames[i+d];if(a&&a.ok)return a;if(b&&b.ok)return b}return null}
+
+const films=[...document.querySelectorAll('.film')].map(sec=>{
+  const c=sec.querySelector('canvas'),ctx=c.getContext('2d'),a=+sec.dataset.a,b=+sec.dataset.b;
+  const len=b-a, h=Math.max(120,len*(mob?1.05:1.25));sec.style.height=`calc(100svh + ${h}svh)`;
+  sec.querySelector('.chap').textContent=sec.dataset.chap;
+  const tl=sec.querySelector('.tl');[75,180,310].forEach(m=>{const t=document.createElement('b');t.style.left=(m/N*100)+'%';tl.appendChild(t)});
+  return {sec,c,ctx,a,b,cur:a,fill:sec.querySelector('.tl i'),tc:sec.querySelector('.tc'),stick:sec.querySelector('.stick')};
 });
+const DPR=Math.min(devicePixelRatio||1,2);
+function size(){films.forEach(f=>{f.c.width=innerWidth*DPR;f.c.height=innerHeight*DPR});dirty=true}
+size();addEventListener('resize',size);
+function draw(f){const im=nearest(Math.round(f.cur));if(!im)return;const cw=f.c.width,ch=f.c.height,iw=im.naturalWidth,ih=im.naturalHeight;
+  const s=Math.max(cw/iw,ch/ih),w=iw*s,h=ih*s;f.ctx.drawImage(im,(cw-w)/2,(ch-h)/2,w,h)}
+const fmt=s=>{s=Math.max(0,s);const m=Math.floor(s/60),x=Math.floor(s%60);return String(m).padStart(2,'0')+':'+String(x).padStart(2,'0')};
+films.forEach((f,k)=>{
+  ScrollTrigger.create({trigger:f.sec,start:'top top',end:'bottom bottom',scrub:true,onUpdate:s=>{
+    f.cur=f.a+(f.b-f.a)*s.progress;dirty=true;
+    f.fill.style.width=(f.cur/N*100)+'%';f.tc.textContent=fmt(f.cur/FPS)+' / 00:52';
+    if(k===0){const h=document.getElementById('hint'),o=Math.max(0,1-s.progress*14);h.style.opacity=o;h.style.transform=`translateY(calc(-50% - ${(1-o)*60}px))`}
+    for(let i=Math.round(f.cur);i<Math.min(N,Math.round(f.cur)+30);i++)load(i);
+  }});
+  f.fill.style.width=(f.a/N*100)+'%';f.tc.textContent=fmt(f.a/FPS)+' / 00:52';
+  /* film recedes as the next spread slides over it */
+  const next=f.sec.nextElementSibling;
+  if(next&&!RM)gsap.to(f.stick,{scale:.9,borderRadius:28,opacity:.35,ease:'none',scrollTrigger:{trigger:next,start:'top bottom',end:'top 15%',scrub:true}});
+});
+gsap.ticker.add(()=>{if(!dirty)return;dirty=false;films.forEach(f=>{const r=f.sec.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight)draw(f)})});
 
-/* ---------- build: AI ring ---------- */
-const RINGV=['w/tv_chef.mp4','v/c_ri_butler.mp4','b/an_splash.mp4','w/tv_barber.mp4','v/c_toro_wave.mp4','b/an_drink.mp4','w/tv_doctor.mp4','v/c_ri_couch.mp4'];
-const ring=document.getElementById('ring');const R=mob?190:Math.min(520,innerWidth*.34);
-RINGV.forEach((src,i)=>{const f=document.createElement('div');f.className='fr';const a=i/RINGV.length*360;
-  f.style.transform=`rotateY(${a}deg) translateZ(${R}px)`;
-  f.innerHTML=`<video muted loop playsinline preload="none" data-src="${src}" poster="${src.replace('.mp4','.webp')}"></video>`;ring.appendChild(f)});
+/* ---------- headlines ---------- */
+document.querySelectorAll('.ln>span').forEach(el=>{if(RM)return;gsap.to(el,{y:0,duration:1.1,ease:'power4.out',scrollTrigger:{trigger:el.parentElement,start:'top 88%'}})});
 
-/* ---------- build: planets ---------- */
-const PL=[['ריצ׳רד','FINTECH · WHATSAPP','n/ri_float.webp','index.html#b-richard',[.44,.4],170,'rgba(198,244,50,.45)',0],
- ['TORO','SAAS · BRAND','w/toro_full.webp','index.html#b-toro',[.3,.3],140,'rgba(43,231,242,.45)',1],
- ['דוקורסקי','CAMPAIGN','n/dk2m_bill.webp','index.html#b-dukorsky',[.82,.6],120,'rgba(36,67,217,.55)',0],
- ['ברני','AI COACH','b/s_01.webp','index.html#b-bernie',[.18,.62],110,'rgba(255,122,47,.5)',0],
- ['אל על','WAYFINDING','n/elal_term.webp','index.html#b-elal',[.48,.66],95,'rgba(80,140,255,.45)',1],
- ['יוחננוף','BRAND · UI','n/yo_store.webp','index.html#b-yochananof',[.6,.14],80,'rgba(247,194,27,.45)',0],
- ['MODI-IN','LANDING','n/mo_hero.webp','index.html#b-modiin',[.12,.2],70,'rgba(255,255,255,.35)',0]];
-const pw=document.getElementById('planets');
-const planets=PL.map((p,i)=>{const a=document.createElement('a');a.className='pl';a.href=p[3];
-  const s=p[5]*(mob?.62:Math.min(1.25,innerWidth/1440*1.2));a.style.width=a.style.height=s+'px';
-  a.style.left=`calc(${p[4][0]*100}% - ${s/2}px)`;a.style.top=`calc(${(mob?.36+p[4][1]*.48:p[4][1])*100}% - ${s/2}px)`;a.style.setProperty('--glow',p[6]);
-  a.innerHTML=`<span class="ball"><img src="${p[2]}" alt="" loading="lazy"></span>${p[7]?'<span class="ringp"></span>':''}<span class="lbl">${p[0]}<small>${p[1]}</small></span>`;
-  pw.appendChild(a);return {el:a,d:.4+((i*31)%10)/8}});
+/* ---------- horizontal gallery ---------- */
+if(!mob){const tr=document.querySelector('#hg .track');
+  const dist=()=>tr.scrollWidth-innerWidth;
+  gsap.to(tr,{x:()=>dist(),ease:'none',scrollTrigger:{trigger:'#hg',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
+  document.querySelectorAll('.hcard .m>*').forEach(m=>gsap.fromTo(m,{xPercent:-6},{xPercent:6,ease:'none',scrollTrigger:{trigger:'#hg',start:'top top',end:()=>'+='+dist(),scrub:true}}));
+}
+/* ---------- parallax inside media ---------- */
+document.querySelectorAll('.eg .m>*,.wide .m>*').forEach(m=>gsap.fromTo(m,{yPercent:-7},{yPercent:7,ease:'none',scrollTrigger:{trigger:m.parentElement,start:'top bottom',end:'bottom top',scrub:true}}));
+if(!mob)document.querySelectorAll('.eg .it').forEach((it,i)=>gsap.fromTo(it,{y:60*(i%2?1:.4)},{y:-60*(i%2?1:.4),ease:'none',scrollTrigger:{trigger:it,start:'top bottom',end:'bottom top',scrub:true}}));
+document.querySelectorAll('.vr .v').forEach((v,i)=>gsap.fromTo(v,{y:mob?30:90+i*20},{y:mob?-30:-90-i*20,ease:'none',scrollTrigger:{trigger:'.vr',start:'top bottom',end:'bottom top',scrub:true}}));
+/* stacking cards shrink as the next one covers them */
+const pcs=[...document.querySelectorAll('.pc')];
+pcs.forEach((p,i)=>{if(i===pcs.length-1||RM)return;gsap.to(p,{scale:.92,opacity:.5,ease:'none',scrollTrigger:{trigger:pcs[i+1],start:'top bottom',end:'top 20%',scrub:true}})});
 
-/* ---------- code typing text ---------- */
-const CODE=`<span class="c">// journey.js · ככה נבנה רעיון</span>
-<span class="k">const</span> idea = <span class="f">imagine</span>(<span class="s">'משהו שעוד לא קיים'</span>)
+/* ---------- lazy videos: play only when visible ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;v.play().catch(()=>{})}else v.pause()}),{rootMargin:'200px'});
+document.querySelectorAll('video[data-src]').forEach(v=>io.observe(v));
 
-<span class="k">const</span> brand = <span class="f">design</span>(idea, {
-  type: <span class="s">'פונט משלי'</span>,
-  color: [<span class="s">'#E8432E'</span>, <span class="s">'#F7C21B'</span>],
-  story: <span class="k">true</span>
-})
-
-<span class="k">const</span> product = <span class="k">await</span> <span class="f">build</span>(brand)
-  .<span class="f">web</span>().<span class="f">mobile</span>().<span class="f">whatsapp</span>()
-
-product.<span class="f">launch</span>({ to: <span class="s">'space'</span> })`;
-const pre=document.getElementById('code');
-const tmp=document.createElement('div');tmp.innerHTML=CODE;const FULL=tmp.textContent.length;
-function typeTo(n){let left=n;const out=document.createElement('div');
-  (function walk(src,dst){for(const node of src.childNodes){if(left<=0)return;
-    if(node.nodeType===3){const t=node.textContent.slice(0,left);left-=t.length;dst.appendChild(document.createTextNode(t))}
-    else{const c=node.cloneNode(false);dst.appendChild(c);walk(node,c)}}})(tmp,out);
-  pre.innerHTML=out.innerHTML+'<span class="cur"></span>'}
-typeTo(0);
-
-/* ---------- stars canvas ---------- */
-const cv=document.getElementById('stars'),cx=cv.getContext('2d');let SW,SH,DPR=Math.min(devicePixelRatio,2);
-const ST=Array.from({length:mob?260:520},()=>({x:Math.random()*2-1,y:Math.random()*2-1,z:Math.random()}));
-function sz(){SW=innerWidth;SH=innerHeight;cv.width=SW*DPR;cv.height=SH*DPR}sz();addEventListener('resize',sz);
-let warp=0,starOn=0;
-function drawStars(){if(starOn<0.01){cx.clearRect(0,0,cv.width,cv.height);return}
-  cx.setTransform(DPR,0,0,DPR,0,0);cx.clearRect(0,0,SW,SH);const cxm=SW/2,cym=SH/2;
-  for(const s of ST){s.z-=0.0012+warp*0.02;if(s.z<=0.02){s.z=1;s.x=Math.random()*2-1;s.y=Math.random()*2-1}
-    const k=1/s.z,px=cxm+s.x*cxm*k*.5,py=cym+s.y*cym*k*.5;if(px<0||px>SW||py<0||py>SH)continue;
-    const r=Math.max(.4,(1-s.z)*2.2);cx.strokeStyle=cx.fillStyle=`rgba(255,255,255,${.35+(1-s.z)*.65})`;
-    if(warp>.05){const k2=1/(s.z+warp*.06),qx=cxm+s.x*cxm*k2*.5,qy=cym+s.y*cym*k2*.5;cx.lineWidth=r;cx.beginPath();cx.moveTo(qx,qy);cx.lineTo(px,py);cx.stroke()}
-    else{cx.beginPath();cx.arc(px,py,r*.7,0,7);cx.fill()}}}
-gsap.ticker.add(drawStars);
-
-/* ---------- doodles: prepare stroke draw ---------- */
-const dpaths=[...document.querySelectorAll('#doodles path')];
-dpaths.forEach(p=>{const L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L});
-
-/* ---------- SKY colours per chapter ---------- */
-const sky=document.getElementById('sky'),dots=document.getElementById('dots');
-const rider=document.getElementById('rider'),col=rider.querySelector('.col'),scan=rider.querySelector('.scan'),flame=rider.querySelector('.flame');
-const RW=()=>rider.offsetWidth,RH=()=>rider.offsetHeight;
-gsap.set(rider,{xPercent:-50,yPercent:-50,x:()=>mob?0:-innerWidth*.2,y:()=>mob?-innerHeight*.12:0});
-
-/* intro */
-if(!RM){gsap.from('#h0',{opacity:0,y:40,duration:1.2,ease:'power3.out',delay:.2});
- gsap.from(rider,{opacity:0,scale:.85,duration:1.4,ease:'power3.out',delay:.35});
- gsap.to(dpaths.slice(0,3),{strokeDashoffset:0,duration:2.2,ease:'power2.inOut',stagger:.25,delay:.4});}
-
-/* ===== CH0 · imagination → sketch comes alive ===== */
-const t0=gsap.timeline({scrollTrigger:{trigger:'#c0',start:'top top',end:'+=220%',scrub:1,pin:true}});
-t0.to(dpaths.slice(3),{strokeDashoffset:0,stagger:.1,duration:.5},0)
-  .to('#c0 .copy',{y:-60,opacity:.2,duration:1},.55)
-  .to(scan,{opacity:1,duration:.05},.2)
-  .fromTo(col,{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0% 0)',duration:.6,ease:'none'},.22)
-  .fromTo(scan,{top:'0%'},{top:'100%',duration:.6,ease:'none'},.22)
-  .to(scan,{opacity:0,duration:.05},.82)
-  .to(rider.querySelector('.sk'),{opacity:0,duration:.1},.8)
-  .to(flame,{opacity:1,duration:.15},.85)
-  .to('#c0 .hint',{opacity:0,duration:.1},0);
-document.querySelectorAll('#doodles svg').forEach(s=>{gsap.to(s,{y:()=>-innerHeight*.35*s.dataset.sp,rotate:(s.dataset.sp-1.5)*20,ease:'none',scrollTrigger:{trigger:'#c0',start:'top top',end:'+=220%',scrub:true}})});
-
-/* ===== CH1 · design: fly through the work ===== */
-const t1=gsap.timeline({scrollTrigger:{trigger:'#c1',start:'top top',end:'+=320%',scrub:1,pin:true}});
-cards.forEach((c,i)=>{gsap.set(c.el,{x:c.x,y:c.y,z:c.z0,rotation:c.rot,opacity:0});
-  t1.to(c.el,{z:900,opacity:1,duration:1,ease:'none',
-    onUpdate(){},},i*.17)
-    .to(c.el,{opacity:0,duration:.12,ease:'none'},i*.17+.88);});
-t1.fromTo('#c1 .s1',{x:-200,rotate:0},{x:120,y:-80,duration:3,ease:'none'},0)
-  .fromTo('#c1 .s2',{y:200},{y:-260,x:-140,duration:3,ease:'none'},0)
-  .fromTo('#c1 .s3',{x:-300},{x:260,duration:3,ease:'none'},0)
-  .fromTo('#c1 .s4',{y:-200},{y:300,duration:3,ease:'none'},0)
-  .fromTo('#c1 .s5',{scale:.4},{scale:1.6,x:-200,y:140,duration:3,ease:'none'},0)
-  .fromTo('#c1 .copy',{opacity:0,y:60},{opacity:1,y:0,duration:.3},0)
-  .to('#c1 .copy',{opacity:0,y:-60,duration:.3},2.6);
-
-/* ===== CH2 · code ===== */
-const ty={n:0};
-const t2=gsap.timeline({scrollTrigger:{trigger:'#c2',start:'top top',end:'+=240%',scrub:1,pin:true}});
-t2.to(ty,{n:FULL,duration:2,ease:'none',onUpdate:()=>typeTo(Math.round(ty.n))},0)
-  .fromTo('#floor',{backgroundPositionY:'0px'},{backgroundPositionY:'560px',duration:3,ease:'none'},0)
-  .fromTo('#c2 .sun',{y:120,scale:.8},{y:-40,scale:1,duration:3,ease:'none'},0)
-  .fromTo('#c2 .copy',{opacity:0,y:60},{opacity:1,y:0,duration:.3},0)
-  .to('#c2 .copy',{opacity:0,y:-60,duration:.3},2.6);
-document.querySelectorAll('#c2 .ph').forEach((p,i)=>{t2.fromTo(p,{y:innerHeight*.7,rotate:(i-1)*6},{y:-innerHeight*(0.06+.06*p.dataset.d),rotate:(1-i)*5,duration:2.4,ease:'power1.out'},.3+i*.15)});
-
-/* ===== CH3 · AI ring ===== */
-const t3=gsap.timeline({scrollTrigger:{trigger:'#c3',start:'top top',end:'+=240%',scrub:1,pin:true,
-  onEnter:()=>playRing(true),onEnterBack:()=>playRing(true),onLeave:()=>playRing(false),onLeaveBack:()=>playRing(false)}});
-t3.fromTo(ring,{rotationY:0,rotationX:-8,y:40},{rotationY:-300,rotationX:6,y:-20,duration:3,ease:'none'},0)
-  .fromTo('#c3 .orb',{scale:.6},{scale:1.15,duration:3,ease:'none'},0)
-  .fromTo('#c3 .copy',{opacity:0,y:60},{opacity:1,y:0,duration:.3},0)
-  .to('#c3 .copy',{opacity:0,y:-60,duration:.3},2.6);
-function playRing(on){ring.querySelectorAll('video').forEach(v=>{if(on){if(!v.src){v.src=v.dataset.src}v.play().catch(()=>{})}else v.pause()})}
-
-/* ===== CH4 · space ===== */
-const t4=gsap.timeline({scrollTrigger:{trigger:'#c4',start:'top top',end:'+=200%',scrub:1,pin:true}});
-planets.forEach((p,i)=>{t4.fromTo(p.el,{scale:.2,opacity:0,y:200*p.d},{scale:1,opacity:1,y:-60*p.d,duration:1.6,ease:'power2.out'},.1+i*.12)});
-t4.fromTo('#c4 .copy',{opacity:0,y:60},{opacity:1,y:0,duration:.3},0.1)
-  .fromTo('#c4 .end',{opacity:0,y:40},{opacity:1,y:0,duration:.5},1.6);
-
-/* ===== global: sky, stars, rider path, altimeter =====
-   chapter pins (in viewport heights): c0 0-220 · c1 320-640 · c2 740-980 · c3 1080-1320 · c4 1420-1620 → total 1620 */
-const T=1620,P=v=>v/T;
-const G=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'main',start:'top top',end:'bottom bottom',scrub:1.2}});
-G.to({},{duration:1},0);
-G.to(sky,{backgroundColor:'#F4EFE6',duration:P(100)},P(220))
- .to(sky,{backgroundColor:'#0A0B1A',duration:P(100)},P(640))
- .to(dots,{opacity:0,duration:P(80)},P(640))
- .to(sky,{backgroundColor:'#1A0B33',duration:P(100)},P(980))
- .to(sky,{backgroundColor:'#03040A',duration:P(100)},P(1320))
- .to(cv,{opacity:1,duration:P(80)},P(1300));
-const vw=()=>innerWidth,vh=()=>innerHeight;
-G.to(rider,{x:()=>mob?0:-vw()*.24,y:()=>mob?-vh()*.08:vh()*.04,rotation:-5,duration:P(100)},P(220))
- .to(rider,{x:()=>mob?vw()*.16:-vw()*.04,y:()=>mob?vh()*.27:vh()*.22,scale:.7,rotation:7,duration:P(100)},P(640))
- .to(rider,{x:()=>0,y:()=>mob?vh()*.06:vh()*.03,scale:.5,rotation:0,duration:P(100)},P(980))
- .to(rider,{x:()=>mob?-vw()*.25:-vw()*.3,y:()=>mob?-vh()*.3:-vh()*.3,scale:.3,rotation:-20,duration:P(160)},P(1320));
-const altDot=document.getElementById('altDot'),km=document.getElementById('km'),lis=[...document.querySelectorAll('#altList li')];
-const B=[0,P(270),P(690),P(1030),P(1370)];
-ScrollTrigger.create({trigger:'main',start:'top top',end:'bottom bottom',onUpdate:s=>{
-  const p=s.progress;altDot.style.bottom=(p*100)+'%';
-  km.textContent=Math.round(Math.pow(p,3)*408)+' KM';
-  let idx=0;B.forEach((b,i)=>{if(p>=b)idx=i});lis.forEach((l,i)=>l.classList.toggle('on',i===idx));
-  const c=P(1370);warp=Math.max(0,1-Math.abs(p-c)/.035);starOn=p>P(1290)?1:0;
-}});
-/* tiny parallax on mouse */
-if(!mob&&!RM){addEventListener('pointermove',e=>{const mx=e.clientX/innerWidth-.5,my=e.clientY/innerHeight-.5;
-  gsap.to('#tunnel',{rotationY:mx*8,rotationX:-my*6,duration:.8,overwrite:'auto'});
-  gsap.to('#planets',{x:mx*-30,y:my*-20,duration:1,overwrite:'auto'});
-  gsap.to('.ringwrap',{x:mx*-24,y:my*-16,duration:1,overwrite:'auto'});
-  gsap.to('#doodles',{x:mx*-20,y:my*-14,duration:1,overwrite:'auto'})});}
+/* ---------- full video with sound ---------- */
+const modal=document.getElementById('modal'),mv=document.getElementById('mv');
+document.getElementById('soundBtn').addEventListener('click',()=>{mv.src=portrait?'a/hero_v.mp4':'a/hero.mp4';modal.hidden=false;lenis.stop();mv.currentTime=0;mv.play().catch(()=>{})});
+function close(){mv.pause();modal.hidden=true;lenis.start()}
+document.getElementById('mx').addEventListener('click',close);modal.addEventListener('click',e=>{if(e.target===modal)close()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)close()});
 addEventListener('load',()=>ScrollTrigger.refresh());
 })();
 </script>
