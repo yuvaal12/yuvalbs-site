@@ -3077,7 +3077,7 @@ document.querySelectorAll('.world .stage>.sttl').forEach(t=>{const sec=t.closest
   const f=F[sec.id];if(f){const d=document.createElement('div');d.className='wfacts';d.innerHTML=f.map(x=>`<div>${x[0]}<b>${x[1]}</b></div>`).join('');t.appendChild(d)}})})();
 </script>
 <style>
-/* ===== LAB: full-width project showcases on the home page ===== */
+/* ===== full-width project showcases on the home page ===== */
 .world .in>:not(.stage):not(.wshow){display:none!important}
 .world{padding-bottom:0!important}
 .wshow{width:100vw;margin-inline:calc(50% - 50vw);position:relative;margin-top:2vh}
@@ -3112,13 +3112,13 @@ document.querySelectorAll('.world .stage>.sttl').forEach(t=>{const sec=t.closest
 <script>
 (()=>{
 const ITEMS=window.__ITEMS;if(!ITEMS)return;
-const BY={};ITEMS.forEach(i=>{BY[i.id]=i});
+const BY={};ITEMS.forEach(i=>{BY[i.id]=i});BY.duk_hd={id:'duk_hd',b:'dukorsky',src:'/n/duk_bill_hd.webp',t:'שלט חוצות',r:.558};
 /* curated layouts: [id, columns of 12, aspect, contain?] — every image comes from the project's own gallery */
 const L={
  'w-synth':{b:'richard',name:'ריצ׳רד',hero:'n_ri_couch',rows:[[['n_ri_store',8,'16/9'],['x_ri_butler',4,'auto']],[['n_ri_home',3,'9/16'],['n_ri_insights',3,'9/16'],['n_ri_savings',3,'9/16'],['n_ri_list',3,'9/16']],[['x_ri_bill',12,'21/9']]]},
- 'w-swiss':{b:'dukorsky',name:'דוקורסקי',hero:'n_dk2m_bill',rows:[[['n_dk2m_bus',8,'16/9'],['n_dk2m_merch',4,'auto']],[['n_dk2_s1',4,'1/1'],['n_dk2_s2',4,'1/1'],['n_dk2_s3',4,'1/1']],[['n_dk2_bill',12,'3/1']]]},
+ 'w-swiss':{b:'dukorsky',name:'דוקורסקי',hero:'duk_hd',rows:[[['n_dk2m_bus',8,'16/9'],['n_dk2m_merch',4,'auto']],[['n_dk2_s1',4,'1/1'],['n_dk2_s2',4,'1/1'],['n_dk2_s3',4,'1/1']],[['n_dk2_bill',12,'3/1']]]},
  'w-pop':{b:'bernie',name:'ברני',hero:'b_ov',rows:[[['b_an_eat',4,'1/1'],['b_an_drink',4,'1/1'],['b_an_steps',4,'1/1']],[['b_s01',3,'9/16'],['b_s04',3,'9/16'],['b_s09',3,'9/16'],['b_s12',3,'9/16']]]},
- 'w-clay':{b:'toro',name:'TORO',hero:'x_toro_bill',rows:[[['toro_ui',8,'16/9'],['toro_mascot',4,'auto']],[['tv_barber',3,'9/16'],['tv_chef',3,'9/16'],['tv_lawyer',3,'9/16'],['tv_pilates',3,'9/16']],[['x_toro_merch',12,'21/9']]]},
+ 'w-clay':{b:'toro',name:'TORO',hero:'x_toro_merch',rows:[[['toro_ui',8,'16/9'],['toro_mascot',4,'auto']],[['tv_barber',3,'9/16'],['tv_chef',3,'9/16'],['tv_lawyer',3,'9/16'],['tv_pilates',3,'9/16']],[['x_toro_sheet',12,'21/9']]]},
  'w-deco':{b:'jakamiro',name:'Jakamiro',hero:'n_jak_box',rows:[[['x_jak_cat',8,'16/9'],['jakamiro_1',4,'auto']],[['jakamiro_3',6,'16/10'],['x_jak_pack',6,'16/10']],[['x_jak_grid',12,'21/9']]]}};
 const media=(it,hero)=>it.v?`<video ${hero?'':'preload="none"'} data-ws="${it.v}" poster="${it.src}" muted loop playsinline></video>`:`<img src="${it.src}" alt="${(it.t||'').replace(/"/g,'')}" loading="lazy" decoding="async">`;
 Object.entries(L).forEach(([sid,cfg])=>{const sec=document.getElementById(sid);if(!sec)return;const inn=sec.querySelector('.in');if(!inn||inn.querySelector('.wshow'))return;
