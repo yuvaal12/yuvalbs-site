@@ -573,7 +573,7 @@ nav.top .lg{width:30px;height:36px}
 
 /* 01 SWISS */
 .w-swiss{color:#111}
-.w-lega{color:#0A1510}@media(max-width:900px){#w-lega .ws-hero .fr>video,#w-lega .ws-hero .fr>img{object-position:12% 50%}}.w-lega .ptitle{font-family:'Space Grotesk',var(--display);letter-spacing:-.05em;color:#0A1510}.w-lega .psub{color:#3B4A42}.w-lega .ptitle::after{content:'.';color:#2F5BFF}
+@media(max-width:900px){.world .lvs .lv-char.lv-card{width:46vw!important;margin-right:-23vw!important;right:50%!important;top:28px!important;bottom:auto!important}.world .stage .lvs:has(.lv-card){min-height:calc(57.5vw + 70px)!important}}.w-lega{color:#0A1510}@media(max-width:900px){#w-lega .ws-hero .fr>video,#w-lega .ws-hero .fr>img{object-position:12% 50%}}.w-lega .ptitle{font-family:'Space Grotesk',var(--display);letter-spacing:-.05em;color:#0A1510}.w-lega .psub{color:#3B4A42}.w-lega .ptitle::after{content:'.';color:#2F5BFF}
 .w-swiss::before{content:"";position:absolute;inset:0;background:linear-gradient(-90deg,rgba(0,0,0,.07) 1px,transparent 1px) 0 0/calc(100%/12) 100%;pointer-events:none}
 .w-swiss .ptitle{font-family:"Rubik";letter-spacing:-.05em;color:#121A5E}
 
@@ -2998,17 +2998,17 @@ const BY={};ITEMS.forEach(i=>{BY[i.id]=i});BY.duk_hd={id:'duk_hd',b:'dukorsky',s
 const L={
  'w-synth':{b:'richard',name:'Richard',hero:'n_ri_couch',rows:[[['n_ri_store',8,'16/9'],['x_ri_butler',4,'auto']],[['n_ri_home',3,'9/16'],['n_ri_insights',3,'9/16'],['n_ri_savings',3,'9/16'],['n_ri_list',3,'9/16']],[['x_ri_bill',12,'21/9']]]},
  'w-lega':{b:'lega6',name:'LEGA6',hero:'lg7_hero_v',rows:[[['lg7_story',8,'16/9'],['lg7_m_hero',4,'auto']],[['lg7_claude',3,'1/1'],['lg7_gemini',3,'1/1'],['lg7_higgsfield',3,'1/1'],['lg7_elevenlabs',3,'1/1']],[['lg7_guide',6,'16/10'],['lg7_studio',6,'16/10']]]},
- 'w-swiss':{b:'dukorsky',name:'Dukorsky',hero:'n_dk2_bill',fit:'#121A5E',rows:[[['n_dk2_lp',8,'16/10'],['n_dk2_poster',4,'auto','ct']],[['n_dk2_s1',4,'1/1'],['n_dk2_s2',4,'1/1'],['n_dk2_s3',4,'1/1']]]},
+ 'w-swiss':{b:'dukorsky',name:'Dukorsky',hero:'n_dk2_bill',mhero:'n_dk2_poster',fit:'#121A5E',rows:[[['n_dk2_lp',8,'16/10'],['n_dk2_poster',4,'auto','ct']],[['n_dk2_s1',4,'1/1'],['n_dk2_s2',4,'1/1'],['n_dk2_s3',4,'1/1']]]},
  'w-pop':{b:'bernie',name:'Bernie',hero:'b_ov',rows:[[['b_an_eat',4,'1/1'],['b_an_drink',4,'1/1'],['b_an_steps',4,'1/1']],[['b_s01',3,'9/16'],['b_s04',3,'9/16'],['b_s09',3,'9/16'],['b_s12',3,'9/16']]]},
  'w-clay':{b:'toro',name:'TORO',hero:'x_toro_merch',rows:[[['toro_ui',8,'16/9'],['toro_mascot',4,'auto']],[['tv_barber',3,'9/16'],['tv_chef',3,'9/16'],['tv_lawyer',3,'9/16'],['tv_pilates',3,'9/16']],[['x_toro_sheet',12,'21/9']]]},
  'w-deco':{b:'jakamiro',name:'Jakamiro',hero:'n_jak_box',rows:[[['x_jak_cat',8,'16/9'],['jakamiro_1',4,'auto']],[['jakamiro_3',6,'16/10'],['x_jak_pack',6,'16/10']],[['x_jak_grid',12,'21/9']]]}};
 const media=(it,hero)=>it.v?`<video ${hero?'':'preload="none"'} data-ws="${it.v}" poster="${it.src}" muted loop playsinline></video>`:`<img src="${it.src}" alt="${(it.t||'').replace(/"/g,'')}" loading="lazy" decoding="async">`;
 Object.entries(L).forEach(([sid,cfg])=>{const sec=document.getElementById(sid);if(!sec)return;const inn=sec.querySelector('.in');if(!inn||inn.querySelector('.wshow'))return;
-  const count=ITEMS.filter(i=>i.b===cfg.b).length,h=BY[cfg.hero];
+  const MOBW=innerWidth<901;cfg=Object.assign({},cfg,{hfit:cfg.fit});if(MOBW&&cfg.mhero){cfg.hero=cfg.mhero;cfg.hfit=null}const count=ITEMS.filter(i=>i.b===cfg.b).length,h=BY[cfg.hero];
   let g='';cfg.rows.forEach(r=>{const tall=r.some(c=>c[2]==='auto');r.forEach(([id,span,ar,fit])=>{const it=BY[id];if(!it)return;const a=ar==='auto'?'':`aspect-ratio:${ar};`;
     g+=`<a class="ws-t${span>=8?' w2':''}${fit?' ct':''}" href="#b-${cfg.b}" style="grid-column:span ${span};${a}${fit&&cfg.fit?'background:'+cfg.fit+';':''}">${media(it)}${it.t?`<i>${it.t}</i>`:''}</a>`})});
   const w=document.createElement('div');w.className='wshow';
-  w.innerHTML=`${h?`<section class="ws-hero" aria-label="${cfg.name}"><div class="st"><div class="fr${cfg.fit?' ct':''}" ${cfg.fit?`style="background:${cfg.fit}"`:''}>${media(h,1)}</div><div class="cap"><b>${cfg.name}</b><span>${h.t||''} · ${count} עבודות בפרויקט</span></div></div></section>`:''}
+  w.innerHTML=`${h?`<section class="ws-hero" aria-label="${cfg.name}"><div class="st"><div class="fr${cfg.hfit?' ct':''}" ${cfg.hfit?`style="background:${cfg.hfit}"`:''}>${media(h,1)}</div><div class="cap"><b>${cfg.name}</b><span>${h.t||''} · ${count} עבודות בפרויקט</span></div></div></section>`:''}
    <div class="ws-grid">${g}</div>
    <div class="ws-foot"><div class="n">${count}<small>עבודות בפרויקט ${cfg.name}</small></div><a class="lnk pri" href="#b-${cfg.b}">Full project →</a></div>`;
   inn.appendChild(w)});
