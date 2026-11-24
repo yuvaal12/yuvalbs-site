@@ -2937,7 +2937,8 @@ document.querySelectorAll('.world .stage>.sttl').forEach(t=>{const sec=t.closest
 .ws-t{position:relative;width:100%;justify-self:stretch;align-self:stretch;overflow:hidden;border-radius:clamp(14px,1.4vw,26px);background:color-mix(in srgb,currentColor 8%,transparent);display:block;color:#fff;clip-path:inset(12% 0 0 0 round 22px);opacity:0;transition:clip-path 1.1s cubic-bezier(.2,.8,.2,1),opacity .8s}
 .ws-t.shw{clip-path:inset(0 0 0 0 round 0);opacity:1}
 .ws-t img,.ws-t video{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;object-position:50% 0;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.ws-t.ct img{object-fit:contain;padding:6%}
+.ws-t.ct img{object-fit:contain;padding:6%;inset:0;height:100%}
+.ws-hero .fr.ct>img{object-fit:contain;padding:12vh 9vw;transform:none}
 .ws-t:hover img,.ws-t:hover video{transform:scale(1.05)}
 .ws-t i{position:absolute;bottom:14px;right:14px;font:500 11px var(--mono);font-style:normal;letter-spacing:.12em;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:6px 10px;border-radius:99px;opacity:0;transform:translateY(8px);transition:all .35s}
 .ws-t:hover i{opacity:1;transform:none}
@@ -2960,17 +2961,17 @@ const BY={};ITEMS.forEach(i=>{BY[i.id]=i});BY.duk_hd={id:'duk_hd',b:'dukorsky',s
 /* curated layouts: [id, columns of 12, aspect, contain?] — every image comes from the project's own gallery */
 const L={
  'w-synth':{b:'richard',name:'ריצ׳רד',hero:'n_ri_couch',rows:[[['n_ri_store',8,'16/9'],['x_ri_butler',4,'auto']],[['n_ri_home',3,'9/16'],['n_ri_insights',3,'9/16'],['n_ri_savings',3,'9/16'],['n_ri_list',3,'9/16']],[['x_ri_bill',12,'21/9']]]},
- 'w-swiss':{b:'dukorsky',name:'דוקורסקי',hero:'n_dk2m_stand',rows:[[['n_dk2m_bus',8,'16/9'],['n_dk2m_merch',4,'auto']],[['n_dk2_s1',4,'1/1'],['n_dk2_s2',4,'1/1'],['n_dk2_s3',4,'1/1']],[['n_dk2m_lp',12,'21/9']]]},
+ 'w-swiss':{b:'dukorsky',name:'דוקורסקי',hero:'n_dk2_bill',fit:'#121A5E',rows:[[['n_dk2_lp',8,'16/10'],['n_dk2_poster',4,'auto','ct']],[['n_dk2_s1',4,'1/1'],['n_dk2_s2',4,'1/1'],['n_dk2_s3',4,'1/1']]]},
  'w-pop':{b:'bernie',name:'ברני',hero:'b_ov',rows:[[['b_an_eat',4,'1/1'],['b_an_drink',4,'1/1'],['b_an_steps',4,'1/1']],[['b_s01',3,'9/16'],['b_s04',3,'9/16'],['b_s09',3,'9/16'],['b_s12',3,'9/16']]]},
  'w-clay':{b:'toro',name:'TORO',hero:'x_toro_merch',rows:[[['toro_ui',8,'16/9'],['toro_mascot',4,'auto']],[['tv_barber',3,'9/16'],['tv_chef',3,'9/16'],['tv_lawyer',3,'9/16'],['tv_pilates',3,'9/16']],[['x_toro_sheet',12,'21/9']]]},
  'w-deco':{b:'jakamiro',name:'Jakamiro',hero:'n_jak_box',rows:[[['x_jak_cat',8,'16/9'],['jakamiro_1',4,'auto']],[['jakamiro_3',6,'16/10'],['x_jak_pack',6,'16/10']],[['x_jak_grid',12,'21/9']]]}};
 const media=(it,hero)=>it.v?`<video ${hero?'':'preload="none"'} data-ws="${it.v}" poster="${it.src}" muted loop playsinline></video>`:`<img src="${it.src}" alt="${(it.t||'').replace(/"/g,'')}" loading="lazy" decoding="async">`;
 Object.entries(L).forEach(([sid,cfg])=>{const sec=document.getElementById(sid);if(!sec)return;const inn=sec.querySelector('.in');if(!inn||inn.querySelector('.wshow'))return;
   const count=ITEMS.filter(i=>i.b===cfg.b).length,h=BY[cfg.hero];
-  let g='';cfg.rows.forEach(r=>{const tall=r.some(c=>c[2]==='auto');r.forEach(([id,span,ar])=>{const it=BY[id];if(!it)return;const a=ar==='auto'?'':`aspect-ratio:${ar};`;
-    g+=`<a class="ws-t${span>=8?' w2':''}" href="#b-${cfg.b}" style="grid-column:span ${span};${a}${tall&&ar==='auto'?'':''}">${media(it)}${it.t?`<i>${it.t}</i>`:''}</a>`})});
+  let g='';cfg.rows.forEach(r=>{const tall=r.some(c=>c[2]==='auto');r.forEach(([id,span,ar,fit])=>{const it=BY[id];if(!it)return;const a=ar==='auto'?'':`aspect-ratio:${ar};`;
+    g+=`<a class="ws-t${span>=8?' w2':''}${fit?' ct':''}" href="#b-${cfg.b}" style="grid-column:span ${span};${a}${fit&&cfg.fit?'background:'+cfg.fit+';':''}">${media(it)}${it.t?`<i>${it.t}</i>`:''}</a>`})});
   const w=document.createElement('div');w.className='wshow';
-  w.innerHTML=`${h?`<section class="ws-hero" aria-label="${cfg.name}"><div class="st"><div class="fr">${media(h,1)}</div><div class="cap"><b>${cfg.name}</b><span>${h.t||''} · ${count} עבודות בפרויקט</span></div></div></section>`:''}
+  w.innerHTML=`${h?`<section class="ws-hero" aria-label="${cfg.name}"><div class="st"><div class="fr${cfg.fit?' ct':''}" ${cfg.fit?`style="background:${cfg.fit}"`:''}>${media(h,1)}</div><div class="cap"><b>${cfg.name}</b><span>${h.t||''} · ${count} עבודות בפרויקט</span></div></div></section>`:''}
    <div class="ws-grid">${g}</div>
    <div class="ws-foot"><div class="n">${count}<small>עבודות בפרויקט ${cfg.name}</small></div><a class="lnk pri" href="#b-${cfg.b}">לכל הפרויקט ←</a></div>`;
   inn.appendChild(w)});
@@ -2984,7 +2985,7 @@ const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(window.gsap&&window.ScrollTrigger&&!RM&&innerWidth>900){
   document.querySelectorAll('.ws-hero').forEach(hs=>{const tl=gsap.timeline({scrollTrigger:{trigger:hs,start:'top top',end:'bottom bottom',scrub:.7}});
     tl.fromTo(hs.querySelector('.fr'),{clipPath:'inset(9% 7% 9% 7% round 34px)'},{clipPath:'inset(0% 0% 0% 0% round 0px)',ease:'power2.inOut',duration:.6},0)
-      .fromTo(hs.querySelector('.fr>*'),{scale:1.22},{scale:1,ease:'none',duration:1},0)
+      .fromTo(hs.querySelector('.fr>*'),{scale:hs.querySelector('.fr.ct')?1:1.22},{scale:1,ease:'none',duration:1},0)
       .fromTo(hs.querySelector('.cap'),{opacity:0,y:50},{opacity:1,y:0,duration:.25},.45)});
   document.querySelectorAll('.ws-t img,.ws-t video').forEach(m=>gsap.fromTo(m,{yPercent:-4},{yPercent:4,ease:'none',scrollTrigger:{trigger:m.parentElement,start:'top bottom',end:'bottom top',scrub:true}}));
   setTimeout(()=>ScrollTrigger.refresh(),400)}
