@@ -2876,4 +2876,13 @@ size();addEventListener('resize',size);
 })();
 </script>
 
+<style>
+/* home: no sideways scrolling — the TORO reel and the font filters wrap */
+#home .reel{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;overflow:visible!important;scroll-snap-type:none!important;padding-bottom:40px!important}
+#home .reel video{width:100%!important;max-width:none!important}
+#home .hs-reel>.hs-b,#home .hs-reel .hs-bar,#home .reel+.hs-bar,#home .hs-reel+.hs-bar{display:none!important}
+#home .fn-cats{flex-wrap:wrap!important;overflow:visible!important}
+@media(max-width:900px){#home .reel{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#home .reel video{border-radius:18px}}
+</style>
+
 </html>
