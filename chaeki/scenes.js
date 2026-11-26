@@ -1,0 +1,1 @@
+window.CHAEKI_SCENES=[{f:'kv_hero.jpg'},{f:'kv_uji.jpg'},{f:'kv_shizuoka.jpg'},{f:'kv_kyoto.jpg'},{f:'kv_yame.jpg'},{f:'kv_kochi.jpg'},{f:'kv_yoshino.jpg'},{f:'kv_teahouse.jpg'}];

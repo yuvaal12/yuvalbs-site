@@ -16,46 +16,33 @@ const board=$('#board');let bi=0;
 function drawBoard(){board.innerHTML=[0,1,2].map(o=>{const s=S[(bi+o)%6];return`<div class="r${o===0?' on':''}"><b>${s.n}</b><span>${s.name} · ${s.tea}</span><span>${o===0?'Boarding':s.brew.split('·')[2].trim()}</span></div>`}).join('')}
 drawBoard();if(!RM)setInterval(()=>{bi=(bi+1)%6;gsap.fromTo('#board .r',{y:14,opacity:0},{y:0,opacity:1,duration:.5,stagger:.06,onStart:drawBoard})},2800);
 
-/* hero rail */
-$('#heroSegs').innerHTML=S.map((s,k)=>k?`<i style="background:${col(s)}"></i>`:'').join('');
-$('#heroSt').innerHTML=S.map((s,k)=>`<div class="s" style="left:${pos(k)*100}%"><i></i><span class="jp" lang="ja">${s.jp}</span><small>${s.name}</small></div>`).join('');
-const ht=$('#heroTrain');ht.innerHTML=train();
-const railW=()=>$('#heroSt').offsetWidth;
-gsap.from('#heroSegs',{scaleX:0,duration:RM?0:1.6,ease:'power3.inOut',delay:.2});
-gsap.from('#heroSt .s',{y:20,opacity:0,stagger:.08,duration:.6,delay:.6});
-gsap.from('.hero .w',{yPercent:110,opacity:0,stagger:.12,duration:1,ease:'power4.out'});
-gsap.from('.hero-jp',{opacity:0,y:40,duration:1.2,delay:.3});
-ScrollTrigger.create({trigger:'.hero',start:'top top',end:'bottom top',onUpdate:s=>{gsap.set(ht,{x:s.progress*railW()*1.0})}});
-
-/* the line */
-const stage=$('#stage'),st=$('.line-st');
-stage.innerHTML=S.map((s,k)=>`<article class="sp" data-k="${k}" aria-label="Station ${s.n}: ${s.tea}">
- <div class="tx"><div class="num">${s.n}</div>
-  <div class="place"><span class="jp" lang="ja">${s.jp}</span><span class="mono">${s.name===s.pref?s.name+' Pref.':s.name+' · '+s.pref}</span></div>
-  <h3 class="tea"><span class="jp" lang="ja">${s.teaJp}</span>${s.tea}</h3>
-  <p class="note">${s.note}. ${s.notes.join(', ')}.</p>
-  <div class="ticket">${s.brew.split('·').map((b,j)=>`<div>${['Leaf','Water','Temp','Time'][j]||''}<b>${b.trim()}</b></div>`).join('')}</div></div>
- <div class="vis"><div class="art"><svg viewBox="0 0 600 600" role="img" aria-label="${s.name} landscape">${CHAEKI.art(s.id)}</svg></div><img class="pouch" src="i/pouch_${s.id}.webp" alt="${s.tea} pouch" loading="lazy" width="626" height="900"></div></article>`).join('');
-const sps=$$('.sp',stage);
-$('#routeDots').innerHTML=S.map((s,k)=>`<i class="d" style="left:${pos(k)*100}%"><span>${s.n} ${s.name}</span></i>`).join('');
-const dots=$$('#route .d'),lt=$('#lineTrain');
-const nav=$('#nav');let lineOn=false;
-function lerpC(a,b,t){const p=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));const A=p(a),B=p(b);return'#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('')}
-function upd(p){
- const f=Math.min(5,Math.max(0,p*6-.5)),k=Math.round(f),fr=f-Math.floor(f);
- const a=S[Math.floor(f)],b=S[Math.min(5,Math.floor(f)+1)];
- const tb=Math.max(0,Math.min(1,(fr-.35)/.3));
- const bg=lerpC(col(a),col(b),tb);st.style.backgroundColor=bg;st.style.setProperty('--c',bg);
- const tc=tb<.5?txt(a):txt(b);st.style.color=tc;
- sps.forEach((el,j)=>{const d=f-j;const o=Math.max(0,Math.min(1,(.5-Math.abs(d))/.18));el.style.opacity=o;el.classList.toggle('on',o>0);
-  if(o>0){const art=$('.art',el),pou=$('.pouch',el),tx=$('.tx',el);gsap.set(art,{scale:1.04-d*.05,y:d*-30});gsap.set(pou,{y:d*-120,rotate:6+d*8});gsap.set(tx,{y:d*-60})}});
- dots.forEach((d,j)=>d.classList.toggle('on',j<=k));
- const r=f/5;$('#routeOn').style.transform=`scaleX(${r})`;gsap.set(lt,{x:r*$('#route').offsetWidth-42});
- lt.innerHTML=train(tc,bg);
- if(lineOn){nav.style.setProperty('--nt',tc);nav.style.setProperty('--nb',bg)}
+/* journey */
+const nav=$('#nav'),Wd=window.__world,J=$('.journey'),route=$('#route'),lt=$('#lineTrain');
+$('#panels').innerHTML=S.map((s,k)=>`<article class="sp" id="st${k+1}" aria-label="Station ${s.n}: ${s.tea}">
+ <div class="sp-top"><span class="num">${s.n}</span><span class="place"><span class="jp" lang="ja">${s.jp}</span><span class="mono">${s.name===s.pref?s.name+' Pref.':s.name+' · '+s.pref}</span></span></div>
+ <h3 class="tea"><span class="jp" lang="ja">${s.teaJp}</span>${s.tea}</h3>
+ <p class="note">${s.note}. ${s.notes.join(', ')}.</p>
+ <div class="ticket">${s.brew.split('·').map((b,j)=>`<div>${['Leaf','Water','Temp','Time'][j]||''}<b>${b.trim()}</b></div>`).join('')}</div>
+ <img class="pouch" src="i/pouch_${s.id}.webp" alt="${s.tea} pouch" loading="lazy" width="626" height="900"></article>`).join('');
+const sps=$$('#panels .sp');
+$('#routeDots').innerHTML=S.map((s,k)=>`<i class="d" style="left:${pos(k)*100}%;--dc:${col(s)}"><span><b class="jp" lang="ja">${s.jp}</b> ${s.name}</span></i>`).join('');
+const dots=$$('#route .d');
+gsap.from('.j-hero .w',{yPercent:110,opacity:0,stagger:.12,duration:1,ease:'power4.out',delay:.2});
+gsap.from('.j-hero .lead,.j-hero .btn,.j-hero .eyebrow,.board',{opacity:0,y:20,duration:1,delay:.6,stagger:.08});
+const win=k=>{const a=Wd.keys[1+2*k][0],b=Wd.keys[2+2*k][0];return[a-Wd.TR*.16,a,b,b+Wd.TR*.16]};
+function jour(p){Wd.set(p);
+ const ho=Math.max(0,1-p/.03);gsap.set('.j-hero',{opacity:ho,y:-p*900,pointerEvents:ho>.1?'auto':'none'});gsap.set('.board',{opacity:ho,x:p*600});
+ $('#jHint').style.opacity=Math.max(0,1-p/.015);
+ let act=-1;sps.forEach((el,k)=>{const [a0,a,b,b0]=win(k);let o=0;if(p>a0&&p<b0)o=p<a?(p-a0)/(a-a0):p>b?(b0-p)/(b0-b):1;o=Math.max(0,Math.min(1,o));
+  el.style.opacity=o;el.style.visibility=o>0?'visible':'hidden';el.style.transform=`translateY(${(1-o)*(p<a?40:-40)}px)`;if(o>.5)act=k});
+ const z=window.__worldZ||{night:0};J.classList.toggle('night',z.night>.5);
+ const u=(p2s(p));dots.forEach((d,j)=>d.classList.toggle('on',j<=u-0.001));
+ const r=Math.max(0,Math.min(1,u/5));$('#routeOn').style.transform=`scaleX(${r})`;gsap.set(lt,{x:r*route.offsetWidth-42});
 }
-ScrollTrigger.create({trigger:'#line',start:'top top',end:'bottom bottom',onUpdate:s=>upd(s.progress),onToggle:s=>{lineOn=s.isActive;if(!s.isActive){nav.style.removeProperty('--nt');nav.style.removeProperty('--nb')}}});
-upd(0);
+function p2s(p){const K=Wd.keys;for(let i=0;i<K.length-1;i++){if(p<=K[i+1][0]){const f=(p-K[i][0])/(K[i+1][0]-K[i][0]||1);return i===0?-1+f:(i%2?(i-1)/2:(i-2)/2+f)}}return 6}
+lt.innerHTML=train();
+ScrollTrigger.create({trigger:'#line',start:'top top',end:'bottom bottom',onUpdate:s=>jour(s.progress)});jour(0);
+$$('a[href="#st1"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const y=J.offsetTop+(Wd.keys[1][0]+Wd.HOLD/2)*(J.offsetHeight-innerHeight);scrollTo({top:y,behavior:'smooth'})}));
 
 /* ceremony bowl */
 const bowl=$('#bowl'),NS='http://www.w3.org/2000/svg';
@@ -89,7 +76,7 @@ const G=window.CHAEKI_PHOTOS||[];
 $('#gal').innerHTML=G.map(g=>`<figure class="rv${g.s>=7?' l':''}" style="--s:${g.s}"><img src="i/${g.f}" alt="${g.a}" loading="lazy"><figcaption>${g.t}</figcaption></figure>`).join('');
 
 /* reveals */
-$$('.mani-t,.shop .wrap,.gift-in>*,.rv').forEach(el=>{el.classList.add('rv');gsap.to(el,{opacity:1,y:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 85%'}})});
+$$('.shop .wrap,.gift-in>*,.rv').forEach(el=>{el.classList.add('rv');gsap.to(el,{opacity:1,y:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 85%'}})});
 ScrollTrigger.create({start:80,onUpdate:s=>nav.classList.toggle('solid',s.scroll()>80)});
 addEventListener('load',()=>ScrollTrigger.refresh());
 })();

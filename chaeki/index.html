@@ -18,37 +18,28 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav" id="nav">
   <a class="brand" href="#top" aria-label="CHA·EKI home"><span class="ring" data-ring></span><b>CHA·EKI</b></a>
-  <nav aria-label="Main"><a href="#line">The line</a><a href="#ceremony">Ceremony</a><a href="#shop">Packaging</a><a href="#gift">Gift box</a></nav>
+  <nav aria-label="Main"><a href="#st1">The line</a><a href="#ceremony">Ceremony</a><a href="#shop">Packaging</a><a href="#gift">Gift box</a></nav>
   <span class="jp navjp" lang="ja">茶駅</span>
 </header>
 
 <main id="main">
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-in">
-    <p class="eyebrow mono">Japanese tea · Six stations</p>
-    <h1 class="h1"><span class="w">Six teas.</span><span class="w">One line.</span></h1>
-    <p class="lead">A journey through Japan’s tea country, one station at a time. Every tea is a stop, every pack is a ticket.</p>
-    <a class="btn" href="#line">Board the train <span aria-hidden="true">→</span></a>
-  </div>
-  <div class="hero-jp jp" lang="ja" aria-hidden="true">茶駅</div>
-  <div class="board" aria-label="Departure board">
-    <div class="board-h mono"><span>Departures</span><span lang="ja" class="jp">発車</span></div>
-    <div class="board-rows" id="board"></div>
-  </div>
-  <div class="rail" id="heroRail" aria-hidden="true"><div class="rail-segs" id="heroSegs"></div><div class="rail-st" id="heroSt"></div><div class="train" id="heroTrain"></div></div>
-</section>
-
-<!-- MANIFESTO -->
-<section class="mani">
-  <p class="mani-t"><span class="jp" lang="ja">道</span> In Japan, tea is a path: <em>chadō</em>, the way of tea. We took the word literally. CHA·EKI follows a railway line through six tea regions, from the shaded fields of Uji to the cherry hills of Yoshino.</p>
-</section>
-
-<!-- THE LINE -->
-<section class="line" id="line" aria-label="The six stations">
-  <div class="line-st">
+<!-- JOURNEY: 3D tea line -->
+<section class="journey film-on" id="line" aria-label="The tea line, six stations">
+  <div class="j-st">
+    <div class="film" id="film" aria-hidden="true"></div>
+    <div class="j-hero" id="top">
+      <p class="eyebrow mono">Japanese tea · Six stations</p>
+      <h1 class="h1"><span class="w">Six teas.</span><span class="w">One line.</span></h1>
+      <p class="lead">In Japan, tea is a path: <em>chadō</em>, the way of tea. We took it literally. Board the CHA·EKI line and ride through six tea regions, one station at a time.</p>
+      <a class="btn" href="#st1">Board the train <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="board" aria-label="Departure board">
+      <div class="board-h mono"><span>Departures</span><span lang="ja" class="jp">発車</span></div>
+      <div class="board-rows" id="board"></div>
+    </div>
     <div class="route" id="route" aria-hidden="true"><div class="route-bg"></div><div class="route-on" id="routeOn"></div><div id="routeDots"></div><div class="train sm" id="lineTrain"></div></div>
-    <div class="stage" id="stage"></div>
+    <div class="panels" id="panels"></div>
+    <p class="j-hint mono" id="jHint">Scroll to ride the line</p>
   </div>
 </section>
 
@@ -97,6 +88,8 @@
 <script src="logo.js"></script>
 <script src="lib/gsap.min.js"></script>
 <script src="lib/ScrollTrigger.min.js"></script>
+<script src="scenes.js"></script>
+<script src="film.js"></script>
 <script src="photos.js"></script>
 <script src="app.js"></script>
 </body>
