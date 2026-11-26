@@ -13,10 +13,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tea.css">
 </head>
 <body class="is-loading">
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="wash" id="wash" aria-hidden="true"></div>
 <div class="loader" id="loader" aria-hidden="true">
   <div class="ld-in">
     <div class="ld-kanji jp"><span>茶</span><span>駅</span></div>
@@ -31,9 +33,11 @@
 <header class="nav" id="nav">
   <a class="brand" href="#top" data-hover aria-label="CHA·EKI home"><span class="ring" data-ring></span><b>CHA·EKI</b></a>
   <p class="nav-mid mono">Six teas · One line · <span class="jp">六つのお茶</span></p>
+  <button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Sound" data-hover><span class="bars"><i></i><i></i><i></i><i></i></span><b class="mono">Sound</b></button>
   <nav aria-label="Main"><a href="#line" data-hover>The line</a><a href="#packs" data-hover>Packs</a><a href="#ceremony" data-hover>Ceremony</a><a href="#gift" data-hover>Gift</a></nav>
 </header>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="liquid"><feTurbulence id="lqT" type="fractalNoise" baseFrequency="0.008 0.02" numOctaves="2" seed="3"/><feDisplacementMap id="lqD" in="SourceGraphic" scale="0"/></filter></svg>
 <main id="main">
 <!-- THE LINE -->
 <section class="line" id="line" aria-label="The tea line">
@@ -74,6 +78,16 @@
     <div class="pk-head"><p class="mono">The packs · 06 tickets</p><h2>Every pack<br>is a ticket.</h2></div>
     <div class="pk-track" id="pkTrack"></div>
     <div class="pk-prog"><i id="pkProg"></i></div>
+  </div>
+</section>
+
+<!-- TRAVELLER QUIZ -->
+<section class="trav" id="traveller" aria-label="Which tea traveller are you">
+  <div class="tv-in">
+    <p class="mono tv-k">Ticket office · <span class="jp">切符売り場</span></p>
+    <h2 class="tv-h">Which station<br>is yours?</h2>
+    <div class="tv-q" id="tvQ" aria-live="polite"></div>
+    <div class="tv-t" id="tvT" hidden></div>
   </div>
 </section>
 
@@ -122,7 +136,9 @@
 <script src="lib/ScrollTrigger.min.js"></script>
 <script src="lib/lenis.min.js"></script>
 <script src="lib/three.min.js"></script>
+<script src="sound.js"></script>
 <script src="gl.js"></script>
+<script src="wash.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

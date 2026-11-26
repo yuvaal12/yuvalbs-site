@@ -29,6 +29,9 @@ function done(){const tl=gsap.timeline();tl.to('.ld-in',{opacity:0,y:-30,duratio
  .from('.hw',{yPercent:110,duration:1.3,stagger:.06,ease:'expo.out'},'-=.55').from('.hero-copy,.hero-meta,.hero-v,.scroll-cue,.nav,.route,.hud',{opacity:0,y:20,duration:1,stagger:.06},'-=1')}
 gsap.set('.hw',{yPercent:0});
 
+/* sound */
+const sb=$('#snd');sb.addEventListener('click',()=>{const on=__snd.toggle();sb.setAttribute('aria-pressed',on);sb.querySelector('b').textContent=on?'Sound on':'Sound'});
+gsap.ticker.add(()=>__snd.vel(lenis.velocity||0));
 /* clock (Japan time) */
 const clock=$('#clock');function tick(){try{clock.textContent=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Tokyo'}).format(new Date())+' JST · Fuji'}catch(e){}}tick();setInterval(tick,30000);
 
@@ -43,6 +46,7 @@ $('#stations').innerHTML=S.map((s,k)=>`<article class="st" data-k="${k}" style="
   <h2 class="m"><span><em class="jp" lang="ja">${s.teaJp}</em>${s.tea}</span></h2>
   <p class="st-note m"><span>${s.note}. ${s.notes.join(', ')}.</span></p>
   <div class="ticket m"><span>${s.brew.split('·').map((b,j)=>`<i><small>${['Leaf','Water','Temp','Time'][j]}</small>${b.trim()}</i>`).join('')}</span></div>
+  <p class="m st-go"><span><a href="tea.html?t=${s.id}" data-hover>Get off at ${s.name} <b>↗</b></a></span></p>
  </div>
  <img class="st-pouch" src="i/pouch_${s.id}.webp" alt="${s.tea} pouch" loading="lazy" width="626" height="900"></article>`).join('');
 const sts=$$('.st');
@@ -59,7 +63,7 @@ function line(p){const x=p2x(p);window.__gl&&__gl.set(x);
  const k=Math.round(x)-1;const settled=Math.abs(x-Math.round(x))<.08;
  sts.forEach((el,j)=>el.classList.toggle('on',j===k&&settled));
  if(k!==lastK){lastK=k;const g=k>=0&&k<6?GEO[k]:(k<0?['35.3606° N · 138.7274° E','Mount Fuji · 3,776 m']:['—','Tea house · 茶室']);scramble(hudC,g[0]);scramble(hudP,g[1]);hudN.textContent=k>=0&&k<6?S[k].n:(k<0?'00':'07');
-  document.documentElement.style.setProperty('--acc',k>=0&&k<6?col(S[k]):'#D9432B')}
+  if(k>=0&&k<6)__snd.arrive(k);__snd.night(k===3?1:0);document.documentElement.style.setProperty('--acc',k>=0&&k<6?col(S[k]):'#D9432B')}
  const r=Math.max(0,Math.min(1,(x-1)/5));$('#rOn').style.transform=`scaleX(${r})`;$('#rTrain').style.left=`${r*100}%`;dots.forEach((d,j)=>d.classList.toggle('on',j<=x-1+.02));
  $('#stations').style.setProperty('--par',(x-Math.round(x)).toFixed(3))}
 ScrollTrigger.create({trigger:'#line',start:'top top',end:'bottom bottom',onUpdate:s=>line(s.progress)});line(0);
@@ -76,11 +80,37 @@ gsap.fromTo('.mani-k',{yPercent:30,opacity:0},{yPercent:-20,opacity:1,scrollTrig
 /* packs: horizontal ride */
 const PK=(window.CHAEKI_PHOTOS||[]);const tr=$('#pkTrack');
 tr.innerHTML=PK.map((g,i)=>`<figure class="pk ${g.s>=7?'w':''}" data-hover><div class="pk-img"><img src="i/${g.f}" alt="${g.a}" loading="lazy"></div><figcaption><b>${String(i+1).padStart(2,'0')}</b><span>${g.t}</span></figcaption></figure>`).join('');
+/* liquid hover on the packs */
+if(FINE){const T=$('#lqT'),D=$('#lqD'),st={s:0,f:.008};const upd=()=>{D.setAttribute('scale',st.s.toFixed(1));T.setAttribute('baseFrequency',`${st.f.toFixed(4)} ${(st.f*2.4).toFixed(4)}`)};
+ $$('.pk',tr).forEach(el=>{const img=$('img',el);el.addEventListener('pointerenter',()=>{img.style.filter='url(#liquid)';gsap.killTweensOf(st);gsap.fromTo(st,{s:0,f:.004},{s:46,f:.012,duration:.45,ease:'power2.out',onUpdate:upd,onComplete:()=>gsap.to(st,{s:0,duration:1.1,ease:'elastic.out(1,.35)',onUpdate:upd,onComplete:()=>{img.style.filter=''}})});gsap.to(img,{scale:1.06,duration:1.2,ease:'expo.out'})});
+  el.addEventListener('pointerleave',()=>gsap.to(img,{scale:1,duration:1,ease:'expo.out'}))})}
 const mm=gsap.matchMedia();
 mm.add('(min-width:901px)',()=>{const dist=()=>tr.scrollWidth-innerWidth+80;
  const tw=gsap.to(tr,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'.packs',start:'top top',end:()=>'+='+dist(),pin:'.pk-st',scrub:1,invalidateOnRefresh:true,onUpdate:s=>{$('#pkProg').style.transform=`scaleX(${s.progress})`}}});
  $$('.pk img',tr).forEach(img=>gsap.fromTo(img,{xPercent:-8},{xPercent:8,ease:'none',scrollTrigger:{trigger:img.closest('.pk'),containerAnimation:tw,start:'left right',end:'right left',scrub:true}}));
  return()=>{}});
+
+/* traveller quiz → personal ticket */
+(()=>{const Q=[
+ ['When do you reach for tea?',[['First thing, to focus',{uji:2,shizuoka:2,yame:1}],['An afternoon break',{kochi:2,yoshino:2,shizuoka:1}],['Late, to slow down',{kyoto:3,yame:1}]]],
+ ['Pick the view from your window.',[['Mountain at sunrise',{shizuoka:3}],['Shrine gates',{kyoto:3}],['Moonlit fields',{yame:3}],['The open sea',{kochi:3}],['Cherry hills',{yoshino:3}],['Green terraces',{uji:3}]]],
+ ['How do you like your cup?',[['Deep and velvety',{uji:2,yame:2}],['Fresh and bright',{shizuoka:2,kochi:2}],['Soft and toasty',{kyoto:2,yoshino:2}]]]];
+ const q=$('#tvQ'),t=$('#tvT');let step=0,sc={};
+ function ask(){const [txt,opts]=Q[step];q.innerHTML=`<p class="mono">Question ${step+1} / ${Q.length}</p><h3>${txt}</h3><div class="tv-o">${opts.map((o,i)=>`<button type="button" data-i="${i}" data-hover>${o[0]}</button>`).join('')}</div>`;
+  gsap.from($$('h3,.tv-o button',q),{y:30,opacity:0,stagger:.05,duration:.7,ease:'expo.out'});
+  $$('.tv-o button',q).forEach(b=>b.addEventListener('click',()=>{Object.entries(opts[+b.dataset.i][1]).forEach(([k,v])=>sc[k]=(sc[k]||0)+v);step++;if(window.__snd)__snd.arrive(step);step<Q.length?ask():result()}))}
+ function result(){const best=S.slice().sort((a,b)=>(sc[b.id]||0)-(sc[a.id]||0))[0],k=S.indexOf(best),no=String(Math.floor(Math.random()*9000)+1000);
+  q.hidden=true;t.hidden=false;const today=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+  t.innerHTML=`<div class="tk" id="tk" style="--sc:${col(best)}"><div class="tk-l"><span class="mono">乗車券 · Ticket ${no}</span><div class="tk-route"><b>CHA·EKI</b><i></i><b>${best.name}</b></div><p class="tk-tea"><span class="jp">${best.teaJp}</span>${best.tea}</p><p class="tk-n">${best.note}.</p><div class="tk-b mono">${best.brew.split('·').map(x=>`<span>${x.trim()}</span>`).join('')}</div></div><div class="tk-r"><span class="mono">Station</span><b>${best.n}</b><span class="jp">${best.jp}</span><span class="mono">${today}</span></div></div>
+  <div class="tk-a"><a href="tea.html?t=${best.id}" class="btn-l" data-hover>Get off at ${best.name} ↗</a><button type="button" class="btn-g" id="tkSave" data-hover>Save my ticket</button><button type="button" class="btn-g" id="tkAgain" data-hover>Ride again</button></div>`;
+  gsap.from('#tk',{yPercent:-40,opacity:0,rotate:-4,duration:1.1,ease:'expo.out'});
+  $('#tkAgain').onclick=()=>{step=0;sc={};t.hidden=true;q.hidden=false;ask()};
+  $('#tkSave').onclick=()=>{const c=document.createElement('canvas');c.width=1400;c.height=640;const x=c.getContext('2d');x.fillStyle='#F1EADB';x.fillRect(0,0,1400,640);x.fillStyle=col(best);x.fillRect(1020,0,380,640);
+   x.fillStyle='#1B1A17';x.font='400 22px "DM Mono"';x.fillText('乗車券 · TICKET '+no,60,80);x.font='800 54px Jost';x.fillText('CHA·EKI  →  '+best.name,60,170);x.font='900 64px "Noto Sans JP"';x.fillText(best.teaJp,60,300);x.font='800 110px Jost';x.fillText(best.tea,60,420);
+   x.font='400 26px "DM Mono"';x.fillText(best.brew.toUpperCase(),60,560);x.fillStyle='#F1EADB';x.font='800 220px Jost';x.textAlign='center';x.fillText(best.n,1210,330);x.font='900 90px "Noto Sans JP"';x.fillText(best.jp,1210,470);x.font='400 24px "DM Mono"';x.fillText(today.toUpperCase(),1210,570);
+   x.setLineDash([10,10]);x.strokeStyle='#1B1A17';x.lineWidth=3;x.beginPath();x.moveTo(1020,0);x.lineTo(1020,640);x.stroke();
+   const a=document.createElement('a');a.download=`cha-eki-ticket-${best.id}.png`;a.href=c.toDataURL('image/png');a.click()}}
+ ask()})();
 
 /* ceremony: a painted top-down bowl, sift → pour → whisk → foam */
 (()=>{const cv=$('#bowl'),cx=cv.getContext('2d'),stepEl=$('#bowlStep');let W=0,DP=Math.min(devicePixelRatio,2);
@@ -135,7 +165,7 @@ mm.add('(min-width:901px)',()=>{const dist=()=>tr.scrollWidth-innerWidth+80;
   if(s4>.4){cx.save();cx.globalCompositeOperation='screen';for(let i=0;i<5;i++){const ph=((t/3000)+i/5)%1,x=c+(i-2)*Ri*.25+Math.sin(t/800+i)*10,y=c-ph*Rr*1.3;g=cx.createRadialGradient(x,y,0,x,y,W*.09);g.addColorStop(0,`rgba(255,255,255,${.12*(1-ph)*(s4-.4)/.6})`);g.addColorStop(1,'rgba(255,255,255,0)');cx.fillStyle=g;cx.beginPath();cx.arc(x,y,W*.09,0,6.283);cx.fill()}cx.restore()}
   requestAnimationFrame(draw)}
  requestAnimationFrame(draw);
- ScrollTrigger.create({trigger:'#ceremony',start:'top top',end:'bottom bottom',onUpdate:s=>window.__cer(s.progress)});
+ ScrollTrigger.create({trigger:'#ceremony',start:'top top',end:'bottom bottom',onUpdate:s=>{window.__cer(s.progress);__snd.cer(s.progress,true)},onToggle:s=>{if(!s.isActive)__snd.cer(0,false)}});
 })();
 
 /* posters: a deck that deals itself onto the platform wall */

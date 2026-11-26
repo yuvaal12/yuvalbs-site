@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CHA·EKI · Tea</title>
+<meta name="theme-color" content="#0E0E0C">
+<link rel="icon" href="i/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tea.css">
+</head>
+<body class="tea-page">
+<a class="skip" href="#main">Skip to content</a>
+<div class="wash in" id="wash" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="c-dot"></span><span class="c-ring"><b class="jp">乗車</b></span></div>
+<header class="nav" id="nav">
+  <a class="brand" href="index.html" data-wash data-hover aria-label="CHA·EKI home"><span class="ring" data-ring></span><b>CHA·EKI</b></a>
+  <p class="nav-mid mono" id="navMid"></p>
+  <nav aria-label="Main"><a href="index.html#line" data-wash data-hover>The line</a><a href="index.html#packs" data-wash data-hover>Packs</a><a href="index.html#traveller" data-wash data-hover>Your tea</a></nav>
+</header>
+<main id="main"></main>
+<script src="stations.js"></script>
+<script src="logo.js"></script>
+<script src="lib/gsap.min.js"></script>
+<script src="lib/ScrollTrigger.min.js"></script>
+<script src="lib/lenis.min.js"></script>
+<script src="wash.js"></script>
+<script src="tea.js"></script>
+</body>
+</html>
