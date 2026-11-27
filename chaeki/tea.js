@@ -10,15 +10,15 @@ const STORY={
  kochi:['Kochi grows more <em>yuzu</em> than anywhere in Japan.','On the Pacific coast, between the mountains and the sea, the orchards turn yellow every winter. We fold dried yuzu peel into a clean sencha, so every cup tastes of citrus, salt air and sun.'],
  yoshino:['Mount Yoshino blooms with <em>cherry blossom</em> every spring.','For a few weeks a year the hills turn pink. This blend catches that moment: a soft spring sencha with cherry blossom, floral and gentle, made to drink outside.']}[s.id];
 const GEO={uji:'34.8844° N · 135.7999° E',shizuoka:'34.9756° N · 138.3828° E',kyoto:'35.0116° N · 135.7681° E',yame:'33.2119° N · 130.5578° E',kochi:'33.5597° N · 133.5311° E',yoshino:'34.3956° N · 135.8578° E'}[s.id];
-const PH={uji:'ph_uji.jpg',shizuoka:'ph_shizuoka.jpg',kyoto:'ph_kyoto.jpg',yame:'ph_yame.jpg',kochi:'ph_kochi.jpg',yoshino:'ph_yoshino.jpg'}[s.id];
+const PH={uji:'ph_uji.webp',shizuoka:'ph_shizuoka.webp',kyoto:'ph_kyoto.webp',yame:'ph_yame.webp',kochi:'ph_kochi.webp',yoshino:'ph_yoshino.webp'}[s.id];
 document.title=`CHA·EKI · ${s.tea} · Station ${s.n}`;$('#navMid').innerHTML=`Station ${s.n} / 06 · <span class="jp">${s.jp}</span>`;
 const brew=s.brew.split('·').map(x=>x.trim());
-$('#main').innerHTML=`<section class="t-hero"><img src="i/kv_${s.id}.jpg" alt="${s.name} key visual" id="thImg"><div class="t-in"><div><p class="t-no">Station ${s.n} · ${s.name} · <span class="jp">${s.teaJp}</span></p><h1><span class="ln"><span>${s.tea}</span></span></h1><div class="t-meta mono"><span>${GEO}</span><span>${s.pref} Pref.</span><span>${s.note}</span></div></div><div class="t-k jp" lang="ja">${s.jp}</div></div></section>
+$('#main').innerHTML=`<section class="t-hero"><img src="i/kv_${s.id}.webp" alt="${s.name} key visual" id="thImg"><div class="t-in"><div><p class="t-no">Station ${s.n} · ${s.name} · <span class="jp">${s.teaJp}</span></p><h1><span class="ln"><span>${s.tea}</span></span></h1><div class="t-meta mono"><span>${GEO}</span><span>${s.pref} Pref.</span><span>${s.note}</span></div></div><div class="t-k jp" lang="ja">${s.jp}</div></div></section>
 <section class="t-story"><p class="big">${STORY[0]}</p><p class="body">${STORY[1]}</p></section>
 <section class="t-notes" aria-label="Tasting notes">${s.notes.map(n=>`<b>${n}</b>`).join('')}</section>
 <section class="t-brew" aria-label="How to brew">${brew.map((b,j)=>`<div><small class="mono">${['Leaf','Water','Temperature','Time'][j]}</small><strong>${b}</strong></div>`).join('')}</section>
 <section class="t-pack"><div class="ph"><img src="i/${PH}" alt="${s.tea} pouch photographed" loading="lazy"></div><div class="flat"><img src="i/pouch_${s.id}.webp" alt="${s.tea} pouch design" loading="lazy"></div></section>
-<a class="t-next" href="tea.html?t=${nx.id}" data-hover><span class="mono">Next station · ${nx.n} · <span class="jp">${nx.jp}</span></span><b>${nx.tea} →</b><img src="i/kv_${nx.id}.jpg" alt=""></a>`;
+<a class="t-next" href="tea.html?t=${nx.id}" data-hover><span class="mono">Next station · ${nx.n} · <span class="jp">${nx.jp}</span></span><b>${nx.tea} →</b><img src="i/kv_${nx.id}.webp" alt=""></a>`;
 const lenis=new Lenis({lerp:.085});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
 gsap.from('.t-hero h1 .ln>span',{yPercent:110,duration:1.3,stagger:.1,ease:'expo.out',delay:.5});gsap.from('.t-hero img',{scale:1.25,duration:2.4,ease:'expo.out'});
 gsap.to('#thImg',{yPercent:18,ease:'none',scrollTrigger:{trigger:'.t-hero',start:'top top',end:'bottom top',scrub:true}});

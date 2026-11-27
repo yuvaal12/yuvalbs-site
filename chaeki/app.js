@@ -26,7 +26,7 @@ function ldTick(){const real=Math.min(1,(window.__glLoaded||0)/Math.min(3,(windo
 requestAnimationFrame(ldTick);setTimeout(()=>{if(document.body.classList.contains('is-loading')){window.__glLoaded=99}},6000);
 function done(){const tl=gsap.timeline();tl.to('.ld-in',{opacity:0,y:-30,duration:.5,delay:.25}).to(ld,{clipPath:'inset(0 0 100% 0)',duration:1.1,ease:'expo.inOut'},'<.1')
  .add(()=>{document.body.classList.remove('is-loading');ld.remove()})
- .from('.hw',{yPercent:110,duration:1.3,stagger:.06,ease:'expo.out'},'-=.55').from('.hero-copy,.hero-meta,.hero-v,.scroll-cue,.nav,.route,.hud',{opacity:0,y:20,duration:1,stagger:.06},'-=1')}
+ .from('.hw',{yPercent:110,duration:1.3,stagger:.06,ease:'expo.out'},'-=.55').from('.hero-copy,.hero-meta,.hero-v,.scroll-cue,.nav,.route',{opacity:0,y:20,duration:1,stagger:.06},'-=1')}
 gsap.set('.hw',{yPercent:0});
 
 /* sound */
@@ -39,7 +39,7 @@ const clock=$('#clock');function tick(){try{clock.textContent=new Intl.DateTimeF
 const GEO=[['34.8844° N · 135.7999° E','Uji · Kyoto Pref.'],['34.9756° N · 138.3828° E','Shizuoka · under Fuji'],['35.0116° N · 135.7681° E','Kyoto · Fushimi'],['33.2119° N · 130.5578° E','Yame · Fukuoka Pref.'],['33.5597° N · 133.5311° E','Kochi · Pacific coast'],['34.3956° N · 135.8578° E','Yoshino · Nara Pref.']];
 const col=s=>s.id==='yame'?'#5FBF92':s.id==='kochi'?'#E2AE1C':s.c;
 $('#stations').innerHTML=S.map((s,k)=>`<article class="st" data-k="${k}" style="--sc:${col(s)}" aria-label="Station ${s.n}: ${s.tea}">
- <div class="st-num" aria-hidden="true">${s.n}</div>
+ <div class="st-num" aria-hidden="true">${window.CHL?CHL.num(s.n):s.n}</div>
  <div class="st-kanji jp" lang="ja" aria-hidden="true">${s.jp}</div>
  <div class="st-body">
   <p class="mono m"><span><i></i>Station ${s.n} / 06</span></p>
@@ -59,7 +59,7 @@ function p2x(p){for(let i=0;i<keys.length-1;i++){const [a,xa]=keys[i],[b,xb]=key
 const scramble=(el,txt)=>{const ch='0123456789°·NE#/茶駅ABCDEFGHIJKLMNOPQRSTUVWXYZ';let f=0;cancelAnimationFrame(el._r);const run=()=>{f++;el.textContent=txt.split('').map((c,i)=>c===' '?' ':i<f*1.4?c:ch[Math.floor(Math.random()*ch.length)]).join('');if(f*1.4<txt.length)el._r=requestAnimationFrame(run)};run()};
 const hudC=$('#hudCoord'),hudP=$('#hudPlace'),hudN=$('#hudNum');let lastK=-2;
 function line(p){const x=p2x(p);window.__gl&&__gl.set(x);
- const h=Math.max(0,1-x*1.6);gsap.set('.hero',{opacity:h,y:-x*120,pointerEvents:h>.2?'auto':'none'});
+ const h=Math.max(0,1-x*1.6);gsap.set('.hero',{opacity:h,y:-x*120,pointerEvents:h>.2?'auto':'none'});gsap.set('.hud',{opacity:1-h});
  const k=Math.round(x)-1;const settled=Math.abs(x-Math.round(x))<.08;
  sts.forEach((el,j)=>el.classList.toggle('on',j===k&&settled));
  if(k!==lastK){lastK=k;const g=k>=0&&k<6?GEO[k]:(k<0?['35.3606° N · 138.7274° E','Mount Fuji · 3,776 m']:['—','Tea house · 茶室']);scramble(hudC,g[0]);scramble(hudP,g[1]);hudN.textContent=k>=0&&k<6?S[k].n:(k<0?'00':'07');
@@ -91,7 +91,7 @@ ScrollTrigger.create({trigger:'.mani',start:'top 75%',end:'bottom 45%',scrub:tru
 gsap.fromTo('.mani-k',{yPercent:30,opacity:0},{yPercent:-20,opacity:1,scrollTrigger:{trigger:'.mani',start:'top bottom',end:'bottom top',scrub:true}});
 
 /* packs: horizontal ride */
-const KEEP=['ph_pouch_row.jpg','ph_uji.jpg','ph_kochi.jpg','ph_gift.jpg','ph_kyoto.jpg','ph_yame.jpg','ph_tin_row.jpg','ph_sachets.jpg','ph_bag.jpg'];const PK=(window.CHAEKI_PHOTOS||[]).filter(g=>KEEP.includes(g.f));const tr=$('#pkTrack');
+const KEEP=['ph_pouch_row.webp','ph_uji.webp','ph_kochi.webp','ph_gift.webp','ph_kyoto.webp','ph_yame.webp','ph_tin_row.webp','ph_sachets.webp','ph_bag.webp'];const PK=(window.CHAEKI_PHOTOS||[]).filter(g=>KEEP.includes(g.f));const tr=$('#pkTrack');
 tr.innerHTML=PK.map((g,i)=>`<figure class="pk ${g.s>=7?'w':''}" data-hover><div class="pk-img"><img src="i/${g.f}" alt="${g.a}" loading="lazy"></div><figcaption><b>${String(i+1).padStart(2,'0')}</b><span>${g.t}</span></figcaption></figure>`).join('');
 /* liquid hover on the packs */
 if(FINE){const T=$('#lqT'),D=$('#lqD'),st={s:0,f:.008};const upd=()=>{D.setAttribute('scale',st.s.toFixed(1));T.setAttribute('baseFrequency',`${st.f.toFixed(4)} ${(st.f*2.4).toFixed(4)}`)};
@@ -198,7 +198,7 @@ gsap.fromTo('.ft-word',{yPercent:40},{yPercent:0,ease:'none',scrollTrigger:{trig
 
 /* back to top */
 const tt=$('#totop'),ttp=$('.tt-p',tt);tt.addEventListener('click',()=>{snapping=true;lenis.scrollTo(0,{duration:2.4,easing:t=>1-Math.pow(1-t,4),lock:true,onComplete:()=>{snapping=false;lastY=scrollY}})});
-lenis.on('scroll',({scroll,limit})=>{tt.classList.toggle('show',scroll>innerHeight*.8);ttp.style.strokeDashoffset=100-Math.min(100,scroll/(limit||1)*100)});
+lenis.on('scroll',({scroll,limit})=>{const lnE=document.getElementById('line');tt.classList.toggle('show',scroll>lnE.offsetTop+lnE.offsetHeight-innerHeight*.9);ttp.style.strokeDashoffset=100-Math.min(100,scroll/(limit||1)*100)});
 /* nav state */
 ScrollTrigger.create({start:120,onUpdate:s=>$('#nav').classList.toggle('scrolled',s.scroll()>120)});
 addEventListener('load',()=>ScrollTrigger.refresh());

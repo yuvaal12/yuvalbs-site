@@ -1560,29 +1560,6 @@ video.lv{display:block;width:100%;height:auto;max-width:100%}
   </div>
 </section>
 
-<section id="w-deco" class="world w-deco wrap" data-g="6" data-bg="#F2EEE7" data-name="05 · JAKAMIRO"><div class="lv-bgw" data-fx="jak" aria-hidden="true"><canvas></canvas></div>
-  <div class="in">
-<div class="stage"><div class="lvs" data-k="jak"><div class="lv-word">JAKAMIRO</div>
-<div class="lv-f card" data-d="2.2" style="right:8%;top:5%;width:clamp(200px,20vw,330px);aspect-ratio:4/3"><img data-nv src="/n/x_jak_cat.webp" alt=""></div>
-<div class="lv-f card lv-hide-s" data-d="1.3" style="right:31%;top:20%;width:clamp(150px,13vw,220px);aspect-ratio:1"><img data-nv src="/n/jak_box.webp" alt=""></div>
-<div class="lv-f pal ivory" data-d="1" style="left:46%;top:46%"><i style="background:#161412"><span style="color:#fff">#161412</span></i><i style="background:#F2EEE7;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)"><span>#F2EEE7</span></i><i style="background:#C8B28A"><span>#C8B28A</span></i><i style="background:#fff"><span>#FFFFFF</span></i></div>
-<div class="lv-f chip" data-d="2" style="left:42%;top:22%;background:#161412;color:#F2EEE7;letter-spacing:.3em;font-family:var(--mono,monospace);font-size:12px">JAKAMIRO · RAMAT GAN</div>
-<div class="lv-char lv-ring" data-ring="1"></div></div><div class="wtag"><span class="mono">World 05 · Jakamiro</span><span>אי קומרס · תכשיטים</span></div>
-<div class="sttl"><h2 class="ptitle">Jakamiro</h2><p class="psub">A jewelry site for a brand from the Diamond Exchange. Like a luxury boutique, minus the heavy door</p></div></div>
-    <div class="live-p lp-jewel" id="jwl"><div class="jw-rays" aria-hidden="true"></div><div class="jw-case"><div class="jw-in"><video preload="none" data-lsrc="/v/jak_pack.mp4" poster="/n/x_jak_pack.webp" muted loop playsinline autoplay aria-label="Jakamiro jewelry packaging"></video></div><span class="jw-tag">JAKAMIRO · RAMAT GAN</span></div><i class="jw-sp" style="--x:12%;--y:22%;--d:0s"></i><i class="jw-sp" style="--x:84%;--y:18%;--d:.7s"></i><i class="jw-sp" style="--x:90%;--y:70%;--d:1.4s"></i><i class="jw-sp" style="--x:8%;--y:76%;--d:2.1s"></i></div>
-        
-    <div class="frame rv" style="margin-top:7vh"><div class="shot"><img loading="lazy" decoding="async" src="/a/mk_deco.webp" alt="The Jakamiro site on a laptop in an Art Deco boutique" decoding="async"></div></div>
-    
-    
-    
-    
-
-  </div>
-</section>
-
-
-
-
 </div>
 
 <section id="more" class="wrap" data-g="9">
@@ -1840,7 +1817,7 @@ function selectText(el){const r=document.createRange();r.selectNodeContents(el.f
 /* world progress */
 const secs=$$('[data-g]');
 const BG=['#0b0b0c','#0b0b0c','#EDEBE6','#5C94FC','#0E0E0C','#0B3C49','#F2EEE7','#C4F550','#FAF8F2','#07070b','#0b0b0c','#EEF3EF'];
-const NAMES=['00 · INTRO','00 · INTRO','—','—','03 · CHA·EKI','04 · TORO','05 · JAKAMIRO','01 · RICHARD','—','07 · MORE','08 · CONTACT','02 · LEGA6'];
+const NAMES=['00 · INTRO','00 · INTRO','—','—','03 · CHA·EKI','04 · TORO','—','01 · RICHARD','—','07 · MORE','08 · CONTACT','02 · LEGA6'];
 const hx=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 const SEQ=[0,...[...new Set(secs.map(x=>+x.dataset.g))]];const SL=SEQ.length-1;
 function worldPos(){const vh=innerHeight;let w=0;
@@ -2577,7 +2554,7 @@ const BOOKS=[
  const CH=['The story','The name','What we believe','How we talk','The logo','Colors','Typography','The recurring device','Out in the world'];
  shelf.innerHTML=BOOKS.map((b,i)=>`<button type="button" class="bk-book" data-i="${i}" style="--p:${b.c.p};--ink:${b.c.ink};--on:${b.c.on}"><span class="bk-spine"></span><span class="bk-front"><span class="bk-k">Brand book</span><b style="font-family:${b.fh}">${E(b.n)}</b><i>${E(b.tag)}</i><span class="bk-fm">${b.cover?`<img src="${b.cover}" alt="" loading="lazy">`:mark(b)}</span></span></button>`).join('');
  const v=document.getElementById('bkv'),body=v.querySelector('.bkv-b'),ttl=v.querySelector('.bkv-t'),cnt=v.querySelector('.bkv-n');let cur=-1,last=null;
- shelf.querySelectorAll('.bk-book').forEach(el=>{if(['bernie','dukorsky'].includes(BOOKS[+el.dataset.i].id))el.remove()});
+ 
   const open=i=>{const b=BOOKS[i];cur=i;last=document.activeElement;
    body.innerHTML=`<div class="bk-pages" style="--fh:${b.fh};--fb:${b.fb};--bp:${b.c.p};--bi:${b.c.ink}">`+[P.cover(b),P.toc(b,CH),...['story','name','values','voice','logo','colors','type','device','apps'].map(k=>P[k](b)),P.end(b)].join('')+`</div>`;
    ttl.textContent=b.n;v.hidden=false;document.documentElement.style.overflow='hidden';window.__lenis&&window.__lenis.stop();body.scrollTop=0;upd();v.querySelector('.bkv-x').focus()};

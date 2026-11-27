@@ -1,1 +1,1 @@
-window.CHAEKI_SCENES=[{f:'kv_hero.jpg',v:'v_hero.mp4'},{f:'kv_uji.jpg'},{f:'kv_shizuoka.jpg'},{f:'kv_kyoto.jpg',v:'v_kyoto.mp4'},{f:'kv_yame.jpg',v:'v_yame.mp4'},{f:'kv_kochi.jpg'},{f:'kv_yoshino.jpg',v:'v_yoshino.mp4'},{f:'kv_teahouse.jpg'}];
+window.CHAEKI_SCENES=[{f:'kv_hero.webp',v:'v_hero.mp4'},{f:'kv_uji.webp'},{f:'kv_shizuoka.webp'},{f:'kv_kyoto.webp',v:'v_kyoto.mp4'},{f:'kv_yame.webp',v:'v_yame.mp4'},{f:'kv_kochi.webp'},{f:'kv_yoshino.webp',v:'v_yoshino.mp4'},{f:'kv_teahouse.webp'}];

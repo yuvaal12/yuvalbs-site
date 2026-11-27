@@ -201,3 +201,17 @@ html.snd-on .snd .bars i{animation:eq 1s ease-in-out infinite}html.snd-on .snd .
 .totop:focus-visible{outline:2px solid var(--matcha);outline-offset:4px;border-radius:50%}
 .tt-bg{backdrop-filter:blur(6px)}
 @media (max-width:900px){.totop{width:50px;height:50px;bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+
+/* custom lettering */
+.hero-word .hw{display:inline-flex;align-items:flex-end}.hero-word .chg{display:block}
+.st-num{display:flex;gap:.04em}.st-num .chg{color:rgba(241,234,219,.9)}
+.hero-word{bottom:calc(5vh + 60px)}
+@media (max-width:900px){.hero-word{bottom:calc(5vh + 66px)}}
+/* mobile pass */
+@media (max-width:900px){
+ .nav{transition:background .4s,padding .4s}
+ .nav.scrolled{mix-blend-mode:normal;background:rgba(14,14,12,.84);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding-top:calc(12px + env(safe-area-inset-top,0px));padding-bottom:12px}
+ .hero-meta{font-size:10px}
+}
+@media (max-width:600px){.st-pouch{display:none}}
+@media (max-width:600px){.hero-meta{flex-direction:column;gap:4px;align-items:flex-start;right:auto}}
