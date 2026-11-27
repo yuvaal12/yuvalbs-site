@@ -53,7 +53,7 @@ const sts=$$('.st');
 $('#rDots').innerHTML=S.map((s,k)=>`<i style="left:${k/5*100}%;--dc:${col(s)}"><span class="jp">${s.jp}</span><small>${s.name}</small></i>`).join('');
 const dots=$$('#rDots i');
 $('#rTrain').innerHTML=`<svg viewBox="0 0 120 30"><path d="M4 6h84c18 0 28 6 30 14v4H4z" fill="#F1EADB"/><rect x="4" y="18" width="114" height="3" fill="#D9432B"/><rect x="4" y="21" width="114" height="3" fill="#5E7D32"/>${[12,28,44,60,76].map(x=>`<rect x="${x}" y="9" width="10" height="6" rx="2" fill="#20303a"/>`).join('')}<path d="M92 9h10c6 0 10 3 12 6H92z" fill="#20303a"/></svg>`;
-const HOLD=.08,TR=(1-6*HOLD)/7,keys=[[0,0]];{let p=0;for(let i=0;i<6;i++){p+=TR;keys.push([p,i+1]);p+=HOLD;keys.push([p,i+1])}keys.push([1,7])}
+const HOLD=.07,TR0=.06,TR=(1-6*HOLD-TR0)/6,keys=[[0,0]];{let p=0;for(let i=0;i<6;i++){p+=i?TR:TR0;keys.push([p,i+1]);p+=HOLD;keys.push([p,i+1])}keys.push([1,7])}
 const ease=f=>f<.5?4*f*f*f:1-Math.pow(-2*f+2,3)/2;
 function p2x(p){for(let i=0;i<keys.length-1;i++){const [a,xa]=keys[i],[b,xb]=keys[i+1];if(p<=b){const f=(p-a)/(b-a||1);return xa+(xb-xa)*ease(f)}}return 7}
 const scramble=(el,txt)=>{const ch='0123456789°·NE#/茶駅ABCDEFGHIJKLMNOPQRSTUVWXYZ';let f=0;cancelAnimationFrame(el._r);const run=()=>{f++;el.textContent=txt.split('').map((c,i)=>c===' '?' ':i<f*1.4?c:ch[Math.floor(Math.random()*ch.length)]).join('');if(f*1.4<txt.length)el._r=requestAnimationFrame(run)};run()};
@@ -66,7 +66,20 @@ function line(p){const x=p2x(p);window.__gl&&__gl.set(x);
   if(k>=0&&k<6)__snd.arrive(k);__snd.night(k===3?1:0);document.documentElement.style.setProperty('--acc',k>=0&&k<6?col(S[k]):'#D9432B')}
  const r=Math.max(0,Math.min(1,(x-1)/5));$('#rOn').style.transform=`scaleX(${r})`;$('#rTrain').style.left=`${r*100}%`;dots.forEach((d,j)=>d.classList.toggle('on',j<=x-1+.02));
  $('#stations').style.setProperty('--par',(x-Math.round(x)).toFixed(3))}
-ScrollTrigger.create({trigger:'#line',start:'top top',end:'bottom bottom',onUpdate:s=>line(s.progress)});line(0);
+const lineST=ScrollTrigger.create({trigger:'#line',start:'top top',end:'bottom bottom',onUpdate:s=>line(s.progress)});line(0);
+/* stops: every gesture inside the line rides to the next station */
+const STOPS=[0,...S.map((_,k)=>keys[1+2*k][0]+HOLD/2),1];
+const yOf=p=>lineST.start+p*(lineST.end-lineST.start);
+let snapping=false,idle=null,lastY=scrollY,dir=0;
+function go(i){i=Math.max(0,Math.min(STOPS.length-1,i));snapping=true;const y=yOf(STOPS[i]);const d=Math.abs(y-scrollY);lenis.scrollTo(y,{duration:Math.min(2.2,.9+d/2600),easing:t=>1-Math.pow(1-t,4),lock:true,onComplete:()=>{snapping=false;lastY=scrollY}})}
+function nearest(){const p=lineST.progress;let b=0;STOPS.forEach((v,i)=>{if(Math.abs(v-p)<Math.abs(STOPS[b]-p))b=i});return b}
+lenis.on('scroll',({scroll})=>{if(scroll!==lastY)dir=Math.sign(scroll-lastY);lastY=scroll;if(snapping)return;clearTimeout(idle);
+ if(scroll<lineST.start-2||scroll>lineST.end-4)return;
+ idle=setTimeout(()=>{if(snapping)return;const p=lineST.progress;if(p>=.999)return;let i=nearest();const v=STOPS[i];if(dir>0&&p>v+.004)i++;else if(dir<0&&p<v-.004)i--;if(i>=STOPS.length-1&&dir>0)return;go(i)},110)});
+$$('#rDots i').forEach((d,k)=>{d.style.pointerEvents='auto';d.setAttribute('role','button');d.setAttribute('tabindex','0');d.setAttribute('aria-label',`Go to station ${S[k].n}, ${S[k].name}`);d.addEventListener('click',()=>go(k+1));d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')go(k+1)})});
+addEventListener('keydown',e=>{if(scrollY<lineST.start-2||scrollY>lineST.end-4||/INPUT|BUTTON|TEXTAREA/.test(document.activeElement.tagName))return;
+ if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(nearest()+1)}else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(nearest()-1)}});
+$('.scroll-cue').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();go(1)},true);
 
 /* marquee driven by scroll velocity */
 const mq=$('#mq');const unit=S.map(s=>`<span><b class="jp">${s.jp}</b>${s.name}<i>·</i>${s.tea}<i class="d" style="background:${col(s)}"></i></span>`).join('');mq.innerHTML=unit+unit+unit;
@@ -183,6 +196,9 @@ $$('.pk-head h2,.po-head h2,.cer-txt h2,.gift-txt h2').forEach(h=>{h.innerHTML=h
 gsap.fromTo('.gift-img img',{scale:1.25},{scale:1,ease:'none',scrollTrigger:{trigger:'.gift',start:'top bottom',end:'bottom top',scrub:true}});
 gsap.fromTo('.ft-word',{yPercent:40},{yPercent:0,ease:'none',scrollTrigger:{trigger:'.foot',start:'top bottom',end:'bottom bottom',scrub:true}});
 
+/* back to top */
+const tt=$('#totop'),ttp=$('.tt-p',tt);tt.addEventListener('click',()=>{snapping=true;lenis.scrollTo(0,{duration:2.4,easing:t=>1-Math.pow(1-t,4),lock:true,onComplete:()=>{snapping=false;lastY=scrollY}})});
+lenis.on('scroll',({scroll,limit})=>{tt.classList.toggle('show',scroll>innerHeight*.8);ttp.style.strokeDashoffset=100-Math.min(100,scroll/(limit||1)*100)});
 /* nav state */
 ScrollTrigger.create({start:120,onUpdate:s=>$('#nav').classList.toggle('scrolled',s.scroll()>120)});
 addEventListener('load',()=>ScrollTrigger.refresh());

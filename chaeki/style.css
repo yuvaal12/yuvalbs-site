@@ -38,7 +38,7 @@ img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
 a:focus-visible{outline:2px solid var(--matcha);outline-offset:4px}
 
 /* line */
-.line{position:relative;height:1000svh}
+.line{position:relative;height:720svh}
 .line-st{position:sticky;top:0;height:100svh;overflow:hidden}
 .gl{position:absolute;inset:0;width:100%;height:100%;display:block}
 .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,14,12,.55) 0,rgba(14,14,12,0) 22%,rgba(14,14,12,0) 55%,rgba(14,14,12,.75) 100%),linear-gradient(90deg,rgba(14,14,12,.5) 0,rgba(14,14,12,0) 45%)}
@@ -60,7 +60,7 @@ a:focus-visible{outline:2px solid var(--matcha);outline-offset:4px}
 .route{position:absolute;left:var(--gl);right:var(--gl);bottom:calc(36px + env(safe-area-inset-bottom,0px));height:40px;z-index:4}
 .r-bg,.r-on{position:absolute;left:0;right:0;top:19px;height:2px;background:rgba(241,234,219,.3)}
 .r-on{background:var(--paper);transform-origin:left;transform:scaleX(0)}
-#rDots i{position:absolute;top:13px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--ink);border:2px solid var(--paper);transition:background .4s,transform .4s}
+#rDots i{position:absolute;top:13px;width:14px;height:14px;margin-left:-7px;border-radius:50%;cursor:pointer;background:var(--ink);border:2px solid var(--paper);transition:background .4s,transform .4s}
 #rDots i.on{background:var(--dc);transform:scale(1.25)}
 #rDots i span{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:13px;white-space:nowrap}
 #rDots i small{position:absolute;top:20px;left:50%;transform:translateX(-50%);font:400 10px 'DM Mono';letter-spacing:.14em;opacity:.7}
@@ -111,7 +111,7 @@ a:focus-visible{outline:2px solid var(--matcha);outline-offset:4px}
 .pk-prog{position:absolute;left:var(--gl);right:var(--gl);bottom:5vh;height:1px;background:#2a2925}.pk-prog i{display:block;height:100%;background:var(--paper);transform-origin:left;transform:scaleX(0)}
 
 /* ceremony */
-.cer{position:relative;height:420svh;background:#0b0b09}
+.cer{position:relative;height:300svh;background:#0b0b09}
 .cer-st{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:40px;padding:90px var(--gl) 40px;overflow:hidden}
 .cer-txt>.mono{opacity:.7;margin-bottom:22px}
 .steps{list-style:none;padding:0;margin-top:40px;display:grid;gap:16px;max-width:480px}
@@ -186,3 +186,18 @@ html.snd-on .snd .bars i{animation:eq 1s ease-in-out infinite}html.snd-on .snd .
 .btn-l,.btn-g{font:600 14px Jost;letter-spacing:.14em;text-transform:uppercase;padding:18px 26px;border-radius:999px}
 .btn-l{background:var(--ink);color:var(--paper)}.btn-g{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
 @media (max-width:900px){.tk{grid-template-columns:1fr}.tk-r{border-left:0;border-top:3px dashed rgba(27,26,23,.5);flex-direction:row;justify-content:space-between}.tk-r b{font-size:80px}.tk-r .jp{font-size:36px}.tk-l{padding:26px}.tv-o button{font-size:16px;padding:14px 20px}}
+
+#rDots i:hover{transform:scale(1.5)}#rDots i:focus-visible{outline:2px solid var(--matcha);outline-offset:4px}
+.route{pointer-events:none}
+
+.totop{position:fixed;right:var(--gl);bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:70;width:58px;height:58px;border:0;padding:0;background:none;color:var(--paper);opacity:0;transform:translateY(20px) scale(.9);pointer-events:none;transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.tt-bg{fill:rgba(14,14,12,.55);stroke:rgba(241,234,219,.25);stroke-width:1.5}
+.tt-p{fill:none;stroke:var(--matcha);stroke-width:2;stroke-dasharray:100;stroke-dashoffset:100}
+.tt-a{fill:none;stroke:var(--paper);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transform:rotate(90deg);transform-origin:30px 30px;transition:transform .4s}
+.totop span{position:absolute;inset:0;display:grid;place-items:center;font-size:16px;opacity:0;transition:opacity .3s}
+.totop:hover .tt-a{transform:rotate(90deg) translateX(-30px);opacity:0}.totop:hover span{opacity:1}
+.totop:focus-visible{outline:2px solid var(--matcha);outline-offset:4px;border-radius:50%}
+.tt-bg{backdrop-filter:blur(6px)}
+@media (max-width:900px){.totop{width:50px;height:50px;bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
