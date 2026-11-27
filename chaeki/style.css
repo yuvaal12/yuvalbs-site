@@ -111,7 +111,7 @@ a:focus-visible{outline:2px solid var(--matcha);outline-offset:4px}
 .pk-prog{position:absolute;left:var(--gl);right:var(--gl);bottom:5vh;height:1px;background:#2a2925}.pk-prog i{display:block;height:100%;background:var(--paper);transform-origin:left;transform:scaleX(0)}
 
 /* ceremony */
-.cer{position:relative;height:300svh;background:#0b0b09}
+.cer{position:relative;height:220svh;background:#0b0b09}
 .cer-st{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:40px;padding:90px var(--gl) 40px;overflow:hidden}
 .cer-txt>.mono{opacity:.7;margin-bottom:22px}
 .steps{list-style:none;padding:0;margin-top:40px;display:grid;gap:16px;max-width:480px}
@@ -149,7 +149,7 @@ a:focus-visible{outline:2px solid var(--matcha);outline-offset:4px}
  .st h2{font-size:clamp(40px,11vw,60px)}.st-note{font-size:14px}
  .ticket i{padding:8px;font-size:13px}
  .st-pouch{right:var(--gl);bottom:auto;top:44vh;width:92px}
- .pk-st{height:auto;padding:100px 0 40px}.pk-track{flex-direction:column;padding:0 var(--gl);gap:28px}.pk,.pk.w{width:100%}.pk-img{height:auto;aspect-ratio:4/3}.pk-img img{width:100%;margin:0}.pk-prog{display:none}.pk-head{flex-direction:column;align-items:flex-start;gap:14px}.pk-head p{order:0}
+ .pk-st{height:auto;padding:100px 0 40px}.pk-track{overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:0 var(--gl) 10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}.pk-track::-webkit-scrollbar{display:none}.pk,.pk.w{width:78vw;scroll-snap-align:center}.pk-img{height:auto;aspect-ratio:4/5}.pk.w .pk-img{aspect-ratio:4/5}.pk-img img{width:100%;margin:0}.pk-prog{display:none}.pk-head{flex-direction:column;align-items:flex-start;gap:14px}.pk-head p{order:0}
  .cer-st{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-content:start;padding-top:100px}.bowl-w{width:min(46vh,86vw)}.bowl-step b{font-size:40px}.bowl-step{right:0;top:0}.steps li{display:none}.steps li.on{display:flex;transform:none}
  .po-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.po{width:auto;margin-left:0}.po:nth-child(even){margin-top:30px}.po-head{flex-direction:column;align-items:flex-start;gap:14px}.po-head p{order:0}
  .gift{grid-template-columns:1fr}

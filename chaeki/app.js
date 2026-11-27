@@ -91,7 +91,7 @@ ScrollTrigger.create({trigger:'.mani',start:'top 75%',end:'bottom 45%',scrub:tru
 gsap.fromTo('.mani-k',{yPercent:30,opacity:0},{yPercent:-20,opacity:1,scrollTrigger:{trigger:'.mani',start:'top bottom',end:'bottom top',scrub:true}});
 
 /* packs: horizontal ride */
-const PK=(window.CHAEKI_PHOTOS||[]);const tr=$('#pkTrack');
+const KEEP=['ph_pouch_row.jpg','ph_uji.jpg','ph_kochi.jpg','ph_gift.jpg','ph_kyoto.jpg','ph_yame.jpg','ph_tin_row.jpg','ph_sachets.jpg','ph_bag.jpg'];const PK=(window.CHAEKI_PHOTOS||[]).filter(g=>KEEP.includes(g.f));const tr=$('#pkTrack');
 tr.innerHTML=PK.map((g,i)=>`<figure class="pk ${g.s>=7?'w':''}" data-hover><div class="pk-img"><img src="i/${g.f}" alt="${g.a}" loading="lazy"></div><figcaption><b>${String(i+1).padStart(2,'0')}</b><span>${g.t}</span></figcaption></figure>`).join('');
 /* liquid hover on the packs */
 if(FINE){const T=$('#lqT'),D=$('#lqD'),st={s:0,f:.008};const upd=()=>{D.setAttribute('scale',st.s.toFixed(1));T.setAttribute('baseFrequency',`${st.f.toFixed(4)} ${(st.f*2.4).toFixed(4)}`)};
@@ -99,7 +99,7 @@ if(FINE){const T=$('#lqT'),D=$('#lqD'),st={s:0,f:.008};const upd=()=>{D.setAttri
   el.addEventListener('pointerleave',()=>gsap.to(img,{scale:1,duration:1,ease:'expo.out'}))})}
 const mm=gsap.matchMedia();
 mm.add('(min-width:901px)',()=>{const dist=()=>tr.scrollWidth-innerWidth+80;
- const tw=gsap.to(tr,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'.packs',start:'top top',end:()=>'+='+dist(),pin:'.pk-st',scrub:1,invalidateOnRefresh:true,onUpdate:s=>{$('#pkProg').style.transform=`scaleX(${s.progress})`}}});
+ const tw=gsap.to(tr,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'.packs',start:'top top',end:()=>'+='+dist()*.45,pin:'.pk-st',scrub:1,invalidateOnRefresh:true,onUpdate:s=>{$('#pkProg').style.transform=`scaleX(${s.progress})`}}});
  $$('.pk img',tr).forEach(img=>gsap.fromTo(img,{xPercent:-8},{xPercent:8,ease:'none',scrollTrigger:{trigger:img.closest('.pk'),containerAnimation:tw,start:'left right',end:'right left',scrub:true}}));
  return()=>{}});
 
@@ -185,7 +185,7 @@ mm.add('(min-width:901px)',()=>{const dist=()=>tr.scrollWidth-innerWidth+80;
 $('#poGrid').innerHTML=S.map((s,i)=>`<figure class="po" data-hover><div class="po-c"><img src="i/poster_${s.id}.webp" alt="Station ${s.n} poster: ${s.tea}" loading="lazy" width="900" height="1200"><i class="glare"></i></div><figcaption class="mono">${s.n} · ${s.name}</figcaption></figure>`).join('');
 const pos=$$('.po');
 pos.forEach(el=>{const c=$('.po-c',el),gl=$('.glare',el);el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;gsap.to(c,{rotateY:x*16,rotateX:-y*16,duration:.5});gl.style.background=`radial-gradient(circle at ${(x+.5)*100}% ${(y+.5)*100}%,rgba(255,255,255,.35),transparent 55%)`});el.addEventListener('pointerleave',()=>{gsap.to(c,{rotateY:0,rotateX:0,duration:.9,ease:'elastic.out(1,.5)'});gl.style.background='none'})});
-mm.add('(min-width:901px)',()=>{const tl=gsap.timeline({scrollTrigger:{trigger:'.posters',start:'top top',end:'+=160%',pin:'.po-st',scrub:1}});
+mm.add('(min-width:901px)',()=>{const tl=gsap.timeline({scrollTrigger:{trigger:'.posters',start:'top top',end:'+=70%',pin:'.po-st',scrub:.6}});
  const fan=i=>({rotate:(i-2.5)*6,y:Math.pow(Math.abs(i-2.5),2)*9});pos.forEach((el,i)=>gsap.set(el,fan(i)));
  tl.from(pos,{x:i=>(2.5-i)*Math.min(innerWidth*.18,300)*.81,y:i=>40,rotate:i=>(i-2.5)*2,ease:'power3.inOut',stagger:{each:.02,from:'center'}},0).from('.po figcaption',{opacity:0,duration:.2},.8);
  pos.forEach((el,i)=>{el.addEventListener('pointerenter',()=>gsap.to(el,{y:-50,rotate:0,scale:1.06,duration:.5,ease:'power3.out'}));el.addEventListener('pointerleave',()=>gsap.to(el,{...fan(i),scale:1,duration:.7,ease:'power3.out'}))});return()=>{}});
