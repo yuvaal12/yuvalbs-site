@@ -39,8 +39,9 @@ void main(){
  vec2 hs=mix(vec2(asp*.5+.08,.58),vec2(min(asp*.36,.62),.33),W);float rr=mix(.0,.07,W);
  float d=sdRR(p+vec2(0.,.03*W),hs,rr);float inside=1.-smoothstep(0.,.003,d);
  float glow;vec3 col=vec3(0.);float speed=W*.007;float ws=0.;
+ if(W<.002){col=sceneCol(vUv,m,glow);}else{
  for(int i=-3;i<=3;i++){float g;vec2 u=vUv+vec2(float(i)*speed*.5,0.);col+=sceneCol(u+vec2(sin(time*9.)*.0015*W,cos(time*13.)*.001*W),m,g);ws+=1.;}
- col/=ws;vec3 dummy=sceneCol(vUv,m,glow);
+ col/=ws;glow=0.;}
  col=mix(col,vec3(.56,.69,.29),glow*.85*(1.-W));
  float pole=smoothstep(.93,.95,fract(vUv.x*.9+time*.55))*W;col=mix(col,vec3(.05,.05,.045),pole*.92);
  float wire=(1.-smoothstep(0.,.004,abs(vUv.y-.78-sin(vUv.x*3.+time*3.3)*.02)))*W;col=mix(col,vec3(.08),wire*.7);
@@ -59,7 +60,8 @@ function size(){const w=cv.clientWidth,h=cv.clientHeight;ren.setSize(w,h,false);
 let x=0,tx=0,mx=0,my=0,cmx=0,cmy=0,lastX=0,vel=0;
 addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=.5-e.clientY/innerHeight},{passive:true});
 const ir=t=>{const d=t.image&&(t.image.videoWidth||t.image.width);const e=t.image&&(t.image.videoHeight||t.image.height);return d&&e?d/e:16/9};
-function frame(now){const t=now/1000;x+=(tx-x)*.12;vel+=((Math.abs(x-lastX)*60)-vel)*.1;lastX=x;cmx+=(mx-cmx)*.05;cmy+=(my-cmy)*.05;
+let vis=true;new IntersectionObserver(es=>{vis=es[0].isIntersecting},{rootMargin:'100px'}).observe(cv);
+function frame(now){if(!vis||document.hidden){requestAnimationFrame(frame);return}const t=now/1000;x+=(tx-x)*.12;vel+=((Math.abs(x-lastX)*60)-vel)*.1;lastX=x;cmx+=(mx-cmx)*.05;cmy+=(my-cmy)*.05;
  const a=Math.max(0,Math.min(SC.length-1,Math.floor(x))),b=Math.min(SC.length-1,a+1),p=Math.max(0,Math.min(1,x-a));
  if(!tex[a]||!tex[b])rest();U.t0.value=tex[a]||tex[0];U.t1.value=tex[b]||tex[0];U.prog.value=p;U.ir0.value=ir(U.t0.value);U.ir1.value=ir(U.t1.value);U.time.value=t;U.mouse.value.set(cmx,cmy);U.vel.value=Math.min(1,vel);
  U.zoom0.value=1.04+((x%1)*0)+Math.sin(t*.1)*.004;U.zoom1.value=1.04;
